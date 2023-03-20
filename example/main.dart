@@ -1,4 +1,4 @@
-import 'package:example/env.dart';
+import 'lib/env.dart';
 
 void main() {
   print(Env.apiKey);
