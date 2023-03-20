@@ -36,3 +36,4 @@ doc/api/
 
 .DS_Store
 *.g.dart
+lib/src/errors.freezed.dart
