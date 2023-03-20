@@ -4,10 +4,13 @@ import 'package:http/http.dart' as http;
 
 class Client {
   final String apiKey;
+  late http.Client client;
   Client({
     required this.apiKey,
-  });
-  final client = http.Client();
+    http.Client? httpClient,
+  }) {
+    client = httpClient ?? http.Client();
+  }
 
   Map<String, String> generateHeaders() {
     return {
@@ -16,13 +19,14 @@ class Client {
     };
   }
 
-  Future<R?> sendRequest<T, R>(String url, T body) async {
+  Future<dynamic> sendRequest<T>(String url, T body) async {
     final response = await client.post(
       Uri.parse(url),
       headers: generateHeaders(),
-      body: body,
+      body: jsonEncode(body),
     );
 
-    return jsonDecode(utf8.decode(response.bodyBytes)) as R;
+    final data = jsonDecode(utf8.decode(response.bodyBytes));
+    return data;
   }
 }
