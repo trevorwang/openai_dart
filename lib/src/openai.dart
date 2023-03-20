@@ -1,5 +1,5 @@
-import 'client.dart';
-import 'constants.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:openai_api/openai_api.dart';
 
 /// Openai is the main class for the OpenAI API.
 
@@ -24,4 +24,16 @@ class Openai {
   final String? httpProxy;
 
   late Client client;
+
+  @internal
+  void setClient(Client client) {
+    this.client = client;
+  }
+
+  Future<ChatCompletionResponse> createChatCompletion(
+      ChatCompletionRequest request) async {
+    final data = await client.sendRequest(
+        "$baseUrl/${ChatCompletion.kEndpoint}", request);
+    return ChatCompletionResponse.fromJson(data);
+  }
 }
