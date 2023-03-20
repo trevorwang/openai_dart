@@ -35,3 +35,4 @@ doc/api/
 .flutter-plugins-dependencies
 
 .DS_Store
+*.g.dart
