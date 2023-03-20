@@ -1,5 +1,7 @@
 import 'constants.dart';
 
+/// Openai is the main class for the OpenAI API.
+
 class Openai {
   Openai({
     required this.apiKey,
