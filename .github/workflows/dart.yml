@@ -29,6 +29,7 @@ jobs:
 
       - name: Generate code
         run: |
+          cp .env.example .env
           dart run build_runner build --delete-conflicting-outputs
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
