@@ -1,8 +1,11 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 abstract class Constants {
   /// [kBaseUrl] is the base URL for the OpenAI API.
   static const kBaseUrl = "https://api.openai.com/v1";
 }
 
+@JsonEnum(valueField: "value")
 enum Model {
   // gpt4
   gpt4("gpt-4"),
