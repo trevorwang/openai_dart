@@ -4,6 +4,8 @@ import 'package:openai_api/src/errors.dart';
 import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
 
+import 'utils.dart';
+
 void main() {
   group('Openai Exception', () {
     setUpAll(() => print('setUpAll'));
@@ -103,6 +105,20 @@ void main() {
                 .having((p0) => p0.error.type, "error type must be unkown_type",
                     "invalid_json_format"),
           ));
+    });
+
+    test('stream request', () {
+      final client = OpenaiClient(
+          config: OpenaiConfig(apiKey: "xx"),
+          httpClient: MockClient.streaming((request, bodyStream) async =>
+              http.StreamedResponse(stream(), 200)));
+      client.sendStreamRequest(
+        "///",
+        "ssss",
+        onSuccess: (p0) {
+          print(p0);
+        },
+      );
     });
   });
 }

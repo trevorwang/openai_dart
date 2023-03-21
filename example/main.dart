@@ -6,13 +6,16 @@ void main() {
   final client = OpenaiClient(
       config: OpenaiConfig(apiKey: Env.apiKey, httpProxy: Env.httpProxy));
 
-  client
-      .sendChatCompletion(ChatCompletionRequest(
-        model: Model.gpt3_5Turbo,
-        messages: [
-          ChatMessage(content: "hello", role: ChatMessageRole.user),
-        ],
-      ))
-      .then((value) => print(value))
-      .catchError((err) => print(err));
+  client.sendChatCompletionStream(
+    ChatCompletionRequest(
+      model: Model.gpt3_5Turbo,
+      stream: true,
+      messages: [
+        ChatMessage(content: "hello", role: ChatMessageRole.user),
+      ],
+    ),
+    onSuccess: (p0) {
+      print(p0);
+    },
+  );
 }
