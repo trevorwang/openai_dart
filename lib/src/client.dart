@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:openai_api/openai_api.dart';
 import 'package:openai_api/src/errors.dart';
 
-class Client {
-  final String apiKey;
+class OpenaiClient {
+  final OpenaiConfig config;
   late http.Client client;
-  Client({
-    required this.apiKey,
+  OpenaiClient({
+    required this.config,
     http.Client? httpClient,
   }) {
     client = httpClient ?? http.Client();
@@ -15,14 +16,14 @@ class Client {
 
   Map<String, String> generateHeaders() {
     return {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer $apiKey",
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${config.apiKey}',
     };
   }
 
-  Future<dynamic> sendRequest<T>(String url, T body) async {
+  Future<dynamic> sendRequest<T>(String endpoint, T body) async {
     final response = await client.post(
-      Uri.parse(url),
+      Uri.parse("${config.baseUrl}/$endpoint"),
       headers: generateHeaders(),
       body: jsonEncode(body),
     );
