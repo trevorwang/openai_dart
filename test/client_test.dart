@@ -9,8 +9,8 @@ void main() {
     setUpAll(() => print('setUpAll'));
 
     test('400 error', () async {
-      final client = Client(
-          apiKey: "sk-xxxx",
+      final client = OpenaiClient(
+          config: OpenaiConfig(apiKey: "xk---xx"),
           httpClient: MockClient((request) => Future.value(http.Response("""
       {
         "error": {
@@ -31,8 +31,8 @@ void main() {
     });
 
     test("openai 401 error", () {
-      final client = Client(
-        apiKey: "sk-xxxx",
+      final client = OpenaiClient(
+        config: OpenaiConfig(apiKey: "xk---xx"),
         httpClient: MockClient(
           (request) => Future.value(
             http.Response("""
@@ -66,8 +66,8 @@ void main() {
     });
 
     test("unkonw error", () {
-      final client = Client(
-        apiKey: "sk-xxxx",
+      final client = OpenaiClient(
+        config: OpenaiConfig(apiKey: "xk---xx"),
         httpClient: MockClient(
           (request) => Future.value(
             http.Response("{}", 401),
@@ -86,8 +86,8 @@ void main() {
     });
 
     test("invalid json error", () {
-      final client = Client(
-        apiKey: "sk-xxxx",
+      final client = OpenaiClient(
+        config: OpenaiConfig(apiKey: "xk---xx"),
         httpClient: MockClient(
           (request) => Future.value(
             http.Response("xxxxxx", 401),

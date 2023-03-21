@@ -5,8 +5,13 @@ import '../openai_api.dart';
 part 'chat_completion.freezed.dart';
 part 'chat_completion.g.dart';
 
-class ChatCompletion {
+extension ChatCompletion on OpenaiClient {
   static const kEndpoint = "/chat/completions";
+  Future<ChatCompletionResponse> createChatCompletion(
+      ChatCompletionRequest request) async {
+    final data = await sendRequest(ChatCompletion.kEndpoint, request);
+    return ChatCompletionResponse.fromJson(data);
+  }
 }
 
 /// ChatCompletionRequest is the request body for the chat completion endpoint.
