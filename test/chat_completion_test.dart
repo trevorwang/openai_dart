@@ -1,10 +1,30 @@
 import 'dart:convert';
 
+import 'package:http/http.dart';
+import 'package:http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('chat completion', () {
+    final data = """
+      {
+      "id": "chatcmpl-6p9XYPYSTTRi0xEviKjjilqrWU2Ve",
+      "object": "chat.completion",
+      "created": 1677649420,
+      "model": "gpt-3.5-turbo",
+      "usage": {"prompt_tokens": 56, "completion_tokens": 31, "total_tokens": 87},
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "The 2020 World Series was played in Arlington, Texas at the Globe Life Field, which was the new home stadium for the Texas Rangers."},
+          "finish_reason": "stop",
+          "index": 0
+        }
+        ]
+      }
+      """;
     test('request', () {
       final request =
           ChatCompletionRequest(model: Model.gpt3_5Turbo, messages: [
@@ -54,25 +74,6 @@ void main() {
       });
     });
     test('response', () {
-      final data = """
-          {
-          "id": "chatcmpl-6p9XYPYSTTRi0xEviKjjilqrWU2Ve",
-          "object": "chat.completion",
-          "created": 1677649420,
-          "model": "gpt-3.5-turbo",
-          "usage": {"prompt_tokens": 56, "completion_tokens": 31, "total_tokens": 87},
-          "choices": [
-            {
-              "message": {
-                "role": "assistant",
-                "content": "The 2020 World Series was played in Arlington, Texas at the Globe Life Field, which was the new home stadium for the Texas Rangers."},
-              "finish_reason": "stop",
-              "index": 0
-            }
-            ]
-          }
-          """;
-
       final res = ChatCompletionResponse.fromJson(jsonDecode(data));
       expect(
         res,
@@ -86,6 +87,27 @@ void main() {
                 "message role should be assistant", ChatMessageRole.assistant)
             .having(
                 (p0) => p0.object, "object is not correct", "chat.completion"),
+      );
+    });
+
+    test('http request', () async {
+      final client = OpenaiClient(
+          config: OpenaiConfig(apiKey: "xxxx"),
+          httpClient: MockClient(
+            (request) {
+              return Future.value(
+                Response(data, 200),
+              );
+            },
+          ));
+
+      expect(
+        await client.sendChatCompletion(
+            ChatCompletionRequest(model: Model.davinci, messages: [])),
+        isA<ChatCompletionResponse>()
+            .having((p0) => p0.created, "invalid created tiem", 1677649420)
+            .having((p0) => p0.choices.first.finishReason,
+                "finish reason should be stop", "stop"),
       );
     });
   });

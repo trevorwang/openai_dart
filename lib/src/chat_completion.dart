@@ -7,7 +7,7 @@ part 'chat_completion.g.dart';
 
 extension ChatCompletion on OpenaiClient {
   static const kEndpoint = "/chat/completions";
-  Future<ChatCompletionResponse> createChatCompletion(
+  Future<ChatCompletionResponse> sendChatCompletion(
       ChatCompletionRequest request) async {
     final data = await sendRequest(ChatCompletion.kEndpoint, request);
     return ChatCompletionResponse.fromJson(data);
