@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../openai_api.dart';
@@ -11,6 +13,17 @@ extension ChatCompletion on OpenaiClient {
       ChatCompletionRequest request) async {
     final data = await sendRequest(ChatCompletion.kEndpoint, request);
     return ChatCompletionResponse.fromJson(data);
+  }
+
+  Future sendChatCompletionStream(
+    ChatCompletionRequest request, {
+    Function(dynamic)? onSuccess,
+  }) async {
+    return sendStreamRequest(
+      ChatCompletion.kEndpoint,
+      jsonEncode(request),
+      onSuccess: onSuccess,
+    );
   }
 }
 
@@ -128,7 +141,7 @@ class ChatCompletionResponse with _$ChatCompletionResponse {
     required int created,
 
     /// The usage statistics for the completion.
-    required ChatCompletionUsage usage,
+    ChatCompletionUsage? usage,
   }) = _ChatCompletionResponse;
 
   factory ChatCompletionResponse.fromJson(Map<String, Object?> json) =>
@@ -149,12 +162,24 @@ class ChatMessage with _$ChatMessage {
 class ChatChoice with _$ChatChoice {
   const factory ChatChoice({
     required int index,
-    required ChatMessage message,
-    required String finishReason,
+    ChatMessage? message,
+    ChatChoiceDelta? delta,
+    String? finishReason,
   }) = _ChatChoice;
 
   factory ChatChoice.fromJson(Map<String, Object?> json) =>
       _$ChatChoiceFromJson(json);
+}
+
+@freezed
+class ChatChoiceDelta with _$ChatChoiceDelta {
+  const factory ChatChoiceDelta({
+    String? content,
+    String? role,
+  }) = _ChatChoiceDelta;
+
+  factory ChatChoiceDelta.fromJson(Map<String, Object?> json) =>
+      _$ChatChoiceDeltaFromJson(json);
 }
 
 @freezed

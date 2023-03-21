@@ -5,6 +5,8 @@ import 'package:http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
 
+import 'utils.dart';
+
 void main() {
   group('chat completion', () {
     final data = """
@@ -83,7 +85,7 @@ void main() {
             .having((p0) => p0.choices, "choice is empty", isNotEmpty)
             .having((p0) => p0.choices.first.index,
                 "first choice's index should be 0", 0)
-            .having((p0) => p0.choices.first.message.role,
+            .having((p0) => p0.choices.first.message?.role,
                 "message role should be assistant", ChatMessageRole.assistant)
             .having(
                 (p0) => p0.object, "object is not correct", "chat.completion"),
@@ -109,6 +111,32 @@ void main() {
             .having((p0) => p0.choices.first.finishReason,
                 "finish reason should be stop", "stop"),
       );
+    });
+    test('stream http request', () async {
+      final client = OpenaiClient(
+        config: OpenaiConfig(apiKey: "xxxx"),
+        httpClient: MockClient.streaming((req, body) async {
+          return StreamedResponse(stream(), 200);
+        }),
+      );
+
+      var result = "";
+      await client.sendChatCompletionStream(
+        ChatCompletionRequest(model: Model.davinci, messages: []),
+        onSuccess: (p0) {
+          final res = ChatCompletionResponse.fromJson(p0);
+          expect(
+            res,
+            isA<ChatCompletionResponse>().having((p0) => p0.choices.first.delta,
+                "delta should be not null", isNotNull),
+          );
+
+          if (res.choices.first.delta?.content != null) {
+            result += res.choices.first.delta!.content!;
+          }
+        },
+      );
+      print(result);
     });
   });
 }

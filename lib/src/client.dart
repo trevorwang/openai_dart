@@ -33,7 +33,49 @@ class OpenaiClient {
       headers: generateHeaders(),
       body: jsonEncode(body),
     );
+    handleException(response);
+    return jsonDecode(utf8.decode(response.bodyBytes));
+  }
 
+  sendStreamRequest(
+    String endpoint,
+    dynamic body, {
+    Function(dynamic)? onSuccess,
+  }) async {
+    var request = http.Request(
+      'POST',
+      Uri.parse("${config.baseUrl}/$endpoint"),
+    );
+    request.headers.addAll(generateHeaders());
+
+    if (body != null) {
+      if (body is String) {
+        request.body = body;
+      } else if (body is List) {
+        request.bodyBytes = body.cast<int>();
+      } else if (body is Map) {
+        request.bodyFields = body.cast<String, String>();
+      } else {
+        throw ArgumentError('Invalid request body "$body".');
+      }
+    }
+    return client.send(request).then((value) {
+      value.stream.listen((data) {
+        final string = utf8.decode(data);
+        final results = string.split("data: ");
+        if (results[1].startsWith("[DONE]")) {
+          return;
+        }
+        onSuccess?.call(jsonDecode(results[1]));
+      }, onError: (err) {
+        print(err);
+      }).onDone(() {
+        client.close();
+      });
+    });
+  }
+
+  void handleException(http.Response response) {
     if (response.statusCode != 200) {
       try {
         final res = jsonDecode(utf8.decode(response.bodyBytes));
@@ -56,8 +98,6 @@ class OpenaiClient {
                 OpenaiError(message: e.message, type: "invalid_json_format"));
       }
     }
-
-    return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
   // TODO have to handle proxy for web
