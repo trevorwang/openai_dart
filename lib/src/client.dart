@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:openai_api/src/errors.dart';
 
@@ -11,7 +13,11 @@ class OpenaiClient {
     required this.config,
     http.Client? httpClient,
   }) {
-    client = httpClient ?? http.Client();
+    if (config.httpProxy?.isNotEmpty == true) {
+      client = httpClient ?? proxyClient(config.httpProxy!);
+    } else {
+      client = httpClient ?? http.Client();
+    }
   }
 
   Map<String, String> generateHeaders() {
@@ -52,5 +58,18 @@ class OpenaiClient {
     }
 
     return jsonDecode(utf8.decode(response.bodyBytes));
+  }
+
+  // TODO have to handle proxy for web
+  IOClient proxyClient(String proxy) {
+    final c = HttpClient();
+    final uri = Uri.parse(proxy);
+    if (uri.isScheme('HTTP') || uri.isScheme("HTTPS")) {
+      final script = "PROXY ${uri.host}:${uri.port}";
+      c.findProxy = (url) => script;
+    } else {
+      throw ArgumentError("Invalid proxy url");
+    }
+    return IOClient(c);
   }
 }
