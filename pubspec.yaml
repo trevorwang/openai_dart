@@ -1,7 +1,7 @@
 name: openai_api
 description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+version: 0.0.1
+repository: https://github.com/trevorwang/openai_dart
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
