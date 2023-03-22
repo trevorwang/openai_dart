@@ -1,32 +1,33 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart';
 import 'package:openai_api/openai_api.dart';
-part 'transcription.freezed.dart';
-part 'transcription.g.dart';
 
-/// Transcribes audio into the input language.
-extension Transcription on OpenaiClient {
-  static const kTranscriptionEndpoint = "audio/transcriptions";
-  Future<TrascriptionResponse> createTrascription(
-      TranscriptionRequest request) async {
+part 'translation.freezed.dart';
+part 'translation.g.dart';
+
+/// Translates audio into into English.
+extension Translation on OpenaiClient {
+  static const kTranslationEndpoint = "audio/translations";
+  Future<TraslationResponse> createTraslation(
+      TranslationRequest request) async {
     final fields = request
         .toJson()
         .map((key, value) => MapEntry(key, value.toString()))
       ..remove("file");
 
     final r = MultipartRequest(
-        'POST', Uri.parse("${config.baseUrl}/$kTranscriptionEndpoint"))
+        'POST', Uri.parse("${config.baseUrl}/$kTranslationEndpoint"))
       ..fields.addAll(fields)
       ..files.add(await MultipartFile.fromPath("file", request.file));
     final data = await sendFormRequest(r);
-    return TrascriptionResponse.fromJson(data);
+    return TraslationResponse.fromJson(data);
   }
 }
 
 @freezed
-class TranscriptionRequest with _$TranscriptionRequest {
-  const factory TranscriptionRequest({
-    /// The audio file to transcribe, in one of these formats: mp3, mp4, mpeg,
+class TranslationRequest with _$TranslationRequest {
+  const factory TranslationRequest({
+    /// The audio file to translate, in one of these formats: mp3, mp4, mpeg,
     /// mpga, m4a, wav, or webm.
     required String file,
 
@@ -47,24 +48,19 @@ class TranscriptionRequest with _$TranscriptionRequest {
     /// probability to automatically increase the temperature until certain
     /// thresholds are hit. Defaults to 0.
     double? temperature,
+  }) = _TranslationRequest;
 
-    /// The language of the input audio. Supplying the input language in
-    /// [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-    /// format will improve accuracy and latency.
-    String? language,
-  }) = _AudioTranscriptionRequest;
-
-  factory TranscriptionRequest.fromJson(Map<String, dynamic> json) =>
-      _$TranscriptionRequestFromJson(json);
+  factory TranslationRequest.fromJson(Map<String, dynamic> json) =>
+      _$TranslationRequestFromJson(json);
 }
 
 @freezed
-class TrascriptionResponse with _$TrascriptionResponse {
-  const factory TrascriptionResponse({
+class TraslationResponse with _$TraslationResponse {
+  const factory TraslationResponse({
     /// The converted text.
     required String text,
-  }) = _TranscriptionResponse;
+  }) = _TraslationResponse;
 
-  factory TrascriptionResponse.fromJson(Map<String, dynamic> json) =>
-      _$TrascriptionResponseFromJson(json);
+  factory TraslationResponse.fromJson(Map<String, dynamic> json) =>
+      _$TraslationResponseFromJson(json);
 }
