@@ -1,6 +1,5 @@
 import 'package:http/testing.dart';
 import 'package:openai_api/openai_api.dart';
-import 'package:openai_api/src/errors.dart';
 import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
 
