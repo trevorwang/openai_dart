@@ -21,12 +21,75 @@ class OpenaiClient {
     }
   }
 
-  Map<String, String> generateHeaders() {
+  Future<dynamic> sendFormRequest(http.MultipartRequest request) async {
+    request.headers.addAll(_authenticateHeaders());
+    final response = await http.Response.fromStream(await client.send(request));
+    handleException(response);
+    return jsonDecode(utf8.decode(response.bodyBytes));
+  }
+
+  Future<dynamic> sendRequest(String endpoint, dynamic body) async {
+    final response = await client.post(
+      Uri.parse("${config.baseUrl}/$endpoint"),
+      headers: _authenticateHeaders()..addAll(kJsonTypeHeader),
+      body: jsonEncode(body),
+    );
+    handleException(response);
+    return jsonDecode(utf8.decode(response.bodyBytes));
+  }
+
+  sendStreamRequest(
+    String endpoint,
+    dynamic body, {
+    Function(dynamic)? onSuccess,
+  }) async {
+    var request = http.Request(
+      'POST',
+      Uri.parse("${config.baseUrl}/$endpoint"),
+    );
+    request.headers.addAll(_authenticateHeaders());
+
+    if (body != null) {
+      if (body is String) {
+        request.body = body;
+      } else if (body is List) {
+        request.bodyBytes = body.cast<int>();
+      } else if (body is Map) {
+        request.bodyFields = body.cast<String, String>();
+      } else {
+        throw ArgumentError('Invalid request body "$body".');
+      }
+    }
+    return client.send(request).then((value) {
+      value.stream.listen((data) {
+        final string = utf8.decode(data);
+        final results = string.split("data: ");
+        if (results[1].startsWith("[DONE]")) {
+          return;
+        }
+        onSuccess?.call(jsonDecode(results[1]));
+      }, onError: (err) {
+        print(err);
+      }).onDone(() {
+        // client.close();
+        print("stream done");
+      });
+    });
+  }
+
+  Map<String, String> _authenticateHeaders() {
     return {
-      'Content-Type': 'application/json',
       'Authorization': 'Bearer ${config.apiKey}',
     };
   }
+
+  static const kJsonTypeHeader = {
+    'Content-Type': 'application/json',
+  };
+
+  static const kFormTypeHeader = {
+    'Content-Type': 'multipart/form-data',
+  };
 
   void handleException(http.Response response) {
     if (response.statusCode != 200) {
@@ -64,54 +127,5 @@ class OpenaiClient {
       throw ArgumentError("Invalid proxy url");
     }
     return IOClient(c);
-  }
-
-  Future<dynamic> sendRequest<T>(String endpoint, T body) async {
-    final response = await client.post(
-      Uri.parse("${config.baseUrl}/$endpoint"),
-      headers: generateHeaders(),
-      body: jsonEncode(body),
-    );
-    handleException(response);
-    return jsonDecode(utf8.decode(response.bodyBytes));
-  }
-
-  sendStreamRequest(
-    String endpoint,
-    dynamic body, {
-    Function(dynamic)? onSuccess,
-  }) async {
-    var request = http.Request(
-      'POST',
-      Uri.parse("${config.baseUrl}/$endpoint"),
-    );
-    request.headers.addAll(generateHeaders());
-
-    if (body != null) {
-      if (body is String) {
-        request.body = body;
-      } else if (body is List) {
-        request.bodyBytes = body.cast<int>();
-      } else if (body is Map) {
-        request.bodyFields = body.cast<String, String>();
-      } else {
-        throw ArgumentError('Invalid request body "$body".');
-      }
-    }
-    return client.send(request).then((value) {
-      value.stream.listen((data) {
-        final string = utf8.decode(data);
-        final results = string.split("data: ");
-        if (results[1].startsWith("[DONE]")) {
-          return;
-        }
-        onSuccess?.call(jsonDecode(results[1]));
-      }, onError: (err) {
-        print(err);
-      }).onDone(() {
-        // client.close();
-        print("stream done");
-      });
-    });
   }
 }

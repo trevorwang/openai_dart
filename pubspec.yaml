@@ -17,4 +17,5 @@ dependencies:
   envied_generator: ^0.3.0
   freezed_annotation: ^2.2.0
   http: ^0.13.5
+  http_parser: ^4.0.2
   json_serializable: ^6.6.1

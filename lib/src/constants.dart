@@ -18,7 +18,7 @@ enum Model {
   textDavinci_003("text-davinci-003"),
   textDavinci_002("text-davinci-002"),
   // codeDavinci_002("code-davinci-002"),
-  wisper_1("wisper-1"),
+  whisper_1("whisper-1"),
   embeddings(""),
   // codex
   codeDavinci_002("code-davinci-002"),
