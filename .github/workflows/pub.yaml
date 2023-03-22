@@ -1,0 +1,32 @@
+name: Publish package
+
+on:
+  release:
+    branches:
+      - feat/pub-publish
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: dart:stable
+
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Install dependencies
+        run: dart pub get
+      - name: Run tests
+        run: |
+          dart run test
+
+      - name: Setup credentials
+        run: |
+          mkdir -p ~/.pub-cache/
+          echo ${{secrets.PUB_CREDENTIALS}} | base64 --decode > ~/.pub-cache/credentials.json
+
+      - name: Release new version
+        run: |
+          RELEASE=${GITHUB_REF##*/}
+          sed -i -e "s/version:.*/version: $RELEASE/g" pubspec.yaml 
+          dart pub publish -f
