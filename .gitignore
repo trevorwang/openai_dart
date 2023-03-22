@@ -38,3 +38,4 @@ doc/api/
 .DS_Store
 *.g.dart
 *.freezed.dart
+node_modules
