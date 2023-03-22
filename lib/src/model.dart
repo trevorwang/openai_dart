@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openai_api/openai_api.dart';
+
+import 'client.dart';
 
 part 'model.freezed.dart';
 part 'model.g.dart';

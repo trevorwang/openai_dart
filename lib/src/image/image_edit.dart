@@ -44,8 +44,6 @@ class ImageEditRequest with _$ImageEditRequest {
   factory ImageEditRequest.fromJson(json) => _$ImageEditRequestFromJson(json);
 }
 
-/// Creates an edited or extended image given an original image and a prompt.
-
 extension ImageEdit on OpenaiClient {
   /// Creates an edited or extended image given an original image and a prompt.
   Future<ImageResponse> createImageEdit(ImageEditRequest request) async {
