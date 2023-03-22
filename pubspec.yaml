@@ -1,6 +1,6 @@
 name: openai_api
 description: A Dart API client for OpenAI
-version: 0.0.1
+version: 0.0.1+1
 repository: https://github.com/trevorwang/openai_dart
 
 environment:
