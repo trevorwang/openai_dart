@@ -9,3 +9,5 @@ export 'src/audio/transcription.dart';
 export 'src/audio/translation.dart';
 export 'src/model.dart';
 export 'src/image/image_generation.dart';
+export 'src/image/image_edit.dart';
+export 'src/image/image_variation.dart';
