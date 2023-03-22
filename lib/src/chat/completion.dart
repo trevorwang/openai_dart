@@ -2,29 +2,34 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../openai_api.dart';
+import '../client.dart';
+import '../constants.dart';
 
-part 'chat_completion.freezed.dart';
-part 'chat_completion.g.dart';
+part 'completion.freezed.dart';
+part 'completion.g.dart';
 
-extension ChatCompletion on OpenaiClient {
-  static const kEndpoint = "chat/completions";
-  Future<ChatCompletionResponse> sendChatCompletion(
-      ChatCompletionRequest request) async {
-    final data = await sendRequest(ChatCompletion.kEndpoint, request);
-    return ChatCompletionResponse.fromJson(data);
-  }
+@freezed
+class ChatChoice with _$ChatChoice {
+  const factory ChatChoice({
+    required int index,
+    ChatMessage? message,
+    ChatChoiceDelta? delta,
+    String? finishReason,
+  }) = _ChatChoice;
 
-  Future sendChatCompletionStream(
-    ChatCompletionRequest request, {
-    Function(dynamic)? onSuccess,
-  }) async {
-    return sendStreamRequest(
-      ChatCompletion.kEndpoint,
-      jsonEncode(request),
-      onSuccess: onSuccess,
-    );
-  }
+  factory ChatChoice.fromJson(Map<String, Object?> json) =>
+      _$ChatChoiceFromJson(json);
+}
+
+@freezed
+class ChatChoiceDelta with _$ChatChoiceDelta {
+  const factory ChatChoiceDelta({
+    String? content,
+    String? role,
+  }) = _ChatChoiceDelta;
+
+  factory ChatChoiceDelta.fromJson(Map<String, Object?> json) =>
+      _$ChatChoiceDeltaFromJson(json);
 }
 
 /// ChatCompletionRequest is the request body for the chat completion endpoint.
@@ -149,40 +154,6 @@ class ChatCompletionResponse with _$ChatCompletionResponse {
 }
 
 @freezed
-class ChatMessage with _$ChatMessage {
-  const factory ChatMessage({
-    required String content,
-    required ChatMessageRole role,
-  }) = _ChatMessage;
-  factory ChatMessage.fromJson(Map<String, Object?> json) =>
-      _$ChatMessageFromJson(json);
-}
-
-@freezed
-class ChatChoice with _$ChatChoice {
-  const factory ChatChoice({
-    required int index,
-    ChatMessage? message,
-    ChatChoiceDelta? delta,
-    String? finishReason,
-  }) = _ChatChoice;
-
-  factory ChatChoice.fromJson(Map<String, Object?> json) =>
-      _$ChatChoiceFromJson(json);
-}
-
-@freezed
-class ChatChoiceDelta with _$ChatChoiceDelta {
-  const factory ChatChoiceDelta({
-    String? content,
-    String? role,
-  }) = _ChatChoiceDelta;
-
-  factory ChatChoiceDelta.fromJson(Map<String, Object?> json) =>
-      _$ChatChoiceDeltaFromJson(json);
-}
-
-@freezed
 class ChatCompletionUsage with _$ChatCompletionUsage {
   const factory ChatCompletionUsage({
     /// The number of tokens used for the prompt.
@@ -199,12 +170,42 @@ class ChatCompletionUsage with _$ChatCompletionUsage {
       _$ChatCompletionUsageFromJson(json);
 }
 
+@freezed
+class ChatMessage with _$ChatMessage {
+  const factory ChatMessage({
+    required String content,
+    required ChatMessageRole role,
+  }) = _ChatMessage;
+  factory ChatMessage.fromJson(Map<String, Object?> json) =>
+      _$ChatMessageFromJson(json);
+}
+
 @JsonEnum(valueField: "role")
 enum ChatMessageRole {
   system("system"),
   assistant("assistant"),
   user("user");
 
-  const ChatMessageRole(this.role);
   final String role;
+  const ChatMessageRole(this.role);
+}
+
+extension ChatCompletion on OpenaiClient {
+  static const kEndpoint = "chat/completions";
+  Future<ChatCompletionResponse> sendChatCompletion(
+      ChatCompletionRequest request) async {
+    final data = await sendRequest(ChatCompletion.kEndpoint, request);
+    return ChatCompletionResponse.fromJson(data);
+  }
+
+  Future sendChatCompletionStream(
+    ChatCompletionRequest request, {
+    Function(dynamic)? onSuccess,
+  }) async {
+    return sendStreamRequest(
+      ChatCompletion.kEndpoint,
+      jsonEncode(request),
+      onSuccess: onSuccess,
+    );
+  }
 }

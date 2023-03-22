@@ -1,6 +1,4 @@
-import 'package:openai_api/openai_api.dart';
-
-/// Openai is the main class for the OpenAI API.
+import 'constants.dart';
 
 class OpenaiConfig {
   OpenaiConfig({
