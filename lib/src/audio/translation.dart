@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:http/http.dart';
-import 'package:openai_api/openai_api.dart';
+
+import '../client.dart';
+import '../constants.dart';
 
 part 'translation.freezed.dart';
 part 'translation.g.dart';
