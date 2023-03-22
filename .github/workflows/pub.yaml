@@ -1,10 +1,10 @@
 name: Publish package
 
 on:
-  push:
+  release:
     branches:
       - feat/pub-publish
-    # types: [published]
+    types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,10 +21,10 @@ jobs:
           cp .env.example .env
           dart run build_runner build --delete-conflicting-outputs
 
-      # - name: Release new version
-      #   run: |
-      #     RELEASE=${GITHUB_REF##*/}
-      #     sed -i -e "s/version:.*/version: $RELEASE/g" pubspec.yaml
+      - name: Release new version
+        run: |
+          RELEASE=${GITHUB_REF##*/}
+          sed -i -e "s/version:.*/version: $RELEASE/g" pubspec.yaml
 
       - name: '>> Publish package <<'
         uses: k-paxian/dart-package-publisher@master
