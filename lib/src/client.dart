@@ -38,6 +38,15 @@ class OpenaiClient {
     return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
+  Future<dynamic> get(String endpoint) async {
+    final response = await client.get(
+      Uri.parse("${config.baseUrl}/$endpoint"),
+      headers: _authenticateHeaders(),
+    );
+    handleException(response);
+    return jsonDecode(utf8.decode(response.bodyBytes));
+  }
+
   sendStreamRequest(
     String endpoint,
     dynamic body, {
