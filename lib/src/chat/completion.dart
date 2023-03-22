@@ -112,6 +112,7 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
 }
 
 /// ChatCompletionResponse is the response body for the chat completion endpoint.
+/// ```json
 /// {
 ///   "id": "chatcmpl-123",
 ///   "object": "chat.completion",
@@ -130,6 +131,7 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
 ///     "total_tokens": 21
 ///   }
 /// }
+/// ```
 @freezed
 class ChatCompletionResponse with _$ChatCompletionResponse {
   const factory ChatCompletionResponse({
