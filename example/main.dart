@@ -1,6 +1,5 @@
 import 'package:openai_api/openai_api.dart';
-import 'package:openai_api/src/audio/translation.dart';
-import 'package:openai_api/src/model.dart';
+import 'package:openai_api/src/image/image_edit.dart';
 
 import 'lib/env.dart';
 
@@ -9,9 +8,24 @@ void main() async {
       config: OpenaiConfig(apiKey: Env.apiKey, httpProxy: Env.httpProxy));
 
   // chatCompletionStsream(client);
+
   // await transcripte(client);
   // await translate(client);
 
+  // await testModel(client);
+
+  // print(await client.createImage(
+  //   ImageRequest(
+  //     prompt: "a girl on the beach",
+  //     responseFormat: 'b64_json',
+  //   ),
+  // ));
+
+  print(await client.createImageEdit(
+      ImageEditRequest(image: "assets/image.png", prompt: "打一把太阳伞")));
+}
+
+Future<void> testModel(OpenaiClient client) async {
   final result = await client.listModels();
   print(result);
 

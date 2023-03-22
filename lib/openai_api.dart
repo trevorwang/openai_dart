@@ -6,3 +6,6 @@ export 'src/client.dart';
 export 'src/errors.dart';
 export 'src/chat/completion.dart';
 export 'src/audio/transcription.dart';
+export 'src/audio/translation.dart';
+export 'src/model.dart';
+export 'src/image/image_generation.dart';
