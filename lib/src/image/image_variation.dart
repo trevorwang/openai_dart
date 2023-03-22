@@ -5,6 +5,7 @@ import '../client.dart';
 import 'image_generation.dart';
 
 part 'image_variation.freezed.dart';
+part 'image_variation.g.dart';
 
 typedef ImageVariationResposne = ImageResponse;
 
