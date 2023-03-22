@@ -1,10 +1,10 @@
 name: Publish package
 
 on:
-  release:
+  push:
     branches:
       - feat/pub-publish
-    types: [published]
+    # types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
