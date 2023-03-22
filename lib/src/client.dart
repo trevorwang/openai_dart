@@ -3,8 +3,9 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-import 'package:openai_api/openai_api.dart';
-import 'package:openai_api/src/errors.dart';
+
+import 'errors.dart';
+import 'config.dart';
 
 class OpenaiClient {
   final OpenaiConfig config;
@@ -25,6 +26,44 @@ class OpenaiClient {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ${config.apiKey}',
     };
+  }
+
+  void handleException(http.Response response) {
+    if (response.statusCode != 200) {
+      try {
+        final res = jsonDecode(utf8.decode(response.bodyBytes));
+        if (res['error'] != null) {
+          /// convert error content
+          final error = OpenaiError.fromJson(res['error']);
+          throw OpenaiException(code: response.statusCode, error: error);
+        }
+
+        /// receive a valid http status code but invalid error object
+        throw OpenaiException(
+            code: response.statusCode,
+            error:
+                OpenaiError(message: "unkown http error", type: "unkown_type"));
+      } on FormatException catch (e) {
+        // server returns invalid json oject
+        throw OpenaiException(
+            code: -1,
+            error:
+                OpenaiError(message: e.message, type: "invalid_json_format"));
+      }
+    }
+  }
+
+  // TODO have to handle proxy for web
+  IOClient proxyClient(String proxy) {
+    final c = HttpClient();
+    final uri = Uri.parse(proxy);
+    if (uri.isScheme('HTTP') || uri.isScheme("HTTPS")) {
+      final script = "PROXY ${uri.host}:${uri.port}";
+      c.findProxy = (url) => script;
+    } else {
+      throw ArgumentError("Invalid proxy url");
+    }
+    return IOClient(c);
   }
 
   Future<dynamic> sendRequest<T>(String endpoint, T body) async {
@@ -70,46 +109,9 @@ class OpenaiClient {
       }, onError: (err) {
         print(err);
       }).onDone(() {
-        client.close();
+        // client.close();
+        print("stream done");
       });
     });
-  }
-
-  void handleException(http.Response response) {
-    if (response.statusCode != 200) {
-      try {
-        final res = jsonDecode(utf8.decode(response.bodyBytes));
-        if (res['error'] != null) {
-          /// convert error content
-          final error = OpenaiError.fromJson(res['error']);
-          throw OpenaiException(code: response.statusCode, error: error);
-        }
-
-        /// receive a valid http status code but invalid error object
-        throw OpenaiException(
-            code: response.statusCode,
-            error:
-                OpenaiError(message: "unkown http error", type: "unkown_type"));
-      } on FormatException catch (e) {
-        // server returns invalid json oject
-        throw OpenaiException(
-            code: -1,
-            error:
-                OpenaiError(message: e.message, type: "invalid_json_format"));
-      }
-    }
-  }
-
-  // TODO have to handle proxy for web
-  IOClient proxyClient(String proxy) {
-    final c = HttpClient();
-    final uri = Uri.parse(proxy);
-    if (uri.isScheme('HTTP') || uri.isScheme("HTTPS")) {
-      final script = "PROXY ${uri.host}:${uri.port}";
-      c.findProxy = (url) => script;
-    } else {
-      throw ArgumentError("Invalid proxy url");
-    }
-    return IOClient(c);
   }
 }
