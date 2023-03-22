@@ -1,0 +1,34 @@
+name: Publish package
+
+on:
+  release:
+    branches:
+      - feat/pub-publish
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: dart:stable
+
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Install dependencies
+        run: dart pub get
+      - name: Generate code
+        run: |
+          cp .env.example .env
+          dart run build_runner build --delete-conflicting-outputs
+
+      - name: Release new version
+        run: |
+          RELEASE=${GITHUB_REF##*/}
+          sed -i -e "s/version:.*/version: $RELEASE/g" pubspec.yaml
+
+      - name: '>> Publish package <<'
+        uses: k-paxian/dart-package-publisher@master
+        with:
+          force: true
+          accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
+          refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
