@@ -1,13 +1,23 @@
 # openai_api
 
+[![openai_api](https://img.shields.io/pub/v/openai_api?label=openai_api&style=flat-square)](https://pub.dartlang.org/packages/openai_dart)
+[![Dart CI](https://github.com/trevorwang/openai_api/workflows/Dart/badge.svg)](https://github.com/trevorwang/openai_api)
+
 ## Features
 
-### Chat
+APIs have been supported by this library.
 
-Given a chat conversation, the model will return a chat completion response.
-
-- Create chat completion
-- Create chat completion Stream
+- [x] Chat
+- [x] Images
+- [x] Audio
+- [x] Models
+- [ ] Edits
+- [ ] Completions
+- [ ] Embeddings
+- [ ] Files
+- [ ] Fine-tunes
+- [ ] Moderations
+- [ ] Engines
 
 ## Usge
 
