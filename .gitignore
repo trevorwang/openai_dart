@@ -36,6 +36,6 @@ doc/api/
 .flutter-plugins-dependencies
 
 .DS_Store
-*.g.dart
-*.freezed.dart
+example/**/*.g.dart
+example/**/*.freezed.dart
 node_modules
