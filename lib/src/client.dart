@@ -57,6 +57,7 @@ class OpenaiClient {
       Uri.parse("${config.baseUrl}/$endpoint"),
     );
     request.headers.addAll(_authenticateHeaders());
+    request.headers.addAll(kJsonTypeHeader);
 
     if (body != null) {
       if (body is String) {
