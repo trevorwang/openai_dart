@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Chat Completion Stream refactor
+
 ## 0.0.3
 
 - Image generation
