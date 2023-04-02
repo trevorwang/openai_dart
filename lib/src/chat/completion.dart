@@ -202,12 +202,13 @@ extension ChatCompletion on OpenaiClient {
 
   Future sendChatCompletionStream(
     ChatCompletionRequest request, {
-    Function(dynamic)? onSuccess,
+    Function(ChatCompletionResponse)? onSuccess,
   }) async {
     return sendStreamRequest(
       ChatCompletion.kEndpoint,
       jsonEncode(request),
-      onSuccess: onSuccess,
+      onSuccess: (data) =>
+          onSuccess?.call(ChatCompletionResponse.fromJson(data)),
     );
   }
 }

@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
+import 'package:openai_api/openai_api.dart';
 
-import 'errors.dart';
-import 'config.dart';
+const dataPrefix = "data: ";
 
 class OpenaiClient {
   final OpenaiConfig config;
@@ -47,7 +47,7 @@ class OpenaiClient {
     return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
-  sendStreamRequest(
+  Future sendStreamRequest(
     String endpoint,
     dynamic body, {
     Function(dynamic)? onSuccess,
@@ -70,20 +70,30 @@ class OpenaiClient {
         throw ArgumentError('Invalid request body "$body".');
       }
     }
-    return client.send(request).then((value) {
-      value.stream.listen((data) {
-        final string = utf8.decode(data);
-        final results = string.split("data: ");
-        if (results[1].startsWith("[DONE]")) {
-          return;
+
+    final response = await client.send(request);
+    final statusCode = response.statusCode;
+    final stream =
+        response.stream.transform(utf8.decoder).transform(const LineSplitter());
+
+    await stream.forEach((data) {
+      final results =
+          data.split('\n').where((element) => element.isNotEmpty).toList();
+      for (var e in results) {
+        if (e.startsWith(dataPrefix)) {
+          final result = e.split(dataPrefix);
+          if (result.length > 1) {
+            onSuccess?.call(jsonDecode(result[1]));
+          }
+        } else {
+          final res = jsonDecode(e);
+          if (res['error'] != null) {
+            /// convert error content
+            final error = OpenaiError.fromJson(res['error']);
+            throw OpenaiException(code: statusCode, error: error);
+          }
         }
-        onSuccess?.call(jsonDecode(results[1]));
-      }, onError: (err) {
-        print(err);
-      }).onDone(() {
-        // client.close();
-        print("stream done");
-      });
+      }
     });
   }
 

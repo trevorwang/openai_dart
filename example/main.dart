@@ -11,11 +11,11 @@ void main() async {
     ),
   );
 
-  // chatCompletionStsream(client);
+  chatCompletionStsream(client);
 
-  await transcripte(client);
+  // await transcripte(client);
   // Future.delayed(Duration(seconds: 10));
-  await translate(client);
+  // await translate(client);
 
   // await testModel(client);
 
@@ -71,7 +71,7 @@ void chatCompletionStsream(OpenaiClient client) {
       ],
     ),
     onSuccess: (p0) {
-      print(p0);
+      // print(p0);
     },
   );
 }

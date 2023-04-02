@@ -39,3 +39,4 @@ doc/api/
 example/**/*.g.dart
 example/**/*.freezed.dart
 node_modules
+.env

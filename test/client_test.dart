@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:http/http.dart' as http;
@@ -115,9 +117,26 @@ void main() {
         "///",
         "ssss",
         onSuccess: (p0) {
-          print(p0);
+          expect(p0, isA<ChatCompletionResponse>());
         },
       );
+    });
+
+    test('stream request error', () async {
+      final client = OpenaiClient(
+          config: OpenaiConfig(apiKey: "xx"),
+          httpClient: MockClient.streaming((request, bodyStream) async =>
+              http.StreamedResponse(streamError(), 400)));
+
+      expect(
+          () => client.sendStreamRequest(
+                "///",
+                "ssss",
+                onSuccess: (p0) {
+                  print(p0);
+                },
+              ),
+          throwsA(isA<OpenaiException>().having((p0) => p0.code, "code", 400)));
     });
   });
 }

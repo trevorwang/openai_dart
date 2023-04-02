@@ -123,8 +123,7 @@ void main() {
       var result = "";
       await client.sendChatCompletionStream(
         ChatCompletionRequest(model: Model.davinci, messages: []),
-        onSuccess: (p0) {
-          final res = ChatCompletionResponse.fromJson(p0);
+        onSuccess: (res) {
           expect(
             res,
             isA<ChatCompletionResponse>().having((p0) => p0.choices.first.delta,
