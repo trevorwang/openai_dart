@@ -67,11 +67,12 @@ void chatCompletionStsream(OpenaiClient client) {
       model: Model.gpt3_5Turbo,
       stream: true,
       messages: [
-        ChatMessage(content: "hello", role: ChatMessageRole.user),
+        ChatMessage(
+            content: "Act as a golang runtime", role: ChatMessageRole.user),
       ],
     ),
     onSuccess: (p0) {
-      // print(p0);
+      print(p0);
     },
   );
 }
