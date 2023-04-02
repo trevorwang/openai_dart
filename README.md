@@ -1,6 +1,6 @@
 # openai_api
 
-[![openai_api](https://img.shields.io/pub/v/openai_api?label=openai_api&style=flat-square)](https://pub.dartlang.org/packages/openai_dart)
+[![openai_api](https://img.shields.io/pub/v/openai_api?label=openai_api&style=flat-square)](https://pub.dartlang.org/packages/openai_api)
 [![Dart CI](https://github.com/trevorwang/openai_api/workflows/Dart/badge.svg)](https://github.com/trevorwang/openai_api)
 
 ## Features
