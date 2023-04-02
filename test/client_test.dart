@@ -117,7 +117,9 @@ void main() {
         "///",
         "ssss",
         onSuccess: (p0) {
-          expect(p0, isA<ChatCompletionResponse>());
+          expect(ChatCompletionResponse.fromJson(p0),
+              isA<ChatCompletionResponse>(),
+              reason: "response type is not ChatCompletionResponse");
         },
       );
     });
