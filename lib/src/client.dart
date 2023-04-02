@@ -73,6 +73,13 @@ class OpenaiClient {
 
     final response = await client.send(request);
     final statusCode = response.statusCode;
+
+    if (statusCode >= 300) {
+      final r = await http.Response.fromStream(response);
+      handleException(r);
+      return;
+    }
+
     final stream =
         response.stream.transform(utf8.decoder).transform(const LineSplitter());
 
@@ -86,13 +93,6 @@ class OpenaiClient {
             if (!result[1].contains('[DONE]')) {
               onSuccess?.call(jsonDecode(result[1]));
             }
-          }
-        } else {
-          final res = jsonDecode(e);
-          if (res['error'] != null) {
-            /// convert error content
-            final error = OpenaiError.fromJson(res['error']);
-            throw OpenaiException(code: statusCode, error: error);
           }
         }
       }
