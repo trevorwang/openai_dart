@@ -83,7 +83,9 @@ class OpenaiClient {
         if (e.startsWith(dataPrefix)) {
           final result = e.split(dataPrefix);
           if (result.length > 1) {
-            onSuccess?.call(jsonDecode(result[1]));
+            if (!result[1].contains('[DONE]')) {
+              onSuccess?.call(jsonDecode(result[1]));
+            }
           }
         } else {
           final res = jsonDecode(e);
