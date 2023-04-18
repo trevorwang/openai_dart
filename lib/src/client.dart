@@ -8,18 +8,18 @@ import 'package:openai_api/openai_api.dart';
 const dataPrefix = "data: ";
 
 class OpenaiClient {
-  final OpenaiConfig config;
-  late http.Client client;
+  late OpenaiConfig _config;
+  late http.Client _client;
   OpenaiClient({
-    required this.config,
+    required OpenaiConfig config,
     http.Client? httpClient,
   }) {
-    if (config.httpProxy?.isNotEmpty == true) {
-      client = httpClient ?? proxyClient(config.httpProxy!);
-    } else {
-      client = httpClient ?? http.Client();
-    }
+    _config = config;
+    _updateClient(client: httpClient);
   }
+
+  OpenaiConfig get config => _config;
+  http.Client get client => _client;
 
   Future<dynamic> sendFormRequest(http.MultipartRequest request) async {
     request.headers.addAll(_authenticateHeaders());
@@ -135,6 +135,19 @@ class OpenaiClient {
             error:
                 OpenaiError(message: e.message, type: "invalid_json_format"));
       }
+    }
+  }
+
+  void updateConfig(OpenaiConfig config) {
+    _config = config;
+    _updateClient();
+  }
+
+  void _updateClient({http.Client? client}) {
+    if (config.httpProxy?.isNotEmpty == true) {
+      _client = client ?? proxyClient(config.httpProxy!);
+    } else {
+      _client = client ?? http.Client();
     }
   }
 

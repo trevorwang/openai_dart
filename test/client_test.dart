@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:http/io_client.dart';
 import 'package:http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:http/http.dart' as http;
@@ -139,6 +138,23 @@ void main() {
                 },
               ),
           throwsA(isA<OpenaiException>().having((p0) => p0.code, "code", 400)));
+    });
+
+    test('test update config', () {
+      final client = OpenaiClient(config: OpenaiConfig(apiKey: "1234"));
+
+      expect(client.config.apiKey, "1234");
+      // expect(client.client, isNot(isA<IOClient>()));
+      client.updateConfig(
+          OpenaiConfig(apiKey: "44444", httpProxy: "http://1234.com:7900"));
+
+      expect(
+        client.config,
+        isA<OpenaiConfig>()
+            .having((p0) => p0.apiKey, "", "44444")
+            .having((p0) => p0.httpProxy, "", "http://1234.com:7900"),
+      );
+      expect(client.client, isA<IOClient>());
     });
   });
 }

@@ -1,6 +1,6 @@
 name: openai_api
 description: A Dart API client for OpenAI. You can use it in Dart or Flutter applicaitons. for more information please refer to Openai API reference.
-version: 0.0.3
+version: 0.0.5
 repository: https://github.com/trevorwang/openai_dart
 
 environment:
