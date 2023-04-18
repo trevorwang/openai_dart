@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Add method to update openai config
+
 ## 0.0.4
 
 - Chat Completion Stream refactor
