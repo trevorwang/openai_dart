@@ -94,6 +94,13 @@ class OpenaiClient {
               onSuccess?.call(jsonDecode(result[1]));
             }
           }
+        } else {
+          final res = jsonDecode(e);
+          if (res['error'] != null) {
+            /// convert error content
+            final error = OpenaiError.fromJson(res['error']);
+            throw OpenaiException(code: statusCode, error: error);
+          }
         }
       }
     });
