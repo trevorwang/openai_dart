@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:cancellation_token_http/http.dart' as http;
 
 import '../client.dart';
 import '../constants.dart';
@@ -195,20 +196,28 @@ enum ChatMessageRole {
 extension ChatCompletion on OpenaiClient {
   static const kEndpoint = "chat/completions";
   Future<ChatCompletionResponse> sendChatCompletion(
-      ChatCompletionRequest request) async {
-    final data = await sendRequest(ChatCompletion.kEndpoint, request);
+    ChatCompletionRequest request, {
+    http.CancellationToken? cancellationToken,
+  }) async {
+    final data = await sendRequest(
+      ChatCompletion.kEndpoint,
+      request,
+      cancellationToken: cancellationToken,
+    );
     return ChatCompletionResponse.fromJson(data);
   }
 
   Future sendChatCompletionStream(
     ChatCompletionRequest request, {
     Function(ChatCompletionResponse)? onSuccess,
+    http.CancellationToken? cancellationToken,
   }) async {
     return sendStreamRequest(
       ChatCompletion.kEndpoint,
       jsonEncode(request),
       onSuccess: (data) =>
           onSuccess?.call(ChatCompletionResponse.fromJson(data)),
+      cancellationToken: cancellationToken,
     );
   }
 }

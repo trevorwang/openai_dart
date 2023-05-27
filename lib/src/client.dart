@@ -21,27 +21,42 @@ class OpenaiClient {
   OpenaiConfig get config => _config;
   http.Client get client => _client;
 
-  Future<dynamic> sendFormRequest(http.MultipartRequest request) async {
+  Future<dynamic> sendFormRequest(
+    http.MultipartRequest request, {
+    http.CancellationToken? cancellationToken,
+  }) async {
     request.headers.addAll(_authenticateHeaders());
-    final response = await http.Response.fromStream(await client.send(request));
+    final response = await http.Response.fromStream(await client.send(
+      request,
+      cancellationToken: cancellationToken,
+    ));
     handleException(response);
     return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
-  Future<dynamic> sendRequest(String endpoint, dynamic body) async {
+  Future<dynamic> sendRequest(
+    String endpoint,
+    dynamic body, {
+    http.CancellationToken? cancellationToken,
+  }) async {
     final response = await client.post(
       Uri.parse("${config.baseUrl}/$endpoint"),
       headers: _authenticateHeaders()..addAll(kJsonTypeHeader),
       body: jsonEncode(body),
+      cancellationToken: cancellationToken,
     );
     handleException(response);
     return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
-  Future<dynamic> get(String endpoint) async {
+  Future<dynamic> get(
+    String endpoint, {
+    http.CancellationToken? cancellationToken,
+  }) async {
     final response = await client.get(
       Uri.parse("${config.baseUrl}/$endpoint"),
       headers: _authenticateHeaders(),
+      cancellationToken: cancellationToken,
     );
     handleException(response);
     return jsonDecode(utf8.decode(response.bodyBytes));
@@ -51,6 +66,7 @@ class OpenaiClient {
     String endpoint,
     dynamic body, {
     Function(dynamic)? onSuccess,
+    http.CancellationToken? cancellationToken,
   }) async {
     var request = http.Request(
       'POST',
@@ -71,7 +87,10 @@ class OpenaiClient {
       }
     }
 
-    final response = await client.send(request);
+    final response = await client.send(
+      request,
+      cancellationToken: cancellationToken,
+    );
     final statusCode = response.statusCode;
 
     if (statusCode >= 300) {
