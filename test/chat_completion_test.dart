@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cancellation_token_http/http.dart';
 import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
