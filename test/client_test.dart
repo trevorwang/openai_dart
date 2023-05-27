@@ -1,7 +1,7 @@
-import 'package:http/io_client.dart';
-import 'package:http/testing.dart';
+import 'package:cancellation_token_http/io_client.dart';
+import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
-import 'package:http/http.dart' as http;
+import 'package:cancellation_token_http/http.dart' as http;
 import 'package:test/test.dart';
 
 import 'utils.dart';
