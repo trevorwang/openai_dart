@@ -62,6 +62,10 @@ _$_ChatCompletionRequest _$$_ChatCompletionRequestFromJson(
       messages: (json['messages'] as List<dynamic>)
           .map((e) => ChatMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
+      functions: (json['functions'] as List<dynamic>?)
+          ?.map((e) => ChatFunction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      functionCall: json['function_call'],
       temperature: (json['temperature'] as num?)?.toDouble(),
       topP: (json['top_p'] as num?)?.toDouble(),
       n: json['n'] as int?,
@@ -87,6 +91,9 @@ Map<String, dynamic> _$$_ChatCompletionRequestToJson(
     }
   }
 
+  writeNotNull(
+      'functions', instance.functions?.map((e) => e.toJson()).toList());
+  writeNotNull('function_call', instance.functionCall);
   writeNotNull('temperature', instance.temperature);
   writeNotNull('top_p', instance.topP);
   writeNotNull('n', instance.n);
@@ -182,18 +189,74 @@ Map<String, dynamic> _$$_ChatCompletionUsageToJson(
 
 _$_ChatMessage _$$_ChatMessageFromJson(Map<String, dynamic> json) =>
     _$_ChatMessage(
-      content: json['content'] as String,
+      content: json['content'] as String?,
       role: $enumDecode(_$ChatMessageRoleEnumMap, json['role']),
+      functionCall: json['function_call'],
     );
 
-Map<String, dynamic> _$$_ChatMessageToJson(_$_ChatMessage instance) =>
-    <String, dynamic>{
-      'content': instance.content,
-      'role': _$ChatMessageRoleEnumMap[instance.role]!,
-    };
+Map<String, dynamic> _$$_ChatMessageToJson(_$_ChatMessage instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('content', instance.content);
+  val['role'] = _$ChatMessageRoleEnumMap[instance.role]!;
+  writeNotNull('function_call', instance.functionCall);
+  return val;
+}
 
 const _$ChatMessageRoleEnumMap = {
   ChatMessageRole.system: 'system',
   ChatMessageRole.assistant: 'assistant',
+  ChatMessageRole.function: 'function',
   ChatMessageRole.user: 'user',
 };
+
+_$_ChatFunction _$$_ChatFunctionFromJson(Map<String, dynamic> json) =>
+    _$_ChatFunction(
+      name: json['name'] as String,
+      description: json['description'] as String?,
+      parameters: json['parameters'] == null
+          ? null
+          : ChatFunctionParameters.fromJson(
+              json['parameters'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_ChatFunctionToJson(_$_ChatFunction instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('description', instance.description);
+  writeNotNull('parameters', instance.parameters?.toJson());
+  return val;
+}
+
+_$_ChatFunctionParameters _$$_ChatFunctionParametersFromJson(
+        Map<String, dynamic> json) =>
+    _$_ChatFunctionParameters(
+      type: json['type'] as String? ?? "object",
+      properties: json['properties'] as Map<String, dynamic>? ?? const {},
+      required: (json['required'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$_ChatFunctionParametersToJson(
+        _$_ChatFunctionParameters instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'properties': instance.properties,
+      'required': instance.required,
+    };

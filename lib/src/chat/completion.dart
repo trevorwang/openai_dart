@@ -45,6 +45,17 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
     /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
     required List<ChatMessage> messages,
 
+    /// A list of functions the model may generate JSON inputs for.
+    List<ChatFunction>? functions,
+
+    ///Controls how the model responds to function calls. "none" means the model
+    ///does not call a function, and responds to the end-user. "auto" means
+    ///the model can pick between an end-user or calling a function.
+    ///Specifying a particular function via {"name":\ "my_function"} forces
+    ///the model to call that function. "none" is the default when no functions
+    ///are present. "auto" is the default if functions are present.
+    dynamic functionCall,
+
     /// The sampling temperature. Defaults to 1.
     /// What sampling temperature to use, between 0 and 2. Higher values l
     /// ike 0.8 will make the output more random, while lower values like 0.2
@@ -176,17 +187,83 @@ class ChatCompletionUsage with _$ChatCompletionUsage {
 @freezed
 class ChatMessage with _$ChatMessage {
   const factory ChatMessage({
-    required String content,
+    required String? content,
     required ChatMessageRole role,
+    dynamic functionCall,
   }) = _ChatMessage;
   factory ChatMessage.fromJson(Map<String, Object?> json) =>
       _$ChatMessageFromJson(json);
+}
+
+@freezed
+class ChatFunctionCall with _$ChatFunctionCall {
+  const factory ChatFunctionCall({
+    required String name,
+    Map<String, dynamic>? arguments,
+  }) = _ChatFunctionCall;
+}
+
+@freezed
+class ChatFunction with _$ChatFunction {
+  const factory ChatFunction({
+    /// The name of the function to be called. Must be a-z, A-Z, 0-9,
+    /// or contain underscores and dashes, with a maximum length of 64.
+    required String name,
+
+    /// The description of what the function does.
+    String? description,
+
+    ///The parameters the functions accepts, described as a JSON Schema object.
+    ///See the guide for examples, and the JSON Schema reference for
+    ///documentation about the format.
+    ///```python
+    /// response = openai.ChatCompletion.create(
+    ///     model="gpt-3.5-turbo-0613",
+    ///     messages=[{"role": "user", "content": "What's the weather like in Boston?"}],
+    ///     functions=[
+    ///         {
+    ///             "name": "get_current_weather",
+    ///             "description": "Get the current weather in a given location",
+    ///             "parameters": {
+    ///                 "type": "object",
+    ///                 "properties": {
+    ///                     "location": {
+    ///                         "type": "string",
+    ///                         "description": "The city and state, e.g. San Francisco, CA",
+    ///                     },
+    ///                     "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+    ///                 },
+    ///                 "required": ["location"],
+    ///             },
+    ///         }
+    ///     ],
+    ///     function_call="auto",
+    /// )
+    /// ```
+    ChatFunctionParameters? parameters,
+  }) = _ChatFunction;
+
+  factory ChatFunction.fromJson(Map<String, Object?> json) =>
+      _$ChatFunctionFromJson(json);
+}
+
+@freezed
+class ChatFunctionParameters with _$ChatFunctionParameters {
+  const factory ChatFunctionParameters({
+    @Default("object") String type,
+    @Default({}) Map<String, dynamic> properties,
+    @Default([]) List<String> required,
+  }) = _ChatFunctionParameters;
+
+  factory ChatFunctionParameters.fromJson(Map<String, Object?> json) =>
+      _$ChatFunctionParametersFromJson(json);
 }
 
 @JsonEnum(valueField: "role")
 enum ChatMessageRole {
   system("system"),
   assistant("assistant"),
+  function("function"),
   user("user");
 
   final String role;

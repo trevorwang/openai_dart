@@ -11,8 +11,9 @@ void main() async {
     ),
   );
 
-  chatCompletionStsream(client);
+  // chatCompletionStsream(client);
 
+  chatCompletion(client);
   // await transcripte(client);
   // Future.delayed(Duration(seconds: 10));
   // await translate(client);
@@ -75,4 +76,39 @@ void chatCompletionStsream(OpenaiClient client) {
       print(p0);
     },
   );
+}
+
+void chatCompletion(OpenaiClient client) async {
+  final result = await client.sendChatCompletion(
+    ChatCompletionRequest(
+      model: Model.gpt3_5Turbo_0613,
+      messages: [
+        ChatMessage(
+            content: "What's the weather like in Boston in celsius?",
+            role: ChatMessageRole.user),
+      ],
+      functions: [
+        ChatFunction(
+          name: "get_current_weather",
+          description: "Get the current weather in a given location",
+          parameters: ChatFunctionParameters(
+            type: "object",
+            properties: {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g. San Francisco, CA",
+              },
+              "unit": {
+                "type": "string",
+                "enum": ["celsius", "fahrenheit"]
+              },
+            },
+            required: ["location"],
+          ),
+        )
+      ],
+      functionCall: "auto",
+    ),
+  );
+  print(result);
 }
