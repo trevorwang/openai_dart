@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:openai_api/openai_api.dart';
 
 import 'lib/env.dart';
@@ -86,6 +88,15 @@ void chatCompletion(OpenaiClient client) async {
         ChatMessage(
             content: "What's the weather like in Boston in celsius?",
             role: ChatMessageRole.user),
+        ChatMessage(
+          content: jsonEncode({
+            "temperature": "22",
+            "unit": "celsius",
+            "description": "Sunny",
+          }),
+          name: 'get_current_weather',
+          role: ChatMessageRole.function,
+        ),
       ],
       functions: [
         ChatFunction(

@@ -190,6 +190,7 @@ Map<String, dynamic> _$$_ChatCompletionUsageToJson(
 _$_ChatMessage _$$_ChatMessageFromJson(Map<String, dynamic> json) =>
     _$_ChatMessage(
       content: json['content'] as String?,
+      name: json['name'] as String?,
       role: $enumDecode(_$ChatMessageRoleEnumMap, json['role']),
       functionCall: json['function_call'],
     );
@@ -204,6 +205,7 @@ Map<String, dynamic> _$$_ChatMessageToJson(_$_ChatMessage instance) {
   }
 
   writeNotNull('content', instance.content);
+  writeNotNull('name', instance.name);
   val['role'] = _$ChatMessageRoleEnumMap[instance.role]!;
   writeNotNull('function_call', instance.functionCall);
   return val;
