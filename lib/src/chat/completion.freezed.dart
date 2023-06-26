@@ -413,6 +413,17 @@ mixin _$ChatCompletionRequest {
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
   List<ChatMessage> get messages => throw _privateConstructorUsedError;
 
+  /// A list of functions the model may generate JSON inputs for.
+  List<ChatFunction>? get functions => throw _privateConstructorUsedError;
+
+  ///Controls how the model responds to function calls. "none" means the model
+  ///does not call a function, and responds to the end-user. "auto" means
+  ///the model can pick between an end-user or calling a function.
+  ///Specifying a particular function via {"name":\ "my_function"} forces
+  ///the model to call that function. "none" is the default when no functions
+  ///are present. "auto" is the default if functions are present.
+  dynamic get functionCall => throw _privateConstructorUsedError;
+
   /// The sampling temperature. Defaults to 1.
   /// What sampling temperature to use, between 0 and 2. Higher values l
   /// ike 0.8 will make the output more random, while lower values like 0.2
@@ -490,6 +501,8 @@ abstract class $ChatCompletionRequestCopyWith<$Res> {
   $Res call(
       {Model model,
       List<ChatMessage> messages,
+      List<ChatFunction>? functions,
+      dynamic functionCall,
       double? temperature,
       double? topP,
       int? n,
@@ -518,6 +531,8 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
   $Res call({
     Object? model = null,
     Object? messages = null,
+    Object? functions = freezed,
+    Object? functionCall = freezed,
     Object? temperature = freezed,
     Object? topP = freezed,
     Object? n = freezed,
@@ -538,6 +553,14 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<ChatMessage>,
+      functions: freezed == functions
+          ? _value.functions
+          : functions // ignore: cast_nullable_to_non_nullable
+              as List<ChatFunction>?,
+      functionCall: freezed == functionCall
+          ? _value.functionCall
+          : functionCall // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       temperature: freezed == temperature
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
@@ -593,6 +616,8 @@ abstract class _$$_ChatCompletionRequestCopyWith<$Res>
   $Res call(
       {Model model,
       List<ChatMessage> messages,
+      List<ChatFunction>? functions,
+      dynamic functionCall,
       double? temperature,
       double? topP,
       int? n,
@@ -618,6 +643,8 @@ class __$$_ChatCompletionRequestCopyWithImpl<$Res>
   $Res call({
     Object? model = null,
     Object? messages = null,
+    Object? functions = freezed,
+    Object? functionCall = freezed,
     Object? temperature = freezed,
     Object? topP = freezed,
     Object? n = freezed,
@@ -638,6 +665,14 @@ class __$$_ChatCompletionRequestCopyWithImpl<$Res>
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
               as List<ChatMessage>,
+      functions: freezed == functions
+          ? _value._functions
+          : functions // ignore: cast_nullable_to_non_nullable
+              as List<ChatFunction>?,
+      functionCall: freezed == functionCall
+          ? _value.functionCall
+          : functionCall // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       temperature: freezed == temperature
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
@@ -688,6 +723,8 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
   const _$_ChatCompletionRequest(
       {required this.model,
       required final List<ChatMessage> messages,
+      final List<ChatFunction>? functions,
+      this.functionCall,
       this.temperature,
       this.topP,
       this.n,
@@ -699,6 +736,7 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
       final Map<String, dynamic>? logitBias,
       this.user})
       : _messages = messages,
+        _functions = functions,
         _stop = stop,
         _logitBias = logitBias;
 
@@ -721,6 +759,28 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_messages);
   }
+
+  /// A list of functions the model may generate JSON inputs for.
+  final List<ChatFunction>? _functions;
+
+  /// A list of functions the model may generate JSON inputs for.
+  @override
+  List<ChatFunction>? get functions {
+    final value = _functions;
+    if (value == null) return null;
+    if (_functions is EqualUnmodifiableListView) return _functions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  ///Controls how the model responds to function calls. "none" means the model
+  ///does not call a function, and responds to the end-user. "auto" means
+  ///the model can pick between an end-user or calling a function.
+  ///Specifying a particular function via {"name":\ "my_function"} forces
+  ///the model to call that function. "none" is the default when no functions
+  ///are present. "auto" is the default if functions are present.
+  @override
+  final dynamic functionCall;
 
   /// The sampling temperature. Defaults to 1.
   /// What sampling temperature to use, between 0 and 2. Higher values l
@@ -823,7 +883,7 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
 
   @override
   String toString() {
-    return 'ChatCompletionRequest(model: $model, messages: $messages, temperature: $temperature, topP: $topP, n: $n, stream: $stream, stop: $stop, maxTokens: $maxTokens, presencePenalty: $presencePenalty, frequencyPenalty: $frequencyPenalty, logitBias: $logitBias, user: $user)';
+    return 'ChatCompletionRequest(model: $model, messages: $messages, functions: $functions, functionCall: $functionCall, temperature: $temperature, topP: $topP, n: $n, stream: $stream, stop: $stop, maxTokens: $maxTokens, presencePenalty: $presencePenalty, frequencyPenalty: $frequencyPenalty, logitBias: $logitBias, user: $user)';
   }
 
   @override
@@ -833,6 +893,10 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
             other is _$_ChatCompletionRequest &&
             (identical(other.model, model) || other.model == model) &&
             const DeepCollectionEquality().equals(other._messages, _messages) &&
+            const DeepCollectionEquality()
+                .equals(other._functions, _functions) &&
+            const DeepCollectionEquality()
+                .equals(other.functionCall, functionCall) &&
             (identical(other.temperature, temperature) ||
                 other.temperature == temperature) &&
             (identical(other.topP, topP) || other.topP == topP) &&
@@ -856,6 +920,8 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
       runtimeType,
       model,
       const DeepCollectionEquality().hash(_messages),
+      const DeepCollectionEquality().hash(_functions),
+      const DeepCollectionEquality().hash(functionCall),
       temperature,
       topP,
       n,
@@ -886,6 +952,8 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   const factory _ChatCompletionRequest(
       {required final Model model,
       required final List<ChatMessage> messages,
+      final List<ChatFunction>? functions,
+      final dynamic functionCall,
       final double? temperature,
       final double? topP,
       final int? n,
@@ -910,6 +978,19 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
   List<ChatMessage> get messages;
+  @override
+
+  /// A list of functions the model may generate JSON inputs for.
+  List<ChatFunction>? get functions;
+  @override
+
+  ///Controls how the model responds to function calls. "none" means the model
+  ///does not call a function, and responds to the end-user. "auto" means
+  ///the model can pick between an end-user or calling a function.
+  ///Specifying a particular function via {"name":\ "my_function"} forces
+  ///the model to call that function. "none" is the default when no functions
+  ///are present. "auto" is the default if functions are present.
+  dynamic get functionCall;
   @override
 
   /// The sampling temperature. Defaults to 1.
@@ -1472,8 +1553,22 @@ ChatMessage _$ChatMessageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatMessage {
-  String get content => throw _privateConstructorUsedError;
+  /// The contents of the message. content is required for all messages except
+  /// assistant messages with function calls.
+  String? get content => throw _privateConstructorUsedError;
+
+  ///The name of the author of this message. name is **required** if role is
+  ///function, and it should be the name of the function whose response is in
+  ///the content. May contain a-z, A-Z, 0-9, and underscores, with a maximum
+  ///length of 64 characters.
+  String? get name => throw _privateConstructorUsedError;
+
+  /// The role of the messages author. One of [ChatMessageRole.system],
+  /// [ChatMessageRole.user], [ChatMessageRole.assistant], or [ChatMessageRole.function]
   ChatMessageRole get role => throw _privateConstructorUsedError;
+
+  /// The name and arguments of a function that should be called, as generated by the model.
+  dynamic get functionCall => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1487,7 +1582,11 @@ abstract class $ChatMessageCopyWith<$Res> {
           ChatMessage value, $Res Function(ChatMessage) then) =
       _$ChatMessageCopyWithImpl<$Res, ChatMessage>;
   @useResult
-  $Res call({String content, ChatMessageRole role});
+  $Res call(
+      {String? content,
+      String? name,
+      ChatMessageRole role,
+      dynamic functionCall});
 }
 
 /// @nodoc
@@ -1503,18 +1602,28 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? content = null,
+    Object? content = freezed,
+    Object? name = freezed,
     Object? role = null,
+    Object? functionCall = freezed,
   }) {
     return _then(_value.copyWith(
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as ChatMessageRole,
+      functionCall: freezed == functionCall
+          ? _value.functionCall
+          : functionCall // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -1527,7 +1636,11 @@ abstract class _$$_ChatMessageCopyWith<$Res>
       __$$_ChatMessageCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String content, ChatMessageRole role});
+  $Res call(
+      {String? content,
+      String? name,
+      ChatMessageRole role,
+      dynamic functionCall});
 }
 
 /// @nodoc
@@ -1541,18 +1654,28 @@ class __$$_ChatMessageCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? content = null,
+    Object? content = freezed,
+    Object? name = freezed,
     Object? role = null,
+    Object? functionCall = freezed,
   }) {
     return _then(_$_ChatMessage(
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as ChatMessageRole,
+      functionCall: freezed == functionCall
+          ? _value.functionCall
+          : functionCall // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -1560,19 +1683,36 @@ class __$$_ChatMessageCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ChatMessage implements _ChatMessage {
-  const _$_ChatMessage({required this.content, required this.role});
+  const _$_ChatMessage(
+      {this.content, this.name, required this.role, this.functionCall});
 
   factory _$_ChatMessage.fromJson(Map<String, dynamic> json) =>
       _$$_ChatMessageFromJson(json);
 
+  /// The contents of the message. content is required for all messages except
+  /// assistant messages with function calls.
   @override
-  final String content;
+  final String? content;
+
+  ///The name of the author of this message. name is **required** if role is
+  ///function, and it should be the name of the function whose response is in
+  ///the content. May contain a-z, A-Z, 0-9, and underscores, with a maximum
+  ///length of 64 characters.
+  @override
+  final String? name;
+
+  /// The role of the messages author. One of [ChatMessageRole.system],
+  /// [ChatMessageRole.user], [ChatMessageRole.assistant], or [ChatMessageRole.function]
   @override
   final ChatMessageRole role;
 
+  /// The name and arguments of a function that should be called, as generated by the model.
+  @override
+  final dynamic functionCall;
+
   @override
   String toString() {
-    return 'ChatMessage(content: $content, role: $role)';
+    return 'ChatMessage(content: $content, name: $name, role: $role, functionCall: $functionCall)';
   }
 
   @override
@@ -1581,12 +1721,16 @@ class _$_ChatMessage implements _ChatMessage {
         (other.runtimeType == runtimeType &&
             other is _$_ChatMessage &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.role, role) || other.role == role) &&
+            const DeepCollectionEquality()
+                .equals(other.functionCall, functionCall));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, content, role);
+  int get hashCode => Object.hash(runtimeType, content, name, role,
+      const DeepCollectionEquality().hash(functionCall));
 
   @JsonKey(ignore: true)
   @override
@@ -1604,18 +1748,674 @@ class _$_ChatMessage implements _ChatMessage {
 
 abstract class _ChatMessage implements ChatMessage {
   const factory _ChatMessage(
-      {required final String content,
-      required final ChatMessageRole role}) = _$_ChatMessage;
+      {final String? content,
+      final String? name,
+      required final ChatMessageRole role,
+      final dynamic functionCall}) = _$_ChatMessage;
 
   factory _ChatMessage.fromJson(Map<String, dynamic> json) =
       _$_ChatMessage.fromJson;
 
   @override
-  String get content;
+
+  /// The contents of the message. content is required for all messages except
+  /// assistant messages with function calls.
+  String? get content;
   @override
+
+  ///The name of the author of this message. name is **required** if role is
+  ///function, and it should be the name of the function whose response is in
+  ///the content. May contain a-z, A-Z, 0-9, and underscores, with a maximum
+  ///length of 64 characters.
+  String? get name;
+  @override
+
+  /// The role of the messages author. One of [ChatMessageRole.system],
+  /// [ChatMessageRole.user], [ChatMessageRole.assistant], or [ChatMessageRole.function]
   ChatMessageRole get role;
+  @override
+
+  /// The name and arguments of a function that should be called, as generated by the model.
+  dynamic get functionCall;
   @override
   @JsonKey(ignore: true)
   _$$_ChatMessageCopyWith<_$_ChatMessage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ChatFunctionCall {
+  String get name => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get arguments => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ChatFunctionCallCopyWith<ChatFunctionCall> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChatFunctionCallCopyWith<$Res> {
+  factory $ChatFunctionCallCopyWith(
+          ChatFunctionCall value, $Res Function(ChatFunctionCall) then) =
+      _$ChatFunctionCallCopyWithImpl<$Res, ChatFunctionCall>;
+  @useResult
+  $Res call({String name, Map<String, dynamic>? arguments});
+}
+
+/// @nodoc
+class _$ChatFunctionCallCopyWithImpl<$Res, $Val extends ChatFunctionCall>
+    implements $ChatFunctionCallCopyWith<$Res> {
+  _$ChatFunctionCallCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? arguments = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: freezed == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ChatFunctionCallCopyWith<$Res>
+    implements $ChatFunctionCallCopyWith<$Res> {
+  factory _$$_ChatFunctionCallCopyWith(
+          _$_ChatFunctionCall value, $Res Function(_$_ChatFunctionCall) then) =
+      __$$_ChatFunctionCallCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, Map<String, dynamic>? arguments});
+}
+
+/// @nodoc
+class __$$_ChatFunctionCallCopyWithImpl<$Res>
+    extends _$ChatFunctionCallCopyWithImpl<$Res, _$_ChatFunctionCall>
+    implements _$$_ChatFunctionCallCopyWith<$Res> {
+  __$$_ChatFunctionCallCopyWithImpl(
+      _$_ChatFunctionCall _value, $Res Function(_$_ChatFunctionCall) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? arguments = freezed,
+  }) {
+    return _then(_$_ChatFunctionCall(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: freezed == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChatFunctionCall implements _ChatFunctionCall {
+  const _$_ChatFunctionCall(
+      {required this.name, final Map<String, dynamic>? arguments})
+      : _arguments = arguments;
+
+  @override
+  final String name;
+  final Map<String, dynamic>? _arguments;
+  @override
+  Map<String, dynamic>? get arguments {
+    final value = _arguments;
+    if (value == null) return null;
+    if (_arguments is EqualUnmodifiableMapView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'ChatFunctionCall(name: $name, arguments: $arguments)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChatFunctionCall &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, const DeepCollectionEquality().hash(_arguments));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChatFunctionCallCopyWith<_$_ChatFunctionCall> get copyWith =>
+      __$$_ChatFunctionCallCopyWithImpl<_$_ChatFunctionCall>(this, _$identity);
+}
+
+abstract class _ChatFunctionCall implements ChatFunctionCall {
+  const factory _ChatFunctionCall(
+      {required final String name,
+      final Map<String, dynamic>? arguments}) = _$_ChatFunctionCall;
+
+  @override
+  String get name;
+  @override
+  Map<String, dynamic>? get arguments;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ChatFunctionCallCopyWith<_$_ChatFunctionCall> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ChatFunction _$ChatFunctionFromJson(Map<String, dynamic> json) {
+  return _ChatFunction.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ChatFunction {
+  /// The name of the function to be called. Must be a-z, A-Z, 0-9,
+  /// or contain underscores and dashes, with a maximum length of 64.
+  String get name => throw _privateConstructorUsedError;
+
+  /// The description of what the function does.
+  String? get description => throw _privateConstructorUsedError;
+
+  ///The parameters the functions accepts, described as a JSON Schema object.
+  ///See the guide for examples, and the JSON Schema reference for
+  ///documentation about the format.
+  ///```python
+  /// response = openai.ChatCompletion.create(
+  ///     model="gpt-3.5-turbo-0613",
+  ///     messages=[{"role": "user", "content": "What's the weather like in Boston?"}],
+  ///     functions=[
+  ///         {
+  ///             "name": "get_current_weather",
+  ///             "description": "Get the current weather in a given location",
+  ///             "parameters": {
+  ///                 "type": "object",
+  ///                 "properties": {
+  ///                     "location": {
+  ///                         "type": "string",
+  ///                         "description": "The city and state, e.g. San Francisco, CA",
+  ///                     },
+  ///                     "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+  ///                 },
+  ///                 "required": ["location"],
+  ///             },
+  ///         }
+  ///     ],
+  ///     function_call="auto",
+  /// )
+  /// ```
+  ChatFunctionParameters? get parameters => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ChatFunctionCopyWith<ChatFunction> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChatFunctionCopyWith<$Res> {
+  factory $ChatFunctionCopyWith(
+          ChatFunction value, $Res Function(ChatFunction) then) =
+      _$ChatFunctionCopyWithImpl<$Res, ChatFunction>;
+  @useResult
+  $Res call(
+      {String name, String? description, ChatFunctionParameters? parameters});
+
+  $ChatFunctionParametersCopyWith<$Res>? get parameters;
+}
+
+/// @nodoc
+class _$ChatFunctionCopyWithImpl<$Res, $Val extends ChatFunction>
+    implements $ChatFunctionCopyWith<$Res> {
+  _$ChatFunctionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? description = freezed,
+    Object? parameters = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parameters: freezed == parameters
+          ? _value.parameters
+          : parameters // ignore: cast_nullable_to_non_nullable
+              as ChatFunctionParameters?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatFunctionParametersCopyWith<$Res>? get parameters {
+    if (_value.parameters == null) {
+      return null;
+    }
+
+    return $ChatFunctionParametersCopyWith<$Res>(_value.parameters!, (value) {
+      return _then(_value.copyWith(parameters: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_ChatFunctionCopyWith<$Res>
+    implements $ChatFunctionCopyWith<$Res> {
+  factory _$$_ChatFunctionCopyWith(
+          _$_ChatFunction value, $Res Function(_$_ChatFunction) then) =
+      __$$_ChatFunctionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name, String? description, ChatFunctionParameters? parameters});
+
+  @override
+  $ChatFunctionParametersCopyWith<$Res>? get parameters;
+}
+
+/// @nodoc
+class __$$_ChatFunctionCopyWithImpl<$Res>
+    extends _$ChatFunctionCopyWithImpl<$Res, _$_ChatFunction>
+    implements _$$_ChatFunctionCopyWith<$Res> {
+  __$$_ChatFunctionCopyWithImpl(
+      _$_ChatFunction _value, $Res Function(_$_ChatFunction) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? description = freezed,
+    Object? parameters = freezed,
+  }) {
+    return _then(_$_ChatFunction(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      parameters: freezed == parameters
+          ? _value.parameters
+          : parameters // ignore: cast_nullable_to_non_nullable
+              as ChatFunctionParameters?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ChatFunction implements _ChatFunction {
+  const _$_ChatFunction(
+      {required this.name, this.description, this.parameters});
+
+  factory _$_ChatFunction.fromJson(Map<String, dynamic> json) =>
+      _$$_ChatFunctionFromJson(json);
+
+  /// The name of the function to be called. Must be a-z, A-Z, 0-9,
+  /// or contain underscores and dashes, with a maximum length of 64.
+  @override
+  final String name;
+
+  /// The description of what the function does.
+  @override
+  final String? description;
+
+  ///The parameters the functions accepts, described as a JSON Schema object.
+  ///See the guide for examples, and the JSON Schema reference for
+  ///documentation about the format.
+  ///```python
+  /// response = openai.ChatCompletion.create(
+  ///     model="gpt-3.5-turbo-0613",
+  ///     messages=[{"role": "user", "content": "What's the weather like in Boston?"}],
+  ///     functions=[
+  ///         {
+  ///             "name": "get_current_weather",
+  ///             "description": "Get the current weather in a given location",
+  ///             "parameters": {
+  ///                 "type": "object",
+  ///                 "properties": {
+  ///                     "location": {
+  ///                         "type": "string",
+  ///                         "description": "The city and state, e.g. San Francisco, CA",
+  ///                     },
+  ///                     "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+  ///                 },
+  ///                 "required": ["location"],
+  ///             },
+  ///         }
+  ///     ],
+  ///     function_call="auto",
+  /// )
+  /// ```
+  @override
+  final ChatFunctionParameters? parameters;
+
+  @override
+  String toString() {
+    return 'ChatFunction(name: $name, description: $description, parameters: $parameters)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChatFunction &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.parameters, parameters) ||
+                other.parameters == parameters));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, description, parameters);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChatFunctionCopyWith<_$_ChatFunction> get copyWith =>
+      __$$_ChatFunctionCopyWithImpl<_$_ChatFunction>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ChatFunctionToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ChatFunction implements ChatFunction {
+  const factory _ChatFunction(
+      {required final String name,
+      final String? description,
+      final ChatFunctionParameters? parameters}) = _$_ChatFunction;
+
+  factory _ChatFunction.fromJson(Map<String, dynamic> json) =
+      _$_ChatFunction.fromJson;
+
+  @override
+
+  /// The name of the function to be called. Must be a-z, A-Z, 0-9,
+  /// or contain underscores and dashes, with a maximum length of 64.
+  String get name;
+  @override
+
+  /// The description of what the function does.
+  String? get description;
+  @override
+
+  ///The parameters the functions accepts, described as a JSON Schema object.
+  ///See the guide for examples, and the JSON Schema reference for
+  ///documentation about the format.
+  ///```python
+  /// response = openai.ChatCompletion.create(
+  ///     model="gpt-3.5-turbo-0613",
+  ///     messages=[{"role": "user", "content": "What's the weather like in Boston?"}],
+  ///     functions=[
+  ///         {
+  ///             "name": "get_current_weather",
+  ///             "description": "Get the current weather in a given location",
+  ///             "parameters": {
+  ///                 "type": "object",
+  ///                 "properties": {
+  ///                     "location": {
+  ///                         "type": "string",
+  ///                         "description": "The city and state, e.g. San Francisco, CA",
+  ///                     },
+  ///                     "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+  ///                 },
+  ///                 "required": ["location"],
+  ///             },
+  ///         }
+  ///     ],
+  ///     function_call="auto",
+  /// )
+  /// ```
+  ChatFunctionParameters? get parameters;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ChatFunctionCopyWith<_$_ChatFunction> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ChatFunctionParameters _$ChatFunctionParametersFromJson(
+    Map<String, dynamic> json) {
+  return _ChatFunctionParameters.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ChatFunctionParameters {
+  String get type => throw _privateConstructorUsedError;
+  Map<String, dynamic> get properties => throw _privateConstructorUsedError;
+  List<String> get required => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ChatFunctionParametersCopyWith<ChatFunctionParameters> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChatFunctionParametersCopyWith<$Res> {
+  factory $ChatFunctionParametersCopyWith(ChatFunctionParameters value,
+          $Res Function(ChatFunctionParameters) then) =
+      _$ChatFunctionParametersCopyWithImpl<$Res, ChatFunctionParameters>;
+  @useResult
+  $Res call(
+      {String type, Map<String, dynamic> properties, List<String> required});
+}
+
+/// @nodoc
+class _$ChatFunctionParametersCopyWithImpl<$Res,
+        $Val extends ChatFunctionParameters>
+    implements $ChatFunctionParametersCopyWith<$Res> {
+  _$ChatFunctionParametersCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? properties = null,
+    Object? required = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      properties: null == properties
+          ? _value.properties
+          : properties // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      required: null == required
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ChatFunctionParametersCopyWith<$Res>
+    implements $ChatFunctionParametersCopyWith<$Res> {
+  factory _$$_ChatFunctionParametersCopyWith(_$_ChatFunctionParameters value,
+          $Res Function(_$_ChatFunctionParameters) then) =
+      __$$_ChatFunctionParametersCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String type, Map<String, dynamic> properties, List<String> required});
+}
+
+/// @nodoc
+class __$$_ChatFunctionParametersCopyWithImpl<$Res>
+    extends _$ChatFunctionParametersCopyWithImpl<$Res,
+        _$_ChatFunctionParameters>
+    implements _$$_ChatFunctionParametersCopyWith<$Res> {
+  __$$_ChatFunctionParametersCopyWithImpl(_$_ChatFunctionParameters _value,
+      $Res Function(_$_ChatFunctionParameters) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? properties = null,
+    Object? required = null,
+  }) {
+    return _then(_$_ChatFunctionParameters(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      properties: null == properties
+          ? _value._properties
+          : properties // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      required: null == required
+          ? _value._required
+          : required // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ChatFunctionParameters implements _ChatFunctionParameters {
+  const _$_ChatFunctionParameters(
+      {this.type = "object",
+      final Map<String, dynamic> properties = const {},
+      final List<String> required = const []})
+      : _properties = properties,
+        _required = required;
+
+  factory _$_ChatFunctionParameters.fromJson(Map<String, dynamic> json) =>
+      _$$_ChatFunctionParametersFromJson(json);
+
+  @override
+  @JsonKey()
+  final String type;
+  final Map<String, dynamic> _properties;
+  @override
+  @JsonKey()
+  Map<String, dynamic> get properties {
+    if (_properties is EqualUnmodifiableMapView) return _properties;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_properties);
+  }
+
+  final List<String> _required;
+  @override
+  @JsonKey()
+  List<String> get required {
+    if (_required is EqualUnmodifiableListView) return _required;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_required);
+  }
+
+  @override
+  String toString() {
+    return 'ChatFunctionParameters(type: $type, properties: $properties, required: $required)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChatFunctionParameters &&
+            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality()
+                .equals(other._properties, _properties) &&
+            const DeepCollectionEquality().equals(other._required, _required));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      type,
+      const DeepCollectionEquality().hash(_properties),
+      const DeepCollectionEquality().hash(_required));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChatFunctionParametersCopyWith<_$_ChatFunctionParameters> get copyWith =>
+      __$$_ChatFunctionParametersCopyWithImpl<_$_ChatFunctionParameters>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ChatFunctionParametersToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ChatFunctionParameters implements ChatFunctionParameters {
+  const factory _ChatFunctionParameters(
+      {final String type,
+      final Map<String, dynamic> properties,
+      final List<String> required}) = _$_ChatFunctionParameters;
+
+  factory _ChatFunctionParameters.fromJson(Map<String, dynamic> json) =
+      _$_ChatFunctionParameters.fromJson;
+
+  @override
+  String get type;
+  @override
+  Map<String, dynamic> get properties;
+  @override
+  List<String> get required;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ChatFunctionParametersCopyWith<_$_ChatFunctionParameters> get copyWith =>
       throw _privateConstructorUsedError;
 }

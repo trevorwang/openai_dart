@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:http/http.dart';
+import 'package:cancellation_token_http/http.dart';
 
 import '../client.dart';
 import 'image_generation.dart';

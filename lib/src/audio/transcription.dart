@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:http/http.dart';
+import 'package:cancellation_token_http/http.dart';
 
 import '../client.dart';
 import '../constants.dart';
@@ -10,7 +10,9 @@ part 'transcription.g.dart';
 extension Transcription on OpenaiClient {
   static const kTranscriptionEndpoint = "audio/transcriptions";
   Future<TrascriptionResponse> createTrascription(
-      TranscriptionRequest request) async {
+    TranscriptionRequest request, {
+    CancellationToken? cancellationToken,
+  }) async {
     final fields = request
         .toJson()
         .map((key, value) => MapEntry(key, value.toString()))

@@ -55,9 +55,7 @@ Map<String, dynamic> _$$_ImageRequestToJson(_$_ImageRequest instance) {
 _$_ImageResponse _$$_ImageResponseFromJson(Map<String, dynamic> json) =>
     _$_ImageResponse(
       created: json['created'] as int,
-      data: (json['data'] as List<dynamic>)
-          .map((e) => ImageData.fromJson(e))
-          .toList(),
+      data: (json['data'] as List<dynamic>).map(ImageData.fromJson).toList(),
     );
 
 Map<String, dynamic> _$$_ImageResponseToJson(_$_ImageResponse instance) =>
