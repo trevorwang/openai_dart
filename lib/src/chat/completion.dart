@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:cancellation_token_http/http.dart' as http;
 
 import '../client.dart';
-import '../constants.dart';
 
 part 'completion.freezed.dart';
 part 'completion.g.dart';
