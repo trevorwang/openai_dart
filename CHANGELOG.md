@@ -1,6 +1,13 @@
+# CHANGELOG
+
+## 0.1.1
+
+- Use string instead enum to define models
+
 ## 0.0.6
 
 - Enable cancellation of request
+
 ## 0.0.5
 
 - Add method to update openai config
