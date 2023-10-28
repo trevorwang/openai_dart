@@ -24,8 +24,8 @@ mixin _$TranslationRequest {
   /// mpga, m4a, wav, or webm.
   String get file => throw _privateConstructorUsedError;
 
-  /// ID of the model to use. Only [Model.whisper_1] is currently available.
-  Model? get model => throw _privateConstructorUsedError;
+  /// ID of the model to use. Only [Models.whisper_1] is currently available.
+  String get model => throw _privateConstructorUsedError;
 
   /// An optional text to guide the model's style or continue a previous audio
   /// segment. The prompt should match the audio language.
@@ -56,7 +56,7 @@ abstract class $TranslationRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String file,
-      Model? model,
+      String model,
       String? prompt,
       String? responseFormat,
       double? temperature});
@@ -76,7 +76,7 @@ class _$TranslationRequestCopyWithImpl<$Res, $Val extends TranslationRequest>
   @override
   $Res call({
     Object? file = null,
-    Object? model = freezed,
+    Object? model = null,
     Object? prompt = freezed,
     Object? responseFormat = freezed,
     Object? temperature = freezed,
@@ -86,10 +86,10 @@ class _$TranslationRequestCopyWithImpl<$Res, $Val extends TranslationRequest>
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as String,
-      model: freezed == model
+      model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as Model?,
+              as String,
       prompt: freezed == prompt
           ? _value.prompt
           : prompt // ignore: cast_nullable_to_non_nullable
@@ -107,47 +107,47 @@ class _$TranslationRequestCopyWithImpl<$Res, $Val extends TranslationRequest>
 }
 
 /// @nodoc
-abstract class _$$_TranslationRequestCopyWith<$Res>
+abstract class _$$TranslationRequestImplCopyWith<$Res>
     implements $TranslationRequestCopyWith<$Res> {
-  factory _$$_TranslationRequestCopyWith(_$_TranslationRequest value,
-          $Res Function(_$_TranslationRequest) then) =
-      __$$_TranslationRequestCopyWithImpl<$Res>;
+  factory _$$TranslationRequestImplCopyWith(_$TranslationRequestImpl value,
+          $Res Function(_$TranslationRequestImpl) then) =
+      __$$TranslationRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String file,
-      Model? model,
+      String model,
       String? prompt,
       String? responseFormat,
       double? temperature});
 }
 
 /// @nodoc
-class __$$_TranslationRequestCopyWithImpl<$Res>
-    extends _$TranslationRequestCopyWithImpl<$Res, _$_TranslationRequest>
-    implements _$$_TranslationRequestCopyWith<$Res> {
-  __$$_TranslationRequestCopyWithImpl(
-      _$_TranslationRequest _value, $Res Function(_$_TranslationRequest) _then)
+class __$$TranslationRequestImplCopyWithImpl<$Res>
+    extends _$TranslationRequestCopyWithImpl<$Res, _$TranslationRequestImpl>
+    implements _$$TranslationRequestImplCopyWith<$Res> {
+  __$$TranslationRequestImplCopyWithImpl(_$TranslationRequestImpl _value,
+      $Res Function(_$TranslationRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? file = null,
-    Object? model = freezed,
+    Object? model = null,
     Object? prompt = freezed,
     Object? responseFormat = freezed,
     Object? temperature = freezed,
   }) {
-    return _then(_$_TranslationRequest(
+    return _then(_$TranslationRequestImpl(
       file: null == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as String,
-      model: freezed == model
+      model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as Model?,
+              as String,
       prompt: freezed == prompt
           ? _value.prompt
           : prompt // ignore: cast_nullable_to_non_nullable
@@ -166,26 +166,26 @@ class __$$_TranslationRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TranslationRequest implements _TranslationRequest {
-  const _$_TranslationRequest(
+class _$TranslationRequestImpl implements _TranslationRequest {
+  const _$TranslationRequestImpl(
       {required this.file,
-      this.model = Model.whisper_1,
+      this.model = Models.whisper_1,
       this.prompt,
       this.responseFormat,
       this.temperature});
 
-  factory _$_TranslationRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_TranslationRequestFromJson(json);
+  factory _$TranslationRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TranslationRequestImplFromJson(json);
 
   /// The audio file to translate, in one of these formats: mp3, mp4, mpeg,
   /// mpga, m4a, wav, or webm.
   @override
   final String file;
 
-  /// ID of the model to use. Only [Model.whisper_1] is currently available.
+  /// ID of the model to use. Only [Models.whisper_1] is currently available.
   @override
   @JsonKey()
-  final Model? model;
+  final String model;
 
   /// An optional text to guide the model's style or continue a previous audio
   /// segment. The prompt should match the audio language.
@@ -214,7 +214,7 @@ class _$_TranslationRequest implements _TranslationRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TranslationRequest &&
+            other is _$TranslationRequestImpl &&
             (identical(other.file, file) || other.file == file) &&
             (identical(other.model, model) || other.model == model) &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
@@ -232,13 +232,13 @@ class _$_TranslationRequest implements _TranslationRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TranslationRequestCopyWith<_$_TranslationRequest> get copyWith =>
-      __$$_TranslationRequestCopyWithImpl<_$_TranslationRequest>(
+  _$$TranslationRequestImplCopyWith<_$TranslationRequestImpl> get copyWith =>
+      __$$TranslationRequestImplCopyWithImpl<_$TranslationRequestImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TranslationRequestToJson(
+    return _$$TranslationRequestImplToJson(
       this,
     );
   }
@@ -247,13 +247,13 @@ class _$_TranslationRequest implements _TranslationRequest {
 abstract class _TranslationRequest implements TranslationRequest {
   const factory _TranslationRequest(
       {required final String file,
-      final Model? model,
+      final String model,
       final String? prompt,
       final String? responseFormat,
-      final double? temperature}) = _$_TranslationRequest;
+      final double? temperature}) = _$TranslationRequestImpl;
 
   factory _TranslationRequest.fromJson(Map<String, dynamic> json) =
-      _$_TranslationRequest.fromJson;
+      _$TranslationRequestImpl.fromJson;
 
   @override
 
@@ -262,8 +262,8 @@ abstract class _TranslationRequest implements TranslationRequest {
   String get file;
   @override
 
-  /// ID of the model to use. Only [Model.whisper_1] is currently available.
-  Model? get model;
+  /// ID of the model to use. Only [Models.whisper_1] is currently available.
+  String get model;
   @override
 
   /// An optional text to guide the model's style or continue a previous audio
@@ -284,7 +284,7 @@ abstract class _TranslationRequest implements TranslationRequest {
   double? get temperature;
   @override
   @JsonKey(ignore: true)
-  _$$_TranslationRequestCopyWith<_$_TranslationRequest> get copyWith =>
+  _$$TranslationRequestImplCopyWith<_$TranslationRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -337,22 +337,22 @@ class _$TraslationResponseCopyWithImpl<$Res, $Val extends TraslationResponse>
 }
 
 /// @nodoc
-abstract class _$$_TraslationResponseCopyWith<$Res>
+abstract class _$$TraslationResponseImplCopyWith<$Res>
     implements $TraslationResponseCopyWith<$Res> {
-  factory _$$_TraslationResponseCopyWith(_$_TraslationResponse value,
-          $Res Function(_$_TraslationResponse) then) =
-      __$$_TraslationResponseCopyWithImpl<$Res>;
+  factory _$$TraslationResponseImplCopyWith(_$TraslationResponseImpl value,
+          $Res Function(_$TraslationResponseImpl) then) =
+      __$$TraslationResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String text});
 }
 
 /// @nodoc
-class __$$_TraslationResponseCopyWithImpl<$Res>
-    extends _$TraslationResponseCopyWithImpl<$Res, _$_TraslationResponse>
-    implements _$$_TraslationResponseCopyWith<$Res> {
-  __$$_TraslationResponseCopyWithImpl(
-      _$_TraslationResponse _value, $Res Function(_$_TraslationResponse) _then)
+class __$$TraslationResponseImplCopyWithImpl<$Res>
+    extends _$TraslationResponseCopyWithImpl<$Res, _$TraslationResponseImpl>
+    implements _$$TraslationResponseImplCopyWith<$Res> {
+  __$$TraslationResponseImplCopyWithImpl(_$TraslationResponseImpl _value,
+      $Res Function(_$TraslationResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -360,7 +360,7 @@ class __$$_TraslationResponseCopyWithImpl<$Res>
   $Res call({
     Object? text = null,
   }) {
-    return _then(_$_TraslationResponse(
+    return _then(_$TraslationResponseImpl(
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -371,11 +371,11 @@ class __$$_TraslationResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TraslationResponse implements _TraslationResponse {
-  const _$_TraslationResponse({required this.text});
+class _$TraslationResponseImpl implements _TraslationResponse {
+  const _$TraslationResponseImpl({required this.text});
 
-  factory _$_TraslationResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_TraslationResponseFromJson(json);
+  factory _$TraslationResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TraslationResponseImplFromJson(json);
 
   /// The converted text.
   @override
@@ -390,7 +390,7 @@ class _$_TraslationResponse implements _TraslationResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TraslationResponse &&
+            other is _$TraslationResponseImpl &&
             (identical(other.text, text) || other.text == text));
   }
 
@@ -401,13 +401,13 @@ class _$_TraslationResponse implements _TraslationResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TraslationResponseCopyWith<_$_TraslationResponse> get copyWith =>
-      __$$_TraslationResponseCopyWithImpl<_$_TraslationResponse>(
+  _$$TraslationResponseImplCopyWith<_$TraslationResponseImpl> get copyWith =>
+      __$$TraslationResponseImplCopyWithImpl<_$TraslationResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TraslationResponseToJson(
+    return _$$TraslationResponseImplToJson(
       this,
     );
   }
@@ -415,10 +415,10 @@ class _$_TraslationResponse implements _TraslationResponse {
 
 abstract class _TraslationResponse implements TraslationResponse {
   const factory _TraslationResponse({required final String text}) =
-      _$_TraslationResponse;
+      _$TraslationResponseImpl;
 
   factory _TraslationResponse.fromJson(Map<String, dynamic> json) =
-      _$_TraslationResponse.fromJson;
+      _$TraslationResponseImpl.fromJson;
 
   @override
 
@@ -426,6 +426,6 @@ abstract class _TraslationResponse implements TraslationResponse {
   String get text;
   @override
   @JsonKey(ignore: true)
-  _$$_TraslationResponseCopyWith<_$_TraslationResponse> get copyWith =>
+  _$$TraslationResponseImplCopyWith<_$TraslationResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

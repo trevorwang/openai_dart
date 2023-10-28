@@ -6,23 +6,24 @@ part of 'model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ModelListResponse _$$_ModelListResponseFromJson(Map<String, dynamic> json) =>
-    _$_ModelListResponse(
+_$ModelListResponseImpl _$$ModelListResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ModelListResponseImpl(
       object: json['object'] as String,
       data: (json['data'] as List<dynamic>)
           .map((e) => ModelResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_ModelListResponseToJson(
-        _$_ModelListResponse instance) =>
+Map<String, dynamic> _$$ModelListResponseImplToJson(
+        _$ModelListResponseImpl instance) =>
     <String, dynamic>{
       'object': instance.object,
       'data': instance.data.map((e) => e.toJson()).toList(),
     };
 
-_$_ModelResponse _$$_ModelResponseFromJson(Map<String, dynamic> json) =>
-    _$_ModelResponse(
+_$ModelResponseImpl _$$ModelResponseImplFromJson(Map<String, dynamic> json) =>
+    _$ModelResponseImpl(
       id: json['id'] as String,
       object: json['object'] as String,
       ownedBy: json['owned_by'] as String,
@@ -32,7 +33,7 @@ _$_ModelResponse _$$_ModelResponseFromJson(Map<String, dynamic> json) =>
       parent: json['parent'] as String?,
     );
 
-Map<String, dynamic> _$$_ModelResponseToJson(_$_ModelResponse instance) {
+Map<String, dynamic> _$$ModelResponseImplToJson(_$ModelResponseImpl instance) {
   final val = <String, dynamic>{
     'id': instance.id,
     'object': instance.object,

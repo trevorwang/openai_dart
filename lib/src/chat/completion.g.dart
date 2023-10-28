@@ -6,8 +6,8 @@ part of 'completion.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChatChoice _$$_ChatChoiceFromJson(Map<String, dynamic> json) =>
-    _$_ChatChoice(
+_$ChatChoiceImpl _$$ChatChoiceImplFromJson(Map<String, dynamic> json) =>
+    _$ChatChoiceImpl(
       index: json['index'] as int,
       message: json['message'] == null
           ? null
@@ -18,7 +18,7 @@ _$_ChatChoice _$$_ChatChoiceFromJson(Map<String, dynamic> json) =>
       finishReason: json['finish_reason'] as String?,
     );
 
-Map<String, dynamic> _$$_ChatChoiceToJson(_$_ChatChoice instance) {
+Map<String, dynamic> _$$ChatChoiceImplToJson(_$ChatChoiceImpl instance) {
   final val = <String, dynamic>{
     'index': instance.index,
   };
@@ -35,13 +35,15 @@ Map<String, dynamic> _$$_ChatChoiceToJson(_$_ChatChoice instance) {
   return val;
 }
 
-_$_ChatChoiceDelta _$$_ChatChoiceDeltaFromJson(Map<String, dynamic> json) =>
-    _$_ChatChoiceDelta(
+_$ChatChoiceDeltaImpl _$$ChatChoiceDeltaImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatChoiceDeltaImpl(
       content: json['content'] as String?,
       role: json['role'] as String?,
     );
 
-Map<String, dynamic> _$$_ChatChoiceDeltaToJson(_$_ChatChoiceDelta instance) {
+Map<String, dynamic> _$$ChatChoiceDeltaImplToJson(
+    _$ChatChoiceDeltaImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -55,10 +57,10 @@ Map<String, dynamic> _$$_ChatChoiceDeltaToJson(_$_ChatChoiceDelta instance) {
   return val;
 }
 
-_$_ChatCompletionRequest _$$_ChatCompletionRequestFromJson(
+_$ChatCompletionRequestImpl _$$ChatCompletionRequestImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ChatCompletionRequest(
-      model: $enumDecode(_$ModelEnumMap, json['model']),
+    _$ChatCompletionRequestImpl(
+      model: json['model'] as String,
       messages: (json['messages'] as List<dynamic>)
           .map((e) => ChatMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -78,10 +80,10 @@ _$_ChatCompletionRequest _$$_ChatCompletionRequestFromJson(
       user: json['user'] as String?,
     );
 
-Map<String, dynamic> _$$_ChatCompletionRequestToJson(
-    _$_ChatCompletionRequest instance) {
+Map<String, dynamic> _$$ChatCompletionRequestImplToJson(
+    _$ChatCompletionRequestImpl instance) {
   final val = <String, dynamic>{
-    'model': _$ModelEnumMap[instance.model]!,
+    'model': instance.model,
     'messages': instance.messages.map((e) => e.toJson()).toList(),
   };
 
@@ -107,40 +109,9 @@ Map<String, dynamic> _$$_ChatCompletionRequestToJson(
   return val;
 }
 
-const _$ModelEnumMap = {
-  Model.gpt4: 'gpt-4',
-  Model.gpt4_0314: 'gpt-4-0314',
-  Model.gpt4_0613: 'gpt-4-0613',
-  Model.gpt4_32k: 'gpt-4-32k',
-  Model.gpt4_32k_0314: 'gpt-4-32k-0314',
-  Model.gpt4_32k_0613: 'gpt-4-32k-0613',
-  Model.gpt3_5Turbo: 'gpt-3.5-turbo',
-  Model.gpt3_5Turbo_0301: 'gpt-3.5-turbo-0301',
-  Model.gpt3_5Turbo_0613: 'gpt-3.5-turbo-0613',
-  Model.gpt3_5Turbo_16k: 'gpt-3.5-turbo-16k',
-  Model.gpt3_5Turbo_16k_0613: 'gpt-3.5-turbo-16k-0613',
-  Model.textDavinci_003: 'text-davinci-003',
-  Model.textDavinci_002: 'text-davinci-002',
-  Model.whisper_1: 'whisper-1',
-  Model.embeddings: '',
-  Model.codeDavinci_002: 'code-davinci-002',
-  Model.codeCushman_001: 'code-cushman-001',
-  Model.textCurie_001: 'text-curie-001',
-  Model.textBabbage_001: 'text-babbage-001',
-  Model.textAda_001: 'text-ada-001',
-  Model.davinci: 'davinci',
-  Model.curie: 'curie',
-  Model.babbage: 'babbage',
-  Model.ada: 'ada',
-  Model.textModerationLatest: 'text-moderation-latest',
-  Model.textmoderationStable: 'textmoderation-stable',
-  Model.textEmbeddingAda_002: 'text-embedding-ada-002',
-  Model.textSearchAda_001: 'text-search-ada-001',
-};
-
-_$_ChatCompletionResponse _$$_ChatCompletionResponseFromJson(
+_$ChatCompletionResponseImpl _$$ChatCompletionResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ChatCompletionResponse(
+    _$ChatCompletionResponseImpl(
       choices: (json['choices'] as List<dynamic>)
           .map((e) => ChatChoice.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -152,8 +123,8 @@ _$_ChatCompletionResponse _$$_ChatCompletionResponseFromJson(
           : ChatCompletionUsage.fromJson(json['usage'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ChatCompletionResponseToJson(
-    _$_ChatCompletionResponse instance) {
+Map<String, dynamic> _$$ChatCompletionResponseImplToJson(
+    _$ChatCompletionResponseImpl instance) {
   final val = <String, dynamic>{
     'choices': instance.choices.map((e) => e.toJson()).toList(),
     'id': instance.id,
@@ -171,31 +142,31 @@ Map<String, dynamic> _$$_ChatCompletionResponseToJson(
   return val;
 }
 
-_$_ChatCompletionUsage _$$_ChatCompletionUsageFromJson(
+_$ChatCompletionUsageImpl _$$ChatCompletionUsageImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ChatCompletionUsage(
+    _$ChatCompletionUsageImpl(
       promptTokens: json['prompt_tokens'] as int,
       completionTokens: json['completion_tokens'] as int,
       totalTokens: json['total_tokens'] as int,
     );
 
-Map<String, dynamic> _$$_ChatCompletionUsageToJson(
-        _$_ChatCompletionUsage instance) =>
+Map<String, dynamic> _$$ChatCompletionUsageImplToJson(
+        _$ChatCompletionUsageImpl instance) =>
     <String, dynamic>{
       'prompt_tokens': instance.promptTokens,
       'completion_tokens': instance.completionTokens,
       'total_tokens': instance.totalTokens,
     };
 
-_$_ChatMessage _$$_ChatMessageFromJson(Map<String, dynamic> json) =>
-    _$_ChatMessage(
+_$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
+    _$ChatMessageImpl(
       content: json['content'] as String?,
       name: json['name'] as String?,
       role: $enumDecode(_$ChatMessageRoleEnumMap, json['role']),
       functionCall: json['function_call'],
     );
 
-Map<String, dynamic> _$$_ChatMessageToJson(_$_ChatMessage instance) {
+Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -218,8 +189,8 @@ const _$ChatMessageRoleEnumMap = {
   ChatMessageRole.user: 'user',
 };
 
-_$_ChatFunction _$$_ChatFunctionFromJson(Map<String, dynamic> json) =>
-    _$_ChatFunction(
+_$ChatFunctionImpl _$$ChatFunctionImplFromJson(Map<String, dynamic> json) =>
+    _$ChatFunctionImpl(
       name: json['name'] as String,
       description: json['description'] as String?,
       parameters: json['parameters'] == null
@@ -228,7 +199,7 @@ _$_ChatFunction _$$_ChatFunctionFromJson(Map<String, dynamic> json) =>
               json['parameters'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ChatFunctionToJson(_$_ChatFunction instance) {
+Map<String, dynamic> _$$ChatFunctionImplToJson(_$ChatFunctionImpl instance) {
   final val = <String, dynamic>{
     'name': instance.name,
   };
@@ -244,9 +215,9 @@ Map<String, dynamic> _$$_ChatFunctionToJson(_$_ChatFunction instance) {
   return val;
 }
 
-_$_ChatFunctionParameters _$$_ChatFunctionParametersFromJson(
+_$ChatFunctionParametersImpl _$$ChatFunctionParametersImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ChatFunctionParameters(
+    _$ChatFunctionParametersImpl(
       type: json['type'] as String? ?? "object",
       properties: json['properties'] as Map<String, dynamic>? ?? const {},
       required: (json['required'] as List<dynamic>?)
@@ -255,8 +226,8 @@ _$_ChatFunctionParameters _$$_ChatFunctionParametersFromJson(
           const [],
     );
 
-Map<String, dynamic> _$$_ChatFunctionParametersToJson(
-        _$_ChatFunctionParameters instance) =>
+Map<String, dynamic> _$$ChatFunctionParametersImplToJson(
+        _$ChatFunctionParametersImpl instance) =>
     <String, dynamic>{
       'type': instance.type,
       'properties': instance.properties,

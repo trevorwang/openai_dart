@@ -34,8 +34,8 @@ class TranscriptionRequest with _$TranscriptionRequest {
     /// mpga, m4a, wav, or webm.
     required String file,
 
-    /// ID of the model to use. Only [Model.whisper_1] is currently available.
-    @Default(Model.whisper_1) Model? model,
+    /// ID of the model to use. Only [Models.whisper_1] is currently available.
+    @Default(Models.whisper_1) String model,
 
     /// An optional text to guide the model's style or continue a previous audio
     /// segment. The prompt should match the audio language.

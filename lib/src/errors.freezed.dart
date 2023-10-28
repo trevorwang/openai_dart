@@ -78,11 +78,11 @@ class _$OpenaiExceptionCopyWithImpl<$Res, $Val extends OpenaiException>
 }
 
 /// @nodoc
-abstract class _$$_OpenaiExceptionCopyWith<$Res>
+abstract class _$$OpenaiExceptionImplCopyWith<$Res>
     implements $OpenaiExceptionCopyWith<$Res> {
-  factory _$$_OpenaiExceptionCopyWith(
-          _$_OpenaiException value, $Res Function(_$_OpenaiException) then) =
-      __$$_OpenaiExceptionCopyWithImpl<$Res>;
+  factory _$$OpenaiExceptionImplCopyWith(_$OpenaiExceptionImpl value,
+          $Res Function(_$OpenaiExceptionImpl) then) =
+      __$$OpenaiExceptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int code, OpenaiError error});
@@ -92,11 +92,11 @@ abstract class _$$_OpenaiExceptionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OpenaiExceptionCopyWithImpl<$Res>
-    extends _$OpenaiExceptionCopyWithImpl<$Res, _$_OpenaiException>
-    implements _$$_OpenaiExceptionCopyWith<$Res> {
-  __$$_OpenaiExceptionCopyWithImpl(
-      _$_OpenaiException _value, $Res Function(_$_OpenaiException) _then)
+class __$$OpenaiExceptionImplCopyWithImpl<$Res>
+    extends _$OpenaiExceptionCopyWithImpl<$Res, _$OpenaiExceptionImpl>
+    implements _$$OpenaiExceptionImplCopyWith<$Res> {
+  __$$OpenaiExceptionImplCopyWithImpl(
+      _$OpenaiExceptionImpl _value, $Res Function(_$OpenaiExceptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,7 +105,7 @@ class __$$_OpenaiExceptionCopyWithImpl<$Res>
     Object? code = null,
     Object? error = null,
   }) {
-    return _then(_$_OpenaiException(
+    return _then(_$OpenaiExceptionImpl(
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -120,11 +120,11 @@ class __$$_OpenaiExceptionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OpenaiException implements _OpenaiException {
-  const _$_OpenaiException({required this.code, required this.error});
+class _$OpenaiExceptionImpl implements _OpenaiException {
+  const _$OpenaiExceptionImpl({required this.code, required this.error});
 
-  factory _$_OpenaiException.fromJson(Map<String, dynamic> json) =>
-      _$$_OpenaiExceptionFromJson(json);
+  factory _$OpenaiExceptionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OpenaiExceptionImplFromJson(json);
 
   @override
   final int code;
@@ -140,7 +140,7 @@ class _$_OpenaiException implements _OpenaiException {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OpenaiException &&
+            other is _$OpenaiExceptionImpl &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.error, error) || other.error == error));
   }
@@ -152,12 +152,13 @@ class _$_OpenaiException implements _OpenaiException {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OpenaiExceptionCopyWith<_$_OpenaiException> get copyWith =>
-      __$$_OpenaiExceptionCopyWithImpl<_$_OpenaiException>(this, _$identity);
+  _$$OpenaiExceptionImplCopyWith<_$OpenaiExceptionImpl> get copyWith =>
+      __$$OpenaiExceptionImplCopyWithImpl<_$OpenaiExceptionImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OpenaiExceptionToJson(
+    return _$$OpenaiExceptionImplToJson(
       this,
     );
   }
@@ -166,10 +167,10 @@ class _$_OpenaiException implements _OpenaiException {
 abstract class _OpenaiException implements OpenaiException {
   const factory _OpenaiException(
       {required final int code,
-      required final OpenaiError error}) = _$_OpenaiException;
+      required final OpenaiError error}) = _$OpenaiExceptionImpl;
 
   factory _OpenaiException.fromJson(Map<String, dynamic> json) =
-      _$_OpenaiException.fromJson;
+      _$OpenaiExceptionImpl.fromJson;
 
   @override
   int get code;
@@ -177,7 +178,7 @@ abstract class _OpenaiException implements OpenaiException {
   OpenaiError get error;
   @override
   @JsonKey(ignore: true)
-  _$$_OpenaiExceptionCopyWith<_$_OpenaiException> get copyWith =>
+  _$$OpenaiExceptionImplCopyWith<_$OpenaiExceptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -247,22 +248,22 @@ class _$OpenaiErrorCopyWithImpl<$Res, $Val extends OpenaiError>
 }
 
 /// @nodoc
-abstract class _$$_OpenaiErrorCopyWith<$Res>
+abstract class _$$OpenaiErrorImplCopyWith<$Res>
     implements $OpenaiErrorCopyWith<$Res> {
-  factory _$$_OpenaiErrorCopyWith(
-          _$_OpenaiError value, $Res Function(_$_OpenaiError) then) =
-      __$$_OpenaiErrorCopyWithImpl<$Res>;
+  factory _$$OpenaiErrorImplCopyWith(
+          _$OpenaiErrorImpl value, $Res Function(_$OpenaiErrorImpl) then) =
+      __$$OpenaiErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({dynamic code, dynamic param, String? message, String? type});
 }
 
 /// @nodoc
-class __$$_OpenaiErrorCopyWithImpl<$Res>
-    extends _$OpenaiErrorCopyWithImpl<$Res, _$_OpenaiError>
-    implements _$$_OpenaiErrorCopyWith<$Res> {
-  __$$_OpenaiErrorCopyWithImpl(
-      _$_OpenaiError _value, $Res Function(_$_OpenaiError) _then)
+class __$$OpenaiErrorImplCopyWithImpl<$Res>
+    extends _$OpenaiErrorCopyWithImpl<$Res, _$OpenaiErrorImpl>
+    implements _$$OpenaiErrorImplCopyWith<$Res> {
+  __$$OpenaiErrorImplCopyWithImpl(
+      _$OpenaiErrorImpl _value, $Res Function(_$OpenaiErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -273,7 +274,7 @@ class __$$_OpenaiErrorCopyWithImpl<$Res>
     Object? message = freezed,
     Object? type = freezed,
   }) {
-    return _then(_$_OpenaiError(
+    return _then(_$OpenaiErrorImpl(
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -296,11 +297,11 @@ class __$$_OpenaiErrorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OpenaiError implements _OpenaiError {
-  const _$_OpenaiError({this.code, this.param, this.message, this.type});
+class _$OpenaiErrorImpl implements _OpenaiError {
+  const _$OpenaiErrorImpl({this.code, this.param, this.message, this.type});
 
-  factory _$_OpenaiError.fromJson(Map<String, dynamic> json) =>
-      _$$_OpenaiErrorFromJson(json);
+  factory _$OpenaiErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OpenaiErrorImplFromJson(json);
 
   @override
   final dynamic code;
@@ -320,7 +321,7 @@ class _$_OpenaiError implements _OpenaiError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OpenaiError &&
+            other is _$OpenaiErrorImpl &&
             const DeepCollectionEquality().equals(other.code, code) &&
             const DeepCollectionEquality().equals(other.param, param) &&
             (identical(other.message, message) || other.message == message) &&
@@ -339,12 +340,12 @@ class _$_OpenaiError implements _OpenaiError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OpenaiErrorCopyWith<_$_OpenaiError> get copyWith =>
-      __$$_OpenaiErrorCopyWithImpl<_$_OpenaiError>(this, _$identity);
+  _$$OpenaiErrorImplCopyWith<_$OpenaiErrorImpl> get copyWith =>
+      __$$OpenaiErrorImplCopyWithImpl<_$OpenaiErrorImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OpenaiErrorToJson(
+    return _$$OpenaiErrorImplToJson(
       this,
     );
   }
@@ -355,10 +356,10 @@ abstract class _OpenaiError implements OpenaiError {
       {final dynamic code,
       final dynamic param,
       final String? message,
-      final String? type}) = _$_OpenaiError;
+      final String? type}) = _$OpenaiErrorImpl;
 
   factory _OpenaiError.fromJson(Map<String, dynamic> json) =
-      _$_OpenaiError.fromJson;
+      _$OpenaiErrorImpl.fromJson;
 
   @override
   dynamic get code;
@@ -370,6 +371,6 @@ abstract class _OpenaiError implements OpenaiError {
   String? get type;
   @override
   @JsonKey(ignore: true)
-  _$$_OpenaiErrorCopyWith<_$_OpenaiError> get copyWith =>
+  _$$OpenaiErrorImplCopyWith<_$OpenaiErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

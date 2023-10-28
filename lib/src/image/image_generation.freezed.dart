@@ -70,21 +70,22 @@ class _$ImageDataCopyWithImpl<$Res, $Val extends ImageData>
 }
 
 /// @nodoc
-abstract class _$$_ImageDataCopyWith<$Res> implements $ImageDataCopyWith<$Res> {
-  factory _$$_ImageDataCopyWith(
-          _$_ImageData value, $Res Function(_$_ImageData) then) =
-      __$$_ImageDataCopyWithImpl<$Res>;
+abstract class _$$ImageDataImplCopyWith<$Res>
+    implements $ImageDataCopyWith<$Res> {
+  factory _$$ImageDataImplCopyWith(
+          _$ImageDataImpl value, $Res Function(_$ImageDataImpl) then) =
+      __$$ImageDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? url, String? b64Json});
 }
 
 /// @nodoc
-class __$$_ImageDataCopyWithImpl<$Res>
-    extends _$ImageDataCopyWithImpl<$Res, _$_ImageData>
-    implements _$$_ImageDataCopyWith<$Res> {
-  __$$_ImageDataCopyWithImpl(
-      _$_ImageData _value, $Res Function(_$_ImageData) _then)
+class __$$ImageDataImplCopyWithImpl<$Res>
+    extends _$ImageDataCopyWithImpl<$Res, _$ImageDataImpl>
+    implements _$$ImageDataImplCopyWith<$Res> {
+  __$$ImageDataImplCopyWithImpl(
+      _$ImageDataImpl _value, $Res Function(_$ImageDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -93,7 +94,7 @@ class __$$_ImageDataCopyWithImpl<$Res>
     Object? url = freezed,
     Object? b64Json = freezed,
   }) {
-    return _then(_$_ImageData(
+    return _then(_$ImageDataImpl(
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -108,11 +109,11 @@ class __$$_ImageDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageData implements _ImageData {
-  const _$_ImageData({this.url, this.b64Json});
+class _$ImageDataImpl implements _ImageData {
+  const _$ImageDataImpl({this.url, this.b64Json});
 
-  factory _$_ImageData.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageDataFromJson(json);
+  factory _$ImageDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageDataImplFromJson(json);
 
   ///  when responseFormat is url
   @override
@@ -131,7 +132,7 @@ class _$_ImageData implements _ImageData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageData &&
+            other is _$ImageDataImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.b64Json, b64Json) || other.b64Json == b64Json));
   }
@@ -143,12 +144,12 @@ class _$_ImageData implements _ImageData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageDataCopyWith<_$_ImageData> get copyWith =>
-      __$$_ImageDataCopyWithImpl<_$_ImageData>(this, _$identity);
+  _$$ImageDataImplCopyWith<_$ImageDataImpl> get copyWith =>
+      __$$ImageDataImplCopyWithImpl<_$ImageDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageDataToJson(
+    return _$$ImageDataImplToJson(
       this,
     );
   }
@@ -156,10 +157,10 @@ class _$_ImageData implements _ImageData {
 
 abstract class _ImageData implements ImageData {
   const factory _ImageData({final String? url, final String? b64Json}) =
-      _$_ImageData;
+      _$ImageDataImpl;
 
   factory _ImageData.fromJson(Map<String, dynamic> json) =
-      _$_ImageData.fromJson;
+      _$ImageDataImpl.fromJson;
 
   @override
 
@@ -171,7 +172,7 @@ abstract class _ImageData implements ImageData {
   String? get b64Json;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageDataCopyWith<_$_ImageData> get copyWith =>
+  _$$ImageDataImplCopyWith<_$ImageDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -266,11 +267,11 @@ class _$ImageRequestCopyWithImpl<$Res, $Val extends ImageRequest>
 }
 
 /// @nodoc
-abstract class _$$_ImageRequestCopyWith<$Res>
+abstract class _$$ImageRequestImplCopyWith<$Res>
     implements $ImageRequestCopyWith<$Res> {
-  factory _$$_ImageRequestCopyWith(
-          _$_ImageRequest value, $Res Function(_$_ImageRequest) then) =
-      __$$_ImageRequestCopyWithImpl<$Res>;
+  factory _$$ImageRequestImplCopyWith(
+          _$ImageRequestImpl value, $Res Function(_$ImageRequestImpl) then) =
+      __$$ImageRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -282,11 +283,11 @@ abstract class _$$_ImageRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ImageRequestCopyWithImpl<$Res>
-    extends _$ImageRequestCopyWithImpl<$Res, _$_ImageRequest>
-    implements _$$_ImageRequestCopyWith<$Res> {
-  __$$_ImageRequestCopyWithImpl(
-      _$_ImageRequest _value, $Res Function(_$_ImageRequest) _then)
+class __$$ImageRequestImplCopyWithImpl<$Res>
+    extends _$ImageRequestCopyWithImpl<$Res, _$ImageRequestImpl>
+    implements _$$ImageRequestImplCopyWith<$Res> {
+  __$$ImageRequestImplCopyWithImpl(
+      _$ImageRequestImpl _value, $Res Function(_$ImageRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -298,7 +299,7 @@ class __$$_ImageRequestCopyWithImpl<$Res>
     Object? responseFormat = freezed,
     Object? user = freezed,
   }) {
-    return _then(_$_ImageRequest(
+    return _then(_$ImageRequestImpl(
       prompt: null == prompt
           ? _value.prompt
           : prompt // ignore: cast_nullable_to_non_nullable
@@ -325,16 +326,16 @@ class __$$_ImageRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageRequest implements _ImageRequest {
-  const _$_ImageRequest(
+class _$ImageRequestImpl implements _ImageRequest {
+  const _$ImageRequestImpl(
       {required this.prompt,
       this.n,
       this.size,
       this.responseFormat,
       this.user});
 
-  factory _$_ImageRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageRequestFromJson(json);
+  factory _$ImageRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageRequestImplFromJson(json);
 
   /// A text description of the desired image(s). The maximum length is 1000 characters.
   @override
@@ -370,7 +371,7 @@ class _$_ImageRequest implements _ImageRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageRequest &&
+            other is _$ImageRequestImpl &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
             (identical(other.n, n) || other.n == n) &&
             (identical(other.size, size) || other.size == size) &&
@@ -387,12 +388,12 @@ class _$_ImageRequest implements _ImageRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageRequestCopyWith<_$_ImageRequest> get copyWith =>
-      __$$_ImageRequestCopyWithImpl<_$_ImageRequest>(this, _$identity);
+  _$$ImageRequestImplCopyWith<_$ImageRequestImpl> get copyWith =>
+      __$$ImageRequestImplCopyWithImpl<_$ImageRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageRequestToJson(
+    return _$$ImageRequestImplToJson(
       this,
     );
   }
@@ -404,10 +405,10 @@ abstract class _ImageRequest implements ImageRequest {
       final int? n,
       final String? size,
       final String? responseFormat,
-      final String? user}) = _$_ImageRequest;
+      final String? user}) = _$ImageRequestImpl;
 
   factory _ImageRequest.fromJson(Map<String, dynamic> json) =
-      _$_ImageRequest.fromJson;
+      _$ImageRequestImpl.fromJson;
 
   @override
 
@@ -436,7 +437,7 @@ abstract class _ImageRequest implements ImageRequest {
   String? get user;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageRequestCopyWith<_$_ImageRequest> get copyWith =>
+  _$$ImageRequestImplCopyWith<_$ImageRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -494,22 +495,22 @@ class _$ImageResponseCopyWithImpl<$Res, $Val extends ImageResponse>
 }
 
 /// @nodoc
-abstract class _$$_ImageResponseCopyWith<$Res>
+abstract class _$$ImageResponseImplCopyWith<$Res>
     implements $ImageResponseCopyWith<$Res> {
-  factory _$$_ImageResponseCopyWith(
-          _$_ImageResponse value, $Res Function(_$_ImageResponse) then) =
-      __$$_ImageResponseCopyWithImpl<$Res>;
+  factory _$$ImageResponseImplCopyWith(
+          _$ImageResponseImpl value, $Res Function(_$ImageResponseImpl) then) =
+      __$$ImageResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int created, List<ImageData> data});
 }
 
 /// @nodoc
-class __$$_ImageResponseCopyWithImpl<$Res>
-    extends _$ImageResponseCopyWithImpl<$Res, _$_ImageResponse>
-    implements _$$_ImageResponseCopyWith<$Res> {
-  __$$_ImageResponseCopyWithImpl(
-      _$_ImageResponse _value, $Res Function(_$_ImageResponse) _then)
+class __$$ImageResponseImplCopyWithImpl<$Res>
+    extends _$ImageResponseCopyWithImpl<$Res, _$ImageResponseImpl>
+    implements _$$ImageResponseImplCopyWith<$Res> {
+  __$$ImageResponseImplCopyWithImpl(
+      _$ImageResponseImpl _value, $Res Function(_$ImageResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -518,7 +519,7 @@ class __$$_ImageResponseCopyWithImpl<$Res>
     Object? created = null,
     Object? data = null,
   }) {
-    return _then(_$_ImageResponse(
+    return _then(_$ImageResponseImpl(
       created: null == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -533,13 +534,13 @@ class __$$_ImageResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageResponse implements _ImageResponse {
-  const _$_ImageResponse(
+class _$ImageResponseImpl implements _ImageResponse {
+  const _$ImageResponseImpl(
       {required this.created, required final List<ImageData> data})
       : _data = data;
 
-  factory _$_ImageResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageResponseFromJson(json);
+  factory _$ImageResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageResponseImplFromJson(json);
 
   @override
   final int created;
@@ -560,7 +561,7 @@ class _$_ImageResponse implements _ImageResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageResponse &&
+            other is _$ImageResponseImpl &&
             (identical(other.created, created) || other.created == created) &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
@@ -573,12 +574,12 @@ class _$_ImageResponse implements _ImageResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageResponseCopyWith<_$_ImageResponse> get copyWith =>
-      __$$_ImageResponseCopyWithImpl<_$_ImageResponse>(this, _$identity);
+  _$$ImageResponseImplCopyWith<_$ImageResponseImpl> get copyWith =>
+      __$$ImageResponseImplCopyWithImpl<_$ImageResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageResponseToJson(
+    return _$$ImageResponseImplToJson(
       this,
     );
   }
@@ -587,10 +588,10 @@ class _$_ImageResponse implements _ImageResponse {
 abstract class _ImageResponse implements ImageResponse {
   const factory _ImageResponse(
       {required final int created,
-      required final List<ImageData> data}) = _$_ImageResponse;
+      required final List<ImageData> data}) = _$ImageResponseImpl;
 
   factory _ImageResponse.fromJson(Map<String, dynamic> json) =
-      _$_ImageResponse.fromJson;
+      _$ImageResponseImpl.fromJson;
 
   @override
   int get created;
@@ -598,6 +599,6 @@ abstract class _ImageResponse implements ImageResponse {
   List<ImageData> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageResponseCopyWith<_$_ImageResponse> get copyWith =>
+  _$$ImageResponseImplCopyWith<_$ImageResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

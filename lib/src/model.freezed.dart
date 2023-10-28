@@ -68,22 +68,22 @@ class _$ModelListResponseCopyWithImpl<$Res, $Val extends ModelListResponse>
 }
 
 /// @nodoc
-abstract class _$$_ModelListResponseCopyWith<$Res>
+abstract class _$$ModelListResponseImplCopyWith<$Res>
     implements $ModelListResponseCopyWith<$Res> {
-  factory _$$_ModelListResponseCopyWith(_$_ModelListResponse value,
-          $Res Function(_$_ModelListResponse) then) =
-      __$$_ModelListResponseCopyWithImpl<$Res>;
+  factory _$$ModelListResponseImplCopyWith(_$ModelListResponseImpl value,
+          $Res Function(_$ModelListResponseImpl) then) =
+      __$$ModelListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String object, List<ModelResponse> data});
 }
 
 /// @nodoc
-class __$$_ModelListResponseCopyWithImpl<$Res>
-    extends _$ModelListResponseCopyWithImpl<$Res, _$_ModelListResponse>
-    implements _$$_ModelListResponseCopyWith<$Res> {
-  __$$_ModelListResponseCopyWithImpl(
-      _$_ModelListResponse _value, $Res Function(_$_ModelListResponse) _then)
+class __$$ModelListResponseImplCopyWithImpl<$Res>
+    extends _$ModelListResponseCopyWithImpl<$Res, _$ModelListResponseImpl>
+    implements _$$ModelListResponseImplCopyWith<$Res> {
+  __$$ModelListResponseImplCopyWithImpl(_$ModelListResponseImpl _value,
+      $Res Function(_$ModelListResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ModelListResponseCopyWithImpl<$Res>
     Object? object = null,
     Object? data = null,
   }) {
-    return _then(_$_ModelListResponse(
+    return _then(_$ModelListResponseImpl(
       object: null == object
           ? _value.object
           : object // ignore: cast_nullable_to_non_nullable
@@ -107,13 +107,13 @@ class __$$_ModelListResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ModelListResponse implements _ModelListResponse {
-  const _$_ModelListResponse(
+class _$ModelListResponseImpl implements _ModelListResponse {
+  const _$ModelListResponseImpl(
       {required this.object, required final List<ModelResponse> data})
       : _data = data;
 
-  factory _$_ModelListResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ModelListResponseFromJson(json);
+  factory _$ModelListResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ModelListResponseImplFromJson(json);
 
   @override
   final String object;
@@ -134,7 +134,7 @@ class _$_ModelListResponse implements _ModelListResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ModelListResponse &&
+            other is _$ModelListResponseImpl &&
             (identical(other.object, object) || other.object == object) &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
@@ -147,13 +147,13 @@ class _$_ModelListResponse implements _ModelListResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ModelListResponseCopyWith<_$_ModelListResponse> get copyWith =>
-      __$$_ModelListResponseCopyWithImpl<_$_ModelListResponse>(
+  _$$ModelListResponseImplCopyWith<_$ModelListResponseImpl> get copyWith =>
+      __$$ModelListResponseImplCopyWithImpl<_$ModelListResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ModelListResponseToJson(
+    return _$$ModelListResponseImplToJson(
       this,
     );
   }
@@ -162,10 +162,10 @@ class _$_ModelListResponse implements _ModelListResponse {
 abstract class _ModelListResponse implements ModelListResponse {
   const factory _ModelListResponse(
       {required final String object,
-      required final List<ModelResponse> data}) = _$_ModelListResponse;
+      required final List<ModelResponse> data}) = _$ModelListResponseImpl;
 
   factory _ModelListResponse.fromJson(Map<String, dynamic> json) =
-      _$_ModelListResponse.fromJson;
+      _$ModelListResponseImpl.fromJson;
 
   @override
   String get object;
@@ -173,7 +173,7 @@ abstract class _ModelListResponse implements ModelListResponse {
   List<ModelResponse> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_ModelListResponseCopyWith<_$_ModelListResponse> get copyWith =>
+  _$$ModelListResponseImplCopyWith<_$ModelListResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -268,11 +268,11 @@ class _$ModelResponseCopyWithImpl<$Res, $Val extends ModelResponse>
 }
 
 /// @nodoc
-abstract class _$$_ModelResponseCopyWith<$Res>
+abstract class _$$ModelResponseImplCopyWith<$Res>
     implements $ModelResponseCopyWith<$Res> {
-  factory _$$_ModelResponseCopyWith(
-          _$_ModelResponse value, $Res Function(_$_ModelResponse) then) =
-      __$$_ModelResponseCopyWithImpl<$Res>;
+  factory _$$ModelResponseImplCopyWith(
+          _$ModelResponseImpl value, $Res Function(_$ModelResponseImpl) then) =
+      __$$ModelResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -286,11 +286,11 @@ abstract class _$$_ModelResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ModelResponseCopyWithImpl<$Res>
-    extends _$ModelResponseCopyWithImpl<$Res, _$_ModelResponse>
-    implements _$$_ModelResponseCopyWith<$Res> {
-  __$$_ModelResponseCopyWithImpl(
-      _$_ModelResponse _value, $Res Function(_$_ModelResponse) _then)
+class __$$ModelResponseImplCopyWithImpl<$Res>
+    extends _$ModelResponseCopyWithImpl<$Res, _$ModelResponseImpl>
+    implements _$$ModelResponseImplCopyWith<$Res> {
+  __$$ModelResponseImplCopyWithImpl(
+      _$ModelResponseImpl _value, $Res Function(_$ModelResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -304,7 +304,7 @@ class __$$_ModelResponseCopyWithImpl<$Res>
     Object? root = freezed,
     Object? parent = freezed,
   }) {
-    return _then(_$_ModelResponse(
+    return _then(_$ModelResponseImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -339,8 +339,8 @@ class __$$_ModelResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ModelResponse implements _ModelResponse {
-  const _$_ModelResponse(
+class _$ModelResponseImpl implements _ModelResponse {
+  const _$ModelResponseImpl(
       {required this.id,
       required this.object,
       required this.ownedBy,
@@ -350,8 +350,8 @@ class _$_ModelResponse implements _ModelResponse {
       this.parent})
       : _permission = permission;
 
-  factory _$_ModelResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ModelResponseFromJson(json);
+  factory _$ModelResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ModelResponseImplFromJson(json);
 
   @override
   final String id;
@@ -383,7 +383,7 @@ class _$_ModelResponse implements _ModelResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ModelResponse &&
+            other is _$ModelResponseImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.object, object) || other.object == object) &&
             (identical(other.ownedBy, ownedBy) || other.ownedBy == ownedBy) &&
@@ -402,12 +402,12 @@ class _$_ModelResponse implements _ModelResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ModelResponseCopyWith<_$_ModelResponse> get copyWith =>
-      __$$_ModelResponseCopyWithImpl<_$_ModelResponse>(this, _$identity);
+  _$$ModelResponseImplCopyWith<_$ModelResponseImpl> get copyWith =>
+      __$$ModelResponseImplCopyWithImpl<_$ModelResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ModelResponseToJson(
+    return _$$ModelResponseImplToJson(
       this,
     );
   }
@@ -421,10 +421,10 @@ abstract class _ModelResponse implements ModelResponse {
       required final List<dynamic> permission,
       required final int created,
       final String? root,
-      final String? parent}) = _$_ModelResponse;
+      final String? parent}) = _$ModelResponseImpl;
 
   factory _ModelResponse.fromJson(Map<String, dynamic> json) =
-      _$_ModelResponse.fromJson;
+      _$ModelResponseImpl.fromJson;
 
   @override
   String get id;
@@ -442,6 +442,6 @@ abstract class _ModelResponse implements ModelResponse {
   String? get parent;
   @override
   @JsonKey(ignore: true)
-  _$$_ModelResponseCopyWith<_$_ModelResponse> get copyWith =>
+  _$$ModelResponseImplCopyWith<_$ModelResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

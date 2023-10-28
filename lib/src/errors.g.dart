@@ -6,27 +6,29 @@ part of 'errors.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OpenaiException _$$_OpenaiExceptionFromJson(Map<String, dynamic> json) =>
-    _$_OpenaiException(
+_$OpenaiExceptionImpl _$$OpenaiExceptionImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OpenaiExceptionImpl(
       code: json['code'] as int,
       error: OpenaiError.fromJson(json['error']),
     );
 
-Map<String, dynamic> _$$_OpenaiExceptionToJson(_$_OpenaiException instance) =>
+Map<String, dynamic> _$$OpenaiExceptionImplToJson(
+        _$OpenaiExceptionImpl instance) =>
     <String, dynamic>{
       'code': instance.code,
       'error': instance.error.toJson(),
     };
 
-_$_OpenaiError _$$_OpenaiErrorFromJson(Map<String, dynamic> json) =>
-    _$_OpenaiError(
+_$OpenaiErrorImpl _$$OpenaiErrorImplFromJson(Map<String, dynamic> json) =>
+    _$OpenaiErrorImpl(
       code: json['code'],
       param: json['param'],
       message: json['message'] as String?,
       type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$$_OpenaiErrorToJson(_$_OpenaiError instance) {
+Map<String, dynamic> _$$OpenaiErrorImplToJson(_$OpenaiErrorImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {

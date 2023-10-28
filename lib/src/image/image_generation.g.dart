@@ -6,12 +6,13 @@ part of 'image_generation.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ImageData _$$_ImageDataFromJson(Map<String, dynamic> json) => _$_ImageData(
+_$ImageDataImpl _$$ImageDataImplFromJson(Map<String, dynamic> json) =>
+    _$ImageDataImpl(
       url: json['url'] as String?,
       b64Json: json['b64_json'] as String?,
     );
 
-Map<String, dynamic> _$$_ImageDataToJson(_$_ImageData instance) {
+Map<String, dynamic> _$$ImageDataImplToJson(_$ImageDataImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -25,8 +26,8 @@ Map<String, dynamic> _$$_ImageDataToJson(_$_ImageData instance) {
   return val;
 }
 
-_$_ImageRequest _$$_ImageRequestFromJson(Map<String, dynamic> json) =>
-    _$_ImageRequest(
+_$ImageRequestImpl _$$ImageRequestImplFromJson(Map<String, dynamic> json) =>
+    _$ImageRequestImpl(
       prompt: json['prompt'] as String,
       n: json['n'] as int?,
       size: json['size'] as String?,
@@ -34,7 +35,7 @@ _$_ImageRequest _$$_ImageRequestFromJson(Map<String, dynamic> json) =>
       user: json['user'] as String?,
     );
 
-Map<String, dynamic> _$$_ImageRequestToJson(_$_ImageRequest instance) {
+Map<String, dynamic> _$$ImageRequestImplToJson(_$ImageRequestImpl instance) {
   final val = <String, dynamic>{
     'prompt': instance.prompt,
   };
@@ -52,13 +53,13 @@ Map<String, dynamic> _$$_ImageRequestToJson(_$_ImageRequest instance) {
   return val;
 }
 
-_$_ImageResponse _$$_ImageResponseFromJson(Map<String, dynamic> json) =>
-    _$_ImageResponse(
+_$ImageResponseImpl _$$ImageResponseImplFromJson(Map<String, dynamic> json) =>
+    _$ImageResponseImpl(
       created: json['created'] as int,
       data: (json['data'] as List<dynamic>).map(ImageData.fromJson).toList(),
     );
 
-Map<String, dynamic> _$$_ImageResponseToJson(_$_ImageResponse instance) =>
+Map<String, dynamic> _$$ImageResponseImplToJson(_$ImageResponseImpl instance) =>
     <String, dynamic>{
       'created': instance.created,
       'data': instance.data.map((e) => e.toJson()).toList(),

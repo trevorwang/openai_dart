@@ -9,7 +9,7 @@ void main() {
         file: "assets/ttsmaker-file-2023-3-22-14-2-35.mp3",
       );
 
-      expect(req.model, Model.whisper_1);
+      expect(req.model, Models.whisper_1);
       expect(req.toJson(), {
         "file": "assets/ttsmaker-file-2023-3-22-14-2-35.mp3",
         "model": "whisper-1",

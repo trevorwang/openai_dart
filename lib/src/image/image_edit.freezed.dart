@@ -125,11 +125,11 @@ class _$ImageEditRequestCopyWithImpl<$Res, $Val extends ImageEditRequest>
 }
 
 /// @nodoc
-abstract class _$$_ImageEditRequestCopyWith<$Res>
+abstract class _$$ImageEditRequestImplCopyWith<$Res>
     implements $ImageEditRequestCopyWith<$Res> {
-  factory _$$_ImageEditRequestCopyWith(
-          _$_ImageEditRequest value, $Res Function(_$_ImageEditRequest) then) =
-      __$$_ImageEditRequestCopyWithImpl<$Res>;
+  factory _$$ImageEditRequestImplCopyWith(_$ImageEditRequestImpl value,
+          $Res Function(_$ImageEditRequestImpl) then) =
+      __$$ImageEditRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -143,11 +143,11 @@ abstract class _$$_ImageEditRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ImageEditRequestCopyWithImpl<$Res>
-    extends _$ImageEditRequestCopyWithImpl<$Res, _$_ImageEditRequest>
-    implements _$$_ImageEditRequestCopyWith<$Res> {
-  __$$_ImageEditRequestCopyWithImpl(
-      _$_ImageEditRequest _value, $Res Function(_$_ImageEditRequest) _then)
+class __$$ImageEditRequestImplCopyWithImpl<$Res>
+    extends _$ImageEditRequestCopyWithImpl<$Res, _$ImageEditRequestImpl>
+    implements _$$ImageEditRequestImplCopyWith<$Res> {
+  __$$ImageEditRequestImplCopyWithImpl(_$ImageEditRequestImpl _value,
+      $Res Function(_$ImageEditRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -161,7 +161,7 @@ class __$$_ImageEditRequestCopyWithImpl<$Res>
     Object? responseFormat = freezed,
     Object? user = freezed,
   }) {
-    return _then(_$_ImageEditRequest(
+    return _then(_$ImageEditRequestImpl(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -196,8 +196,8 @@ class __$$_ImageEditRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageEditRequest implements _ImageEditRequest {
-  const _$_ImageEditRequest(
+class _$ImageEditRequestImpl implements _ImageEditRequest {
+  const _$ImageEditRequestImpl(
       {required this.image,
       this.mask,
       required this.prompt,
@@ -206,8 +206,8 @@ class _$_ImageEditRequest implements _ImageEditRequest {
       this.responseFormat,
       this.user});
 
-  factory _$_ImageEditRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageEditRequestFromJson(json);
+  factory _$ImageEditRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageEditRequestImplFromJson(json);
 
   /// The original image to edit or extend. Must be a valid URL.
   @override
@@ -253,7 +253,7 @@ class _$_ImageEditRequest implements _ImageEditRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageEditRequest &&
+            other is _$ImageEditRequestImpl &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.mask, mask) || other.mask == mask) &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
@@ -272,12 +272,13 @@ class _$_ImageEditRequest implements _ImageEditRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageEditRequestCopyWith<_$_ImageEditRequest> get copyWith =>
-      __$$_ImageEditRequestCopyWithImpl<_$_ImageEditRequest>(this, _$identity);
+  _$$ImageEditRequestImplCopyWith<_$ImageEditRequestImpl> get copyWith =>
+      __$$ImageEditRequestImplCopyWithImpl<_$ImageEditRequestImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageEditRequestToJson(
+    return _$$ImageEditRequestImplToJson(
       this,
     );
   }
@@ -291,10 +292,10 @@ abstract class _ImageEditRequest implements ImageEditRequest {
       final int? n,
       final String? size,
       final String? responseFormat,
-      final String? user}) = _$_ImageEditRequest;
+      final String? user}) = _$ImageEditRequestImpl;
 
   factory _ImageEditRequest.fromJson(Map<String, dynamic> json) =
-      _$_ImageEditRequest.fromJson;
+      _$ImageEditRequestImpl.fromJson;
 
   @override
 
@@ -333,6 +334,6 @@ abstract class _ImageEditRequest implements ImageEditRequest {
   String? get user;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageEditRequestCopyWith<_$_ImageEditRequest> get copyWith =>
+  _$$ImageEditRequestImplCopyWith<_$ImageEditRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -111,11 +111,11 @@ class _$ChatChoiceCopyWithImpl<$Res, $Val extends ChatChoice>
 }
 
 /// @nodoc
-abstract class _$$_ChatChoiceCopyWith<$Res>
+abstract class _$$ChatChoiceImplCopyWith<$Res>
     implements $ChatChoiceCopyWith<$Res> {
-  factory _$$_ChatChoiceCopyWith(
-          _$_ChatChoice value, $Res Function(_$_ChatChoice) then) =
-      __$$_ChatChoiceCopyWithImpl<$Res>;
+  factory _$$ChatChoiceImplCopyWith(
+          _$ChatChoiceImpl value, $Res Function(_$ChatChoiceImpl) then) =
+      __$$ChatChoiceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -131,11 +131,11 @@ abstract class _$$_ChatChoiceCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChatChoiceCopyWithImpl<$Res>
-    extends _$ChatChoiceCopyWithImpl<$Res, _$_ChatChoice>
-    implements _$$_ChatChoiceCopyWith<$Res> {
-  __$$_ChatChoiceCopyWithImpl(
-      _$_ChatChoice _value, $Res Function(_$_ChatChoice) _then)
+class __$$ChatChoiceImplCopyWithImpl<$Res>
+    extends _$ChatChoiceCopyWithImpl<$Res, _$ChatChoiceImpl>
+    implements _$$ChatChoiceImplCopyWith<$Res> {
+  __$$ChatChoiceImplCopyWithImpl(
+      _$ChatChoiceImpl _value, $Res Function(_$ChatChoiceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -146,7 +146,7 @@ class __$$_ChatChoiceCopyWithImpl<$Res>
     Object? delta = freezed,
     Object? finishReason = freezed,
   }) {
-    return _then(_$_ChatChoice(
+    return _then(_$ChatChoiceImpl(
       index: null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -169,12 +169,12 @@ class __$$_ChatChoiceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatChoice implements _ChatChoice {
-  const _$_ChatChoice(
+class _$ChatChoiceImpl implements _ChatChoice {
+  const _$ChatChoiceImpl(
       {required this.index, this.message, this.delta, this.finishReason});
 
-  factory _$_ChatChoice.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatChoiceFromJson(json);
+  factory _$ChatChoiceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatChoiceImplFromJson(json);
 
   @override
   final int index;
@@ -194,7 +194,7 @@ class _$_ChatChoice implements _ChatChoice {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatChoice &&
+            other is _$ChatChoiceImpl &&
             (identical(other.index, index) || other.index == index) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.delta, delta) || other.delta == delta) &&
@@ -210,12 +210,12 @@ class _$_ChatChoice implements _ChatChoice {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatChoiceCopyWith<_$_ChatChoice> get copyWith =>
-      __$$_ChatChoiceCopyWithImpl<_$_ChatChoice>(this, _$identity);
+  _$$ChatChoiceImplCopyWith<_$ChatChoiceImpl> get copyWith =>
+      __$$ChatChoiceImplCopyWithImpl<_$ChatChoiceImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatChoiceToJson(
+    return _$$ChatChoiceImplToJson(
       this,
     );
   }
@@ -226,10 +226,10 @@ abstract class _ChatChoice implements ChatChoice {
       {required final int index,
       final ChatMessage? message,
       final ChatChoiceDelta? delta,
-      final String? finishReason}) = _$_ChatChoice;
+      final String? finishReason}) = _$ChatChoiceImpl;
 
   factory _ChatChoice.fromJson(Map<String, dynamic> json) =
-      _$_ChatChoice.fromJson;
+      _$ChatChoiceImpl.fromJson;
 
   @override
   int get index;
@@ -241,7 +241,7 @@ abstract class _ChatChoice implements ChatChoice {
   String? get finishReason;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatChoiceCopyWith<_$_ChatChoice> get copyWith =>
+  _$$ChatChoiceImplCopyWith<_$ChatChoiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -299,22 +299,22 @@ class _$ChatChoiceDeltaCopyWithImpl<$Res, $Val extends ChatChoiceDelta>
 }
 
 /// @nodoc
-abstract class _$$_ChatChoiceDeltaCopyWith<$Res>
+abstract class _$$ChatChoiceDeltaImplCopyWith<$Res>
     implements $ChatChoiceDeltaCopyWith<$Res> {
-  factory _$$_ChatChoiceDeltaCopyWith(
-          _$_ChatChoiceDelta value, $Res Function(_$_ChatChoiceDelta) then) =
-      __$$_ChatChoiceDeltaCopyWithImpl<$Res>;
+  factory _$$ChatChoiceDeltaImplCopyWith(_$ChatChoiceDeltaImpl value,
+          $Res Function(_$ChatChoiceDeltaImpl) then) =
+      __$$ChatChoiceDeltaImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? content, String? role});
 }
 
 /// @nodoc
-class __$$_ChatChoiceDeltaCopyWithImpl<$Res>
-    extends _$ChatChoiceDeltaCopyWithImpl<$Res, _$_ChatChoiceDelta>
-    implements _$$_ChatChoiceDeltaCopyWith<$Res> {
-  __$$_ChatChoiceDeltaCopyWithImpl(
-      _$_ChatChoiceDelta _value, $Res Function(_$_ChatChoiceDelta) _then)
+class __$$ChatChoiceDeltaImplCopyWithImpl<$Res>
+    extends _$ChatChoiceDeltaCopyWithImpl<$Res, _$ChatChoiceDeltaImpl>
+    implements _$$ChatChoiceDeltaImplCopyWith<$Res> {
+  __$$ChatChoiceDeltaImplCopyWithImpl(
+      _$ChatChoiceDeltaImpl _value, $Res Function(_$ChatChoiceDeltaImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -323,7 +323,7 @@ class __$$_ChatChoiceDeltaCopyWithImpl<$Res>
     Object? content = freezed,
     Object? role = freezed,
   }) {
-    return _then(_$_ChatChoiceDelta(
+    return _then(_$ChatChoiceDeltaImpl(
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -338,11 +338,11 @@ class __$$_ChatChoiceDeltaCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatChoiceDelta implements _ChatChoiceDelta {
-  const _$_ChatChoiceDelta({this.content, this.role});
+class _$ChatChoiceDeltaImpl implements _ChatChoiceDelta {
+  const _$ChatChoiceDeltaImpl({this.content, this.role});
 
-  factory _$_ChatChoiceDelta.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatChoiceDeltaFromJson(json);
+  factory _$ChatChoiceDeltaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatChoiceDeltaImplFromJson(json);
 
   @override
   final String? content;
@@ -358,7 +358,7 @@ class _$_ChatChoiceDelta implements _ChatChoiceDelta {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatChoiceDelta &&
+            other is _$ChatChoiceDeltaImpl &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.role, role) || other.role == role));
   }
@@ -370,12 +370,13 @@ class _$_ChatChoiceDelta implements _ChatChoiceDelta {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatChoiceDeltaCopyWith<_$_ChatChoiceDelta> get copyWith =>
-      __$$_ChatChoiceDeltaCopyWithImpl<_$_ChatChoiceDelta>(this, _$identity);
+  _$$ChatChoiceDeltaImplCopyWith<_$ChatChoiceDeltaImpl> get copyWith =>
+      __$$ChatChoiceDeltaImplCopyWithImpl<_$ChatChoiceDeltaImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatChoiceDeltaToJson(
+    return _$$ChatChoiceDeltaImplToJson(
       this,
     );
   }
@@ -383,10 +384,10 @@ class _$_ChatChoiceDelta implements _ChatChoiceDelta {
 
 abstract class _ChatChoiceDelta implements ChatChoiceDelta {
   const factory _ChatChoiceDelta({final String? content, final String? role}) =
-      _$_ChatChoiceDelta;
+      _$ChatChoiceDeltaImpl;
 
   factory _ChatChoiceDelta.fromJson(Map<String, dynamic> json) =
-      _$_ChatChoiceDelta.fromJson;
+      _$ChatChoiceDeltaImpl.fromJson;
 
   @override
   String? get content;
@@ -394,7 +395,7 @@ abstract class _ChatChoiceDelta implements ChatChoiceDelta {
   String? get role;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatChoiceDeltaCopyWith<_$_ChatChoiceDelta> get copyWith =>
+  _$$ChatChoiceDeltaImplCopyWith<_$ChatChoiceDeltaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -408,7 +409,7 @@ mixin _$ChatCompletionRequest {
   /// ID of the model to use. See the
   /// [model endpoint compatibility table](https://platform.openai.com/docs/models/model-endpoint-compatibility)
   /// for details on which models work with the Chat API.
-  Model get model => throw _privateConstructorUsedError;
+  String get model => throw _privateConstructorUsedError;
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
   List<ChatMessage> get messages => throw _privateConstructorUsedError;
@@ -499,7 +500,7 @@ abstract class $ChatCompletionRequestCopyWith<$Res> {
       _$ChatCompletionRequestCopyWithImpl<$Res, ChatCompletionRequest>;
   @useResult
   $Res call(
-      {Model model,
+      {String model,
       List<ChatMessage> messages,
       List<ChatFunction>? functions,
       dynamic functionCall,
@@ -548,7 +549,7 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as Model,
+              as String,
       messages: null == messages
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
@@ -606,15 +607,16 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChatCompletionRequestCopyWith<$Res>
+abstract class _$$ChatCompletionRequestImplCopyWith<$Res>
     implements $ChatCompletionRequestCopyWith<$Res> {
-  factory _$$_ChatCompletionRequestCopyWith(_$_ChatCompletionRequest value,
-          $Res Function(_$_ChatCompletionRequest) then) =
-      __$$_ChatCompletionRequestCopyWithImpl<$Res>;
+  factory _$$ChatCompletionRequestImplCopyWith(
+          _$ChatCompletionRequestImpl value,
+          $Res Function(_$ChatCompletionRequestImpl) then) =
+      __$$ChatCompletionRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {Model model,
+      {String model,
       List<ChatMessage> messages,
       List<ChatFunction>? functions,
       dynamic functionCall,
@@ -631,11 +633,12 @@ abstract class _$$_ChatCompletionRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChatCompletionRequestCopyWithImpl<$Res>
-    extends _$ChatCompletionRequestCopyWithImpl<$Res, _$_ChatCompletionRequest>
-    implements _$$_ChatCompletionRequestCopyWith<$Res> {
-  __$$_ChatCompletionRequestCopyWithImpl(_$_ChatCompletionRequest _value,
-      $Res Function(_$_ChatCompletionRequest) _then)
+class __$$ChatCompletionRequestImplCopyWithImpl<$Res>
+    extends _$ChatCompletionRequestCopyWithImpl<$Res,
+        _$ChatCompletionRequestImpl>
+    implements _$$ChatCompletionRequestImplCopyWith<$Res> {
+  __$$ChatCompletionRequestImplCopyWithImpl(_$ChatCompletionRequestImpl _value,
+      $Res Function(_$ChatCompletionRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -656,11 +659,11 @@ class __$$_ChatCompletionRequestCopyWithImpl<$Res>
     Object? logitBias = freezed,
     Object? user = freezed,
   }) {
-    return _then(_$_ChatCompletionRequest(
+    return _then(_$ChatCompletionRequestImpl(
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as Model,
+              as String,
       messages: null == messages
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
@@ -719,8 +722,8 @@ class __$$_ChatCompletionRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatCompletionRequest implements _ChatCompletionRequest {
-  const _$_ChatCompletionRequest(
+class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
+  const _$ChatCompletionRequestImpl(
       {required this.model,
       required final List<ChatMessage> messages,
       final List<ChatFunction>? functions,
@@ -740,14 +743,14 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
         _stop = stop,
         _logitBias = logitBias;
 
-  factory _$_ChatCompletionRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatCompletionRequestFromJson(json);
+  factory _$ChatCompletionRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatCompletionRequestImplFromJson(json);
 
   /// ID of the model to use. See the
   /// [model endpoint compatibility table](https://platform.openai.com/docs/models/model-endpoint-compatibility)
   /// for details on which models work with the Chat API.
   @override
-  final Model model;
+  final String model;
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
   final List<ChatMessage> _messages;
@@ -890,7 +893,7 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatCompletionRequest &&
+            other is _$ChatCompletionRequestImpl &&
             (identical(other.model, model) || other.model == model) &&
             const DeepCollectionEquality().equals(other._messages, _messages) &&
             const DeepCollectionEquality()
@@ -936,13 +939,13 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatCompletionRequestCopyWith<_$_ChatCompletionRequest> get copyWith =>
-      __$$_ChatCompletionRequestCopyWithImpl<_$_ChatCompletionRequest>(
-          this, _$identity);
+  _$$ChatCompletionRequestImplCopyWith<_$ChatCompletionRequestImpl>
+      get copyWith => __$$ChatCompletionRequestImplCopyWithImpl<
+          _$ChatCompletionRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatCompletionRequestToJson(
+    return _$$ChatCompletionRequestImplToJson(
       this,
     );
   }
@@ -950,7 +953,7 @@ class _$_ChatCompletionRequest implements _ChatCompletionRequest {
 
 abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   const factory _ChatCompletionRequest(
-      {required final Model model,
+      {required final String model,
       required final List<ChatMessage> messages,
       final List<ChatFunction>? functions,
       final dynamic functionCall,
@@ -963,17 +966,17 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
       final double? presencePenalty,
       final double? frequencyPenalty,
       final Map<String, dynamic>? logitBias,
-      final String? user}) = _$_ChatCompletionRequest;
+      final String? user}) = _$ChatCompletionRequestImpl;
 
   factory _ChatCompletionRequest.fromJson(Map<String, dynamic> json) =
-      _$_ChatCompletionRequest.fromJson;
+      _$ChatCompletionRequestImpl.fromJson;
 
   @override
 
   /// ID of the model to use. See the
   /// [model endpoint compatibility table](https://platform.openai.com/docs/models/model-endpoint-compatibility)
   /// for details on which models work with the Chat API.
-  Model get model;
+  String get model;
   @override
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
@@ -1065,8 +1068,8 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   String? get user;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatCompletionRequestCopyWith<_$_ChatCompletionRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ChatCompletionRequestImplCopyWith<_$ChatCompletionRequestImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 ChatCompletionResponse _$ChatCompletionResponseFromJson(
@@ -1171,11 +1174,12 @@ class _$ChatCompletionResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChatCompletionResponseCopyWith<$Res>
+abstract class _$$ChatCompletionResponseImplCopyWith<$Res>
     implements $ChatCompletionResponseCopyWith<$Res> {
-  factory _$$_ChatCompletionResponseCopyWith(_$_ChatCompletionResponse value,
-          $Res Function(_$_ChatCompletionResponse) then) =
-      __$$_ChatCompletionResponseCopyWithImpl<$Res>;
+  factory _$$ChatCompletionResponseImplCopyWith(
+          _$ChatCompletionResponseImpl value,
+          $Res Function(_$ChatCompletionResponseImpl) then) =
+      __$$ChatCompletionResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1190,12 +1194,13 @@ abstract class _$$_ChatCompletionResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChatCompletionResponseCopyWithImpl<$Res>
+class __$$ChatCompletionResponseImplCopyWithImpl<$Res>
     extends _$ChatCompletionResponseCopyWithImpl<$Res,
-        _$_ChatCompletionResponse>
-    implements _$$_ChatCompletionResponseCopyWith<$Res> {
-  __$$_ChatCompletionResponseCopyWithImpl(_$_ChatCompletionResponse _value,
-      $Res Function(_$_ChatCompletionResponse) _then)
+        _$ChatCompletionResponseImpl>
+    implements _$$ChatCompletionResponseImplCopyWith<$Res> {
+  __$$ChatCompletionResponseImplCopyWithImpl(
+      _$ChatCompletionResponseImpl _value,
+      $Res Function(_$ChatCompletionResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1207,7 +1212,7 @@ class __$$_ChatCompletionResponseCopyWithImpl<$Res>
     Object? created = null,
     Object? usage = freezed,
   }) {
-    return _then(_$_ChatCompletionResponse(
+    return _then(_$ChatCompletionResponseImpl(
       choices: null == choices
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -1234,8 +1239,8 @@ class __$$_ChatCompletionResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatCompletionResponse implements _ChatCompletionResponse {
-  const _$_ChatCompletionResponse(
+class _$ChatCompletionResponseImpl implements _ChatCompletionResponse {
+  const _$ChatCompletionResponseImpl(
       {required final List<ChatChoice> choices,
       required this.id,
       required this.object,
@@ -1243,8 +1248,8 @@ class _$_ChatCompletionResponse implements _ChatCompletionResponse {
       this.usage})
       : _choices = choices;
 
-  factory _$_ChatCompletionResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatCompletionResponseFromJson(json);
+  factory _$ChatCompletionResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatCompletionResponseImplFromJson(json);
 
   /// The list of choices for the completion.
   final List<ChatChoice> _choices;
@@ -1282,7 +1287,7 @@ class _$_ChatCompletionResponse implements _ChatCompletionResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatCompletionResponse &&
+            other is _$ChatCompletionResponseImpl &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.object, object) || other.object == object) &&
@@ -1303,13 +1308,13 @@ class _$_ChatCompletionResponse implements _ChatCompletionResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatCompletionResponseCopyWith<_$_ChatCompletionResponse> get copyWith =>
-      __$$_ChatCompletionResponseCopyWithImpl<_$_ChatCompletionResponse>(
-          this, _$identity);
+  _$$ChatCompletionResponseImplCopyWith<_$ChatCompletionResponseImpl>
+      get copyWith => __$$ChatCompletionResponseImplCopyWithImpl<
+          _$ChatCompletionResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatCompletionResponseToJson(
+    return _$$ChatCompletionResponseImplToJson(
       this,
     );
   }
@@ -1321,10 +1326,10 @@ abstract class _ChatCompletionResponse implements ChatCompletionResponse {
       required final String id,
       required final String object,
       required final int created,
-      final ChatCompletionUsage? usage}) = _$_ChatCompletionResponse;
+      final ChatCompletionUsage? usage}) = _$ChatCompletionResponseImpl;
 
   factory _ChatCompletionResponse.fromJson(Map<String, dynamic> json) =
-      _$_ChatCompletionResponse.fromJson;
+      _$ChatCompletionResponseImpl.fromJson;
 
   @override
 
@@ -1348,8 +1353,8 @@ abstract class _ChatCompletionResponse implements ChatCompletionResponse {
   ChatCompletionUsage? get usage;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatCompletionResponseCopyWith<_$_ChatCompletionResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ChatCompletionResponseImplCopyWith<_$ChatCompletionResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 ChatCompletionUsage _$ChatCompletionUsageFromJson(Map<String, dynamic> json) {
@@ -1417,22 +1422,22 @@ class _$ChatCompletionUsageCopyWithImpl<$Res, $Val extends ChatCompletionUsage>
 }
 
 /// @nodoc
-abstract class _$$_ChatCompletionUsageCopyWith<$Res>
+abstract class _$$ChatCompletionUsageImplCopyWith<$Res>
     implements $ChatCompletionUsageCopyWith<$Res> {
-  factory _$$_ChatCompletionUsageCopyWith(_$_ChatCompletionUsage value,
-          $Res Function(_$_ChatCompletionUsage) then) =
-      __$$_ChatCompletionUsageCopyWithImpl<$Res>;
+  factory _$$ChatCompletionUsageImplCopyWith(_$ChatCompletionUsageImpl value,
+          $Res Function(_$ChatCompletionUsageImpl) then) =
+      __$$ChatCompletionUsageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int promptTokens, int completionTokens, int totalTokens});
 }
 
 /// @nodoc
-class __$$_ChatCompletionUsageCopyWithImpl<$Res>
-    extends _$ChatCompletionUsageCopyWithImpl<$Res, _$_ChatCompletionUsage>
-    implements _$$_ChatCompletionUsageCopyWith<$Res> {
-  __$$_ChatCompletionUsageCopyWithImpl(_$_ChatCompletionUsage _value,
-      $Res Function(_$_ChatCompletionUsage) _then)
+class __$$ChatCompletionUsageImplCopyWithImpl<$Res>
+    extends _$ChatCompletionUsageCopyWithImpl<$Res, _$ChatCompletionUsageImpl>
+    implements _$$ChatCompletionUsageImplCopyWith<$Res> {
+  __$$ChatCompletionUsageImplCopyWithImpl(_$ChatCompletionUsageImpl _value,
+      $Res Function(_$ChatCompletionUsageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1442,7 +1447,7 @@ class __$$_ChatCompletionUsageCopyWithImpl<$Res>
     Object? completionTokens = null,
     Object? totalTokens = null,
   }) {
-    return _then(_$_ChatCompletionUsage(
+    return _then(_$ChatCompletionUsageImpl(
       promptTokens: null == promptTokens
           ? _value.promptTokens
           : promptTokens // ignore: cast_nullable_to_non_nullable
@@ -1461,14 +1466,14 @@ class __$$_ChatCompletionUsageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatCompletionUsage implements _ChatCompletionUsage {
-  const _$_ChatCompletionUsage(
+class _$ChatCompletionUsageImpl implements _ChatCompletionUsage {
+  const _$ChatCompletionUsageImpl(
       {required this.promptTokens,
       required this.completionTokens,
       required this.totalTokens});
 
-  factory _$_ChatCompletionUsage.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatCompletionUsageFromJson(json);
+  factory _$ChatCompletionUsageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatCompletionUsageImplFromJson(json);
 
   /// The number of tokens used for the prompt.
   @override
@@ -1491,7 +1496,7 @@ class _$_ChatCompletionUsage implements _ChatCompletionUsage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatCompletionUsage &&
+            other is _$ChatCompletionUsageImpl &&
             (identical(other.promptTokens, promptTokens) ||
                 other.promptTokens == promptTokens) &&
             (identical(other.completionTokens, completionTokens) ||
@@ -1508,13 +1513,13 @@ class _$_ChatCompletionUsage implements _ChatCompletionUsage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatCompletionUsageCopyWith<_$_ChatCompletionUsage> get copyWith =>
-      __$$_ChatCompletionUsageCopyWithImpl<_$_ChatCompletionUsage>(
+  _$$ChatCompletionUsageImplCopyWith<_$ChatCompletionUsageImpl> get copyWith =>
+      __$$ChatCompletionUsageImplCopyWithImpl<_$ChatCompletionUsageImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatCompletionUsageToJson(
+    return _$$ChatCompletionUsageImplToJson(
       this,
     );
   }
@@ -1524,10 +1529,10 @@ abstract class _ChatCompletionUsage implements ChatCompletionUsage {
   const factory _ChatCompletionUsage(
       {required final int promptTokens,
       required final int completionTokens,
-      required final int totalTokens}) = _$_ChatCompletionUsage;
+      required final int totalTokens}) = _$ChatCompletionUsageImpl;
 
   factory _ChatCompletionUsage.fromJson(Map<String, dynamic> json) =
-      _$_ChatCompletionUsage.fromJson;
+      _$ChatCompletionUsageImpl.fromJson;
 
   @override
 
@@ -1543,7 +1548,7 @@ abstract class _ChatCompletionUsage implements ChatCompletionUsage {
   int get totalTokens;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatCompletionUsageCopyWith<_$_ChatCompletionUsage> get copyWith =>
+  _$$ChatCompletionUsageImplCopyWith<_$ChatCompletionUsageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1629,11 +1634,11 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
 }
 
 /// @nodoc
-abstract class _$$_ChatMessageCopyWith<$Res>
+abstract class _$$ChatMessageImplCopyWith<$Res>
     implements $ChatMessageCopyWith<$Res> {
-  factory _$$_ChatMessageCopyWith(
-          _$_ChatMessage value, $Res Function(_$_ChatMessage) then) =
-      __$$_ChatMessageCopyWithImpl<$Res>;
+  factory _$$ChatMessageImplCopyWith(
+          _$ChatMessageImpl value, $Res Function(_$ChatMessageImpl) then) =
+      __$$ChatMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1644,11 +1649,11 @@ abstract class _$$_ChatMessageCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChatMessageCopyWithImpl<$Res>
-    extends _$ChatMessageCopyWithImpl<$Res, _$_ChatMessage>
-    implements _$$_ChatMessageCopyWith<$Res> {
-  __$$_ChatMessageCopyWithImpl(
-      _$_ChatMessage _value, $Res Function(_$_ChatMessage) _then)
+class __$$ChatMessageImplCopyWithImpl<$Res>
+    extends _$ChatMessageCopyWithImpl<$Res, _$ChatMessageImpl>
+    implements _$$ChatMessageImplCopyWith<$Res> {
+  __$$ChatMessageImplCopyWithImpl(
+      _$ChatMessageImpl _value, $Res Function(_$ChatMessageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1659,7 +1664,7 @@ class __$$_ChatMessageCopyWithImpl<$Res>
     Object? role = null,
     Object? functionCall = freezed,
   }) {
-    return _then(_$_ChatMessage(
+    return _then(_$ChatMessageImpl(
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -1682,12 +1687,12 @@ class __$$_ChatMessageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatMessage implements _ChatMessage {
-  const _$_ChatMessage(
+class _$ChatMessageImpl implements _ChatMessage {
+  const _$ChatMessageImpl(
       {this.content, this.name, required this.role, this.functionCall});
 
-  factory _$_ChatMessage.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatMessageFromJson(json);
+  factory _$ChatMessageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatMessageImplFromJson(json);
 
   /// The contents of the message. content is required for all messages except
   /// assistant messages with function calls.
@@ -1719,7 +1724,7 @@ class _$_ChatMessage implements _ChatMessage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatMessage &&
+            other is _$ChatMessageImpl &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.role, role) || other.role == role) &&
@@ -1735,12 +1740,12 @@ class _$_ChatMessage implements _ChatMessage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatMessageCopyWith<_$_ChatMessage> get copyWith =>
-      __$$_ChatMessageCopyWithImpl<_$_ChatMessage>(this, _$identity);
+  _$$ChatMessageImplCopyWith<_$ChatMessageImpl> get copyWith =>
+      __$$ChatMessageImplCopyWithImpl<_$ChatMessageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatMessageToJson(
+    return _$$ChatMessageImplToJson(
       this,
     );
   }
@@ -1751,10 +1756,10 @@ abstract class _ChatMessage implements ChatMessage {
       {final String? content,
       final String? name,
       required final ChatMessageRole role,
-      final dynamic functionCall}) = _$_ChatMessage;
+      final dynamic functionCall}) = _$ChatMessageImpl;
 
   factory _ChatMessage.fromJson(Map<String, dynamic> json) =
-      _$_ChatMessage.fromJson;
+      _$ChatMessageImpl.fromJson;
 
   @override
 
@@ -1779,7 +1784,7 @@ abstract class _ChatMessage implements ChatMessage {
   dynamic get functionCall;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatMessageCopyWith<_$_ChatMessage> get copyWith =>
+  _$$ChatMessageImplCopyWith<_$ChatMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1832,22 +1837,22 @@ class _$ChatFunctionCallCopyWithImpl<$Res, $Val extends ChatFunctionCall>
 }
 
 /// @nodoc
-abstract class _$$_ChatFunctionCallCopyWith<$Res>
+abstract class _$$ChatFunctionCallImplCopyWith<$Res>
     implements $ChatFunctionCallCopyWith<$Res> {
-  factory _$$_ChatFunctionCallCopyWith(
-          _$_ChatFunctionCall value, $Res Function(_$_ChatFunctionCall) then) =
-      __$$_ChatFunctionCallCopyWithImpl<$Res>;
+  factory _$$ChatFunctionCallImplCopyWith(_$ChatFunctionCallImpl value,
+          $Res Function(_$ChatFunctionCallImpl) then) =
+      __$$ChatFunctionCallImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, Map<String, dynamic>? arguments});
 }
 
 /// @nodoc
-class __$$_ChatFunctionCallCopyWithImpl<$Res>
-    extends _$ChatFunctionCallCopyWithImpl<$Res, _$_ChatFunctionCall>
-    implements _$$_ChatFunctionCallCopyWith<$Res> {
-  __$$_ChatFunctionCallCopyWithImpl(
-      _$_ChatFunctionCall _value, $Res Function(_$_ChatFunctionCall) _then)
+class __$$ChatFunctionCallImplCopyWithImpl<$Res>
+    extends _$ChatFunctionCallCopyWithImpl<$Res, _$ChatFunctionCallImpl>
+    implements _$$ChatFunctionCallImplCopyWith<$Res> {
+  __$$ChatFunctionCallImplCopyWithImpl(_$ChatFunctionCallImpl _value,
+      $Res Function(_$ChatFunctionCallImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1856,7 +1861,7 @@ class __$$_ChatFunctionCallCopyWithImpl<$Res>
     Object? name = null,
     Object? arguments = freezed,
   }) {
-    return _then(_$_ChatFunctionCall(
+    return _then(_$ChatFunctionCallImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1871,8 +1876,8 @@ class __$$_ChatFunctionCallCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChatFunctionCall implements _ChatFunctionCall {
-  const _$_ChatFunctionCall(
+class _$ChatFunctionCallImpl implements _ChatFunctionCall {
+  const _$ChatFunctionCallImpl(
       {required this.name, final Map<String, dynamic>? arguments})
       : _arguments = arguments;
 
@@ -1897,7 +1902,7 @@ class _$_ChatFunctionCall implements _ChatFunctionCall {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatFunctionCall &&
+            other is _$ChatFunctionCallImpl &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._arguments, _arguments));
@@ -1910,14 +1915,15 @@ class _$_ChatFunctionCall implements _ChatFunctionCall {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatFunctionCallCopyWith<_$_ChatFunctionCall> get copyWith =>
-      __$$_ChatFunctionCallCopyWithImpl<_$_ChatFunctionCall>(this, _$identity);
+  _$$ChatFunctionCallImplCopyWith<_$ChatFunctionCallImpl> get copyWith =>
+      __$$ChatFunctionCallImplCopyWithImpl<_$ChatFunctionCallImpl>(
+          this, _$identity);
 }
 
 abstract class _ChatFunctionCall implements ChatFunctionCall {
   const factory _ChatFunctionCall(
       {required final String name,
-      final Map<String, dynamic>? arguments}) = _$_ChatFunctionCall;
+      final Map<String, dynamic>? arguments}) = _$ChatFunctionCallImpl;
 
   @override
   String get name;
@@ -1925,7 +1931,7 @@ abstract class _ChatFunctionCall implements ChatFunctionCall {
   Map<String, dynamic>? get arguments;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatFunctionCallCopyWith<_$_ChatFunctionCall> get copyWith =>
+  _$$ChatFunctionCallImplCopyWith<_$ChatFunctionCallImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2036,11 +2042,11 @@ class _$ChatFunctionCopyWithImpl<$Res, $Val extends ChatFunction>
 }
 
 /// @nodoc
-abstract class _$$_ChatFunctionCopyWith<$Res>
+abstract class _$$ChatFunctionImplCopyWith<$Res>
     implements $ChatFunctionCopyWith<$Res> {
-  factory _$$_ChatFunctionCopyWith(
-          _$_ChatFunction value, $Res Function(_$_ChatFunction) then) =
-      __$$_ChatFunctionCopyWithImpl<$Res>;
+  factory _$$ChatFunctionImplCopyWith(
+          _$ChatFunctionImpl value, $Res Function(_$ChatFunctionImpl) then) =
+      __$$ChatFunctionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2051,11 +2057,11 @@ abstract class _$$_ChatFunctionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChatFunctionCopyWithImpl<$Res>
-    extends _$ChatFunctionCopyWithImpl<$Res, _$_ChatFunction>
-    implements _$$_ChatFunctionCopyWith<$Res> {
-  __$$_ChatFunctionCopyWithImpl(
-      _$_ChatFunction _value, $Res Function(_$_ChatFunction) _then)
+class __$$ChatFunctionImplCopyWithImpl<$Res>
+    extends _$ChatFunctionCopyWithImpl<$Res, _$ChatFunctionImpl>
+    implements _$$ChatFunctionImplCopyWith<$Res> {
+  __$$ChatFunctionImplCopyWithImpl(
+      _$ChatFunctionImpl _value, $Res Function(_$ChatFunctionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2065,7 +2071,7 @@ class __$$_ChatFunctionCopyWithImpl<$Res>
     Object? description = freezed,
     Object? parameters = freezed,
   }) {
-    return _then(_$_ChatFunction(
+    return _then(_$ChatFunctionImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -2084,12 +2090,12 @@ class __$$_ChatFunctionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatFunction implements _ChatFunction {
-  const _$_ChatFunction(
+class _$ChatFunctionImpl implements _ChatFunction {
+  const _$ChatFunctionImpl(
       {required this.name, this.description, this.parameters});
 
-  factory _$_ChatFunction.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatFunctionFromJson(json);
+  factory _$ChatFunctionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatFunctionImplFromJson(json);
 
   /// The name of the function to be called. Must be a-z, A-Z, 0-9,
   /// or contain underscores and dashes, with a maximum length of 64.
@@ -2139,7 +2145,7 @@ class _$_ChatFunction implements _ChatFunction {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatFunction &&
+            other is _$ChatFunctionImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -2154,12 +2160,12 @@ class _$_ChatFunction implements _ChatFunction {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatFunctionCopyWith<_$_ChatFunction> get copyWith =>
-      __$$_ChatFunctionCopyWithImpl<_$_ChatFunction>(this, _$identity);
+  _$$ChatFunctionImplCopyWith<_$ChatFunctionImpl> get copyWith =>
+      __$$ChatFunctionImplCopyWithImpl<_$ChatFunctionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatFunctionToJson(
+    return _$$ChatFunctionImplToJson(
       this,
     );
   }
@@ -2169,10 +2175,10 @@ abstract class _ChatFunction implements ChatFunction {
   const factory _ChatFunction(
       {required final String name,
       final String? description,
-      final ChatFunctionParameters? parameters}) = _$_ChatFunction;
+      final ChatFunctionParameters? parameters}) = _$ChatFunctionImpl;
 
   factory _ChatFunction.fromJson(Map<String, dynamic> json) =
-      _$_ChatFunction.fromJson;
+      _$ChatFunctionImpl.fromJson;
 
   @override
 
@@ -2215,7 +2221,7 @@ abstract class _ChatFunction implements ChatFunction {
   ChatFunctionParameters? get parameters;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatFunctionCopyWith<_$_ChatFunction> get copyWith =>
+  _$$ChatFunctionImplCopyWith<_$ChatFunctionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2282,11 +2288,12 @@ class _$ChatFunctionParametersCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChatFunctionParametersCopyWith<$Res>
+abstract class _$$ChatFunctionParametersImplCopyWith<$Res>
     implements $ChatFunctionParametersCopyWith<$Res> {
-  factory _$$_ChatFunctionParametersCopyWith(_$_ChatFunctionParameters value,
-          $Res Function(_$_ChatFunctionParameters) then) =
-      __$$_ChatFunctionParametersCopyWithImpl<$Res>;
+  factory _$$ChatFunctionParametersImplCopyWith(
+          _$ChatFunctionParametersImpl value,
+          $Res Function(_$ChatFunctionParametersImpl) then) =
+      __$$ChatFunctionParametersImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2294,12 +2301,13 @@ abstract class _$$_ChatFunctionParametersCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChatFunctionParametersCopyWithImpl<$Res>
+class __$$ChatFunctionParametersImplCopyWithImpl<$Res>
     extends _$ChatFunctionParametersCopyWithImpl<$Res,
-        _$_ChatFunctionParameters>
-    implements _$$_ChatFunctionParametersCopyWith<$Res> {
-  __$$_ChatFunctionParametersCopyWithImpl(_$_ChatFunctionParameters _value,
-      $Res Function(_$_ChatFunctionParameters) _then)
+        _$ChatFunctionParametersImpl>
+    implements _$$ChatFunctionParametersImplCopyWith<$Res> {
+  __$$ChatFunctionParametersImplCopyWithImpl(
+      _$ChatFunctionParametersImpl _value,
+      $Res Function(_$ChatFunctionParametersImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2309,7 +2317,7 @@ class __$$_ChatFunctionParametersCopyWithImpl<$Res>
     Object? properties = null,
     Object? required = null,
   }) {
-    return _then(_$_ChatFunctionParameters(
+    return _then(_$ChatFunctionParametersImpl(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -2328,16 +2336,16 @@ class __$$_ChatFunctionParametersCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChatFunctionParameters implements _ChatFunctionParameters {
-  const _$_ChatFunctionParameters(
+class _$ChatFunctionParametersImpl implements _ChatFunctionParameters {
+  const _$ChatFunctionParametersImpl(
       {this.type = "object",
       final Map<String, dynamic> properties = const {},
       final List<String> required = const []})
       : _properties = properties,
         _required = required;
 
-  factory _$_ChatFunctionParameters.fromJson(Map<String, dynamic> json) =>
-      _$$_ChatFunctionParametersFromJson(json);
+  factory _$ChatFunctionParametersImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatFunctionParametersImplFromJson(json);
 
   @override
   @JsonKey()
@@ -2369,7 +2377,7 @@ class _$_ChatFunctionParameters implements _ChatFunctionParameters {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChatFunctionParameters &&
+            other is _$ChatFunctionParametersImpl &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality()
                 .equals(other._properties, _properties) &&
@@ -2387,13 +2395,13 @@ class _$_ChatFunctionParameters implements _ChatFunctionParameters {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChatFunctionParametersCopyWith<_$_ChatFunctionParameters> get copyWith =>
-      __$$_ChatFunctionParametersCopyWithImpl<_$_ChatFunctionParameters>(
-          this, _$identity);
+  _$$ChatFunctionParametersImplCopyWith<_$ChatFunctionParametersImpl>
+      get copyWith => __$$ChatFunctionParametersImplCopyWithImpl<
+          _$ChatFunctionParametersImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChatFunctionParametersToJson(
+    return _$$ChatFunctionParametersImplToJson(
       this,
     );
   }
@@ -2403,10 +2411,10 @@ abstract class _ChatFunctionParameters implements ChatFunctionParameters {
   const factory _ChatFunctionParameters(
       {final String type,
       final Map<String, dynamic> properties,
-      final List<String> required}) = _$_ChatFunctionParameters;
+      final List<String> required}) = _$ChatFunctionParametersImpl;
 
   factory _ChatFunctionParameters.fromJson(Map<String, dynamic> json) =
-      _$_ChatFunctionParameters.fromJson;
+      _$ChatFunctionParametersImpl.fromJson;
 
   @override
   String get type;
@@ -2416,6 +2424,6 @@ abstract class _ChatFunctionParameters implements ChatFunctionParameters {
   List<String> get required;
   @override
   @JsonKey(ignore: true)
-  _$$_ChatFunctionParametersCopyWith<_$_ChatFunctionParameters> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ChatFunctionParametersImplCopyWith<_$ChatFunctionParametersImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

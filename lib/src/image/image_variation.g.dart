@@ -6,9 +6,9 @@ part of 'image_variation.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ImageVariationRequest _$$_ImageVariationRequestFromJson(
+_$ImageVariationRequestImpl _$$ImageVariationRequestImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ImageVariationRequest(
+    _$ImageVariationRequestImpl(
       image: json['image'] as String,
       prompt: json['prompt'] as String,
       n: json['n'] as int?,
@@ -17,8 +17,8 @@ _$_ImageVariationRequest _$$_ImageVariationRequestFromJson(
       user: json['user'] as String?,
     );
 
-Map<String, dynamic> _$$_ImageVariationRequestToJson(
-    _$_ImageVariationRequest instance) {
+Map<String, dynamic> _$$ImageVariationRequestImplToJson(
+    _$ImageVariationRequestImpl instance) {
   final val = <String, dynamic>{
     'image': instance.image,
     'prompt': instance.prompt,

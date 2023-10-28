@@ -40,7 +40,7 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
     /// ID of the model to use. See the
     /// [model endpoint compatibility table](https://platform.openai.com/docs/models/model-endpoint-compatibility)
     /// for details on which models work with the Chat API.
-    required Model model,
+    required String model,
 
     /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
     required List<ChatMessage> messages,

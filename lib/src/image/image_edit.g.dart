@@ -6,8 +6,9 @@ part of 'image_edit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ImageEditRequest _$$_ImageEditRequestFromJson(Map<String, dynamic> json) =>
-    _$_ImageEditRequest(
+_$ImageEditRequestImpl _$$ImageEditRequestImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ImageEditRequestImpl(
       image: json['image'] as String,
       mask: json['mask'] as String?,
       prompt: json['prompt'] as String,
@@ -17,7 +18,8 @@ _$_ImageEditRequest _$$_ImageEditRequestFromJson(Map<String, dynamic> json) =>
       user: json['user'] as String?,
     );
 
-Map<String, dynamic> _$$_ImageEditRequestToJson(_$_ImageEditRequest instance) {
+Map<String, dynamic> _$$ImageEditRequestImplToJson(
+    _$ImageEditRequestImpl instance) {
   final val = <String, dynamic>{
     'image': instance.image,
   };

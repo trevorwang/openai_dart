@@ -116,11 +116,12 @@ class _$ImageVariationRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ImageVariationRequestCopyWith<$Res>
+abstract class _$$ImageVariationRequestImplCopyWith<$Res>
     implements $ImageVariationRequestCopyWith<$Res> {
-  factory _$$_ImageVariationRequestCopyWith(_$_ImageVariationRequest value,
-          $Res Function(_$_ImageVariationRequest) then) =
-      __$$_ImageVariationRequestCopyWithImpl<$Res>;
+  factory _$$ImageVariationRequestImplCopyWith(
+          _$ImageVariationRequestImpl value,
+          $Res Function(_$ImageVariationRequestImpl) then) =
+      __$$ImageVariationRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -133,11 +134,12 @@ abstract class _$$_ImageVariationRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ImageVariationRequestCopyWithImpl<$Res>
-    extends _$ImageVariationRequestCopyWithImpl<$Res, _$_ImageVariationRequest>
-    implements _$$_ImageVariationRequestCopyWith<$Res> {
-  __$$_ImageVariationRequestCopyWithImpl(_$_ImageVariationRequest _value,
-      $Res Function(_$_ImageVariationRequest) _then)
+class __$$ImageVariationRequestImplCopyWithImpl<$Res>
+    extends _$ImageVariationRequestCopyWithImpl<$Res,
+        _$ImageVariationRequestImpl>
+    implements _$$ImageVariationRequestImplCopyWith<$Res> {
+  __$$ImageVariationRequestImplCopyWithImpl(_$ImageVariationRequestImpl _value,
+      $Res Function(_$ImageVariationRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +152,7 @@ class __$$_ImageVariationRequestCopyWithImpl<$Res>
     Object? responseFormat = freezed,
     Object? user = freezed,
   }) {
-    return _then(_$_ImageVariationRequest(
+    return _then(_$ImageVariationRequestImpl(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -181,8 +183,8 @@ class __$$_ImageVariationRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageVariationRequest implements _ImageVariationRequest {
-  const _$_ImageVariationRequest(
+class _$ImageVariationRequestImpl implements _ImageVariationRequest {
+  const _$ImageVariationRequestImpl(
       {required this.image,
       required this.prompt,
       this.n,
@@ -190,8 +192,8 @@ class _$_ImageVariationRequest implements _ImageVariationRequest {
       this.responseFormat,
       this.user});
 
-  factory _$_ImageVariationRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageVariationRequestFromJson(json);
+  factory _$ImageVariationRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageVariationRequestImplFromJson(json);
 
   /// The original image to edit or extend. Must be a valid URL.
   @override
@@ -231,7 +233,7 @@ class _$_ImageVariationRequest implements _ImageVariationRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageVariationRequest &&
+            other is _$ImageVariationRequestImpl &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
             (identical(other.n, n) || other.n == n) &&
@@ -249,13 +251,13 @@ class _$_ImageVariationRequest implements _ImageVariationRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageVariationRequestCopyWith<_$_ImageVariationRequest> get copyWith =>
-      __$$_ImageVariationRequestCopyWithImpl<_$_ImageVariationRequest>(
-          this, _$identity);
+  _$$ImageVariationRequestImplCopyWith<_$ImageVariationRequestImpl>
+      get copyWith => __$$ImageVariationRequestImplCopyWithImpl<
+          _$ImageVariationRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageVariationRequestToJson(
+    return _$$ImageVariationRequestImplToJson(
       this,
     );
   }
@@ -268,10 +270,10 @@ abstract class _ImageVariationRequest implements ImageVariationRequest {
       final int? n,
       final String? size,
       final String? responseFormat,
-      final String? user}) = _$_ImageVariationRequest;
+      final String? user}) = _$ImageVariationRequestImpl;
 
   factory _ImageVariationRequest.fromJson(Map<String, dynamic> json) =
-      _$_ImageVariationRequest.fromJson;
+      _$ImageVariationRequestImpl.fromJson;
 
   @override
 
@@ -304,6 +306,6 @@ abstract class _ImageVariationRequest implements ImageVariationRequest {
   String? get user;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageVariationRequestCopyWith<_$_ImageVariationRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ImageVariationRequestImplCopyWith<_$ImageVariationRequestImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

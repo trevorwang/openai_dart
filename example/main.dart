@@ -38,7 +38,7 @@ Future<void> testModel(OpenaiClient client) async {
   final result = await client.listModels();
   print(result);
 
-  print(await client.getModel(Model.gpt3_5Turbo.value));
+  print(await client.getModel(Models.gpt3_5Turbo));
 }
 
 Future<void> transcripte(OpenaiClient client) async {
@@ -67,7 +67,7 @@ Future<void> translate(OpenaiClient client) async {
 void chatCompletionStsream(OpenaiClient client) {
   client.sendChatCompletionStream(
     ChatCompletionRequest(
-      model: Model.gpt3_5Turbo,
+      model: Models.gpt3_5Turbo,
       stream: true,
       messages: [
         ChatMessage(
@@ -83,7 +83,7 @@ void chatCompletionStsream(OpenaiClient client) {
 void chatCompletion(OpenaiClient client) async {
   final result = await client.sendChatCompletion(
     ChatCompletionRequest(
-      model: Model.gpt3_5Turbo_0613,
+      model: Models.gpt3_5Turbo_0613,
       messages: [
         ChatMessage(
             content: "What's the weather like in Boston in celsius?",

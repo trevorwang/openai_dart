@@ -28,7 +28,7 @@ void main() {
       """;
     test('request', () {
       final request =
-          ChatCompletionRequest(model: Model.gpt3_5Turbo, messages: [
+          ChatCompletionRequest(model: Models.gpt3_5Turbo, messages: [
         ChatMessage(
             content: "Hello, how are you?", role: ChatMessageRole.system),
       ]);
@@ -43,7 +43,7 @@ void main() {
 
     test('custom request', () {
       final request = ChatCompletionRequest(
-        model: Model.gpt3_5Turbo,
+        model: Models.gpt3_5Turbo,
         messages: [
           ChatMessage(
               content: "Hello, how are you?", role: ChatMessageRole.system),
@@ -104,7 +104,7 @@ void main() {
 
       expect(
         await client.sendChatCompletion(
-            ChatCompletionRequest(model: Model.davinci, messages: [])),
+            ChatCompletionRequest(model: Models.davinci, messages: [])),
         isA<ChatCompletionResponse>()
             .having((p0) => p0.created, "invalid created tiem", 1677649420)
             .having((p0) => p0.choices.first.finishReason,
@@ -121,7 +121,7 @@ void main() {
 
       var result = "";
       await client.sendChatCompletionStream(
-        ChatCompletionRequest(model: Model.davinci, messages: []),
+        ChatCompletionRequest(model: Models.davinci, messages: []),
         onSuccess: (res) {
           expect(
             res,

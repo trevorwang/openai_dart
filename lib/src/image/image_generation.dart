@@ -15,7 +15,7 @@ class ImageData with _$ImageData {
     String? b64Json,
   }) = _ImageData;
 
-  factory ImageData.fromJson(json) => _$_ImageData.fromJson(json);
+  factory ImageData.fromJson(json) => _$ImageDataFromJson(json);
 }
 
 @freezed
