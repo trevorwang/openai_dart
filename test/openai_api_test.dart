@@ -12,7 +12,7 @@ void main() {
       final key = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
       final openai = OpenaiConfig(apiKey: key);
       expect(openai.apiKey, equals(key));
-      expect(openai.baseUrl, equals(Constants.kBaseUrl));
+      expect(openai.baseUrl, equals("${Constants.kBaseUrl}/v1"));
       expect(openai.httpProxy, isNull);
     });
 
