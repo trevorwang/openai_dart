@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.2
+
+- Auto add /v1 to end of baseUrl in OpenAIConfig
+
 ## 0.1.1
 
 - Use string instead enum to define models
