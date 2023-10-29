@@ -19,7 +19,7 @@ void main() {
     /// test for openai custom value, all values should be the same as the input
     test('openai custom value', () {
       final key = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-      final baseUrl = "https://api.openai.com/v1";
+      final baseUrl = "https://api.openai.com";
       final httpProxy = "http://localhost:7890";
 
       final openai = OpenaiConfig(
@@ -29,8 +29,14 @@ void main() {
       );
 
       expect(openai.apiKey, equals(key));
-      expect(openai.baseUrl, equals(baseUrl));
+      expect(openai.baseUrl, equals("$baseUrl/v1"));
       expect(openai.httpProxy, equals(httpProxy));
+
+      expect(OpenaiConfig(apiKey: key, baseUrl: "https://abc.com/ccc").baseUrl,
+          equals("https://abc.com/ccc/v1"));
+
+      expect(OpenaiConfig(apiKey: key, baseUrl: "https://abc.com/ccc/").baseUrl,
+          equals("https://abc.com/ccc/v1"));
     });
   });
 }
