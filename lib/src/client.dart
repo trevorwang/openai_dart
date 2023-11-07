@@ -39,6 +39,14 @@ class OpenaiClient {
     dynamic body, {
     http.CancellationToken? cancellationToken,
   }) async {
+    return jsonDecode(utf8.decode(await sendRequestRaw(endpoint, body)));
+  }
+
+  Future<dynamic> sendRequestRaw(
+    String endpoint,
+    dynamic body, {
+    http.CancellationToken? cancellationToken,
+  }) async {
     final response = await client.post(
       Uri.parse("${config.baseUrl}/$endpoint"),
       headers: _authenticateHeaders()..addAll(kJsonTypeHeader),
@@ -46,7 +54,7 @@ class OpenaiClient {
       cancellationToken: cancellationToken,
     );
     handleException(response);
-    return jsonDecode(utf8.decode(response.bodyBytes));
+    return response.bodyBytes;
   }
 
   Future<dynamic> get(

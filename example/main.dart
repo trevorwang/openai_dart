@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:openai_api/openai_api.dart';
+import 'package:openai_api/src/audio/speech.dart';
 
 import 'lib/env.dart';
 
@@ -15,12 +17,15 @@ void main() async {
 
   // chatCompletionStsream(client);
 
-  chatCompletion(client);
+  // chatCompletion(client);
   // await transcripte(client);
   // Future.delayed(Duration(seconds: 10));
   // await translate(client);
 
   // await testModel(client);
+
+  List<int> mp3 = await testSpeech(client);
+  await File("./hello.mp3").writeAsBytes(mp3);
 
   // print(await client.createImage(
   //   ImageRequest(
@@ -32,6 +37,17 @@ void main() async {
   // print(await client.createImageEdit(
   //     ImageEditRequest(image: "assets/image.png", prompt: "打一把太阳伞")));
   client.client.close();
+}
+
+Future testSpeech(OpenaiClient client) async {
+  final result = await client.createSpeech(
+    SpeechRequest(
+      input: "Hello, my name is John and I'm a doctor.",
+      voice: Voices.alloy,
+      responseFormat: AudioFormats.mp3,
+    ),
+  );
+  return result;
 }
 
 Future<void> testModel(OpenaiClient client) async {
