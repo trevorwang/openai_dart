@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.2.0
+
+- Implement latest audio API
+- Add DallE 3 support
+- Update to latest predefined models
+
 ## 0.1.2
 
 - Auto add /v1 to end of baseUrl in OpenAIConfig

@@ -5,11 +5,13 @@
 
 ## Features
 
-APIs have been supported by this library.
+APIs have been supported by this library. Update to support latest models. Now you can use the API to create speech and generate images with Dall-E 3.
 
 - [x] Chat
 - [x] Images
 - [x] Audio
+  - [x] TTS
+  - [X] STT
 - [x] Models
 - [ ] Edits
 - [ ] Completions
