@@ -24,8 +24,11 @@ void main() async {
 
   // await testModel(client);
 
-  List<int> mp3 = await testSpeech(client);
-  await File("./hello.mp3").writeAsBytes(mp3);
+  // List<int> mp3 = await testSpeech(client);
+  // await File("./hello.mp3").writeAsBytes(mp3);
+
+  final r = await testImageGenerate(client);
+  print(r);
 
   // print(await client.createImage(
   //   ImageRequest(
@@ -47,6 +50,15 @@ Future testSpeech(OpenaiClient client) async {
       responseFormat: AudioFormats.mp3,
     ),
   );
+  return result;
+}
+
+Future testImageGenerate(OpenaiClient client) async {
+  final result = await client.createImage(ImageRequest(
+    prompt: "a cute yellow brown dog",
+    model: Models.dallE3,
+    // style: 'natural',
+  ));
   return result;
 }
 

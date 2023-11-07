@@ -182,15 +182,29 @@ ImageRequest _$ImageRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ImageRequest {
-  /// A text description of the desired image(s). The maximum length is 1000 characters.
+  /// A text description of the desired image(s).
+  /// The maximum length is 1000 characters for dall-e-2 and
+  /// 4000 characters for dall-e-3.
   String get prompt => throw _privateConstructorUsedError;
 
+  /// The model to use for image generation. Must be one of `dall-e-2` or `dall-e-3`.
+  String get model => throw _privateConstructorUsedError;
+
   /// The number of images to generate. Must be between 1 and 10.
+  /// For dall-e-3, only n=1 is supported.
   /// Defaults to 1
   int? get n => throw _privateConstructorUsedError;
 
-  /// The size of the generated images. Must be one of 256x256, 512x512, or
-  /// 1024x1024. Defaults to 1024x1024
+  /// The quality of the image that will be generated.
+  /// `hd` creates images with finer details and greater consistency across
+  /// the image. This param is only supported for dall-e-3.
+  /// Defaults to `standard`
+  String? get quality => throw _privateConstructorUsedError;
+
+  /// Defaults to 1024x1024
+  /// The size of the generated images. Must be one of 256x256, 512x512,
+  /// or 1024x1024 for dall-e-2. Must be one of 1024x1024, 1792x1024,
+  /// or 1024x1792 for dall-e-3 models.
   String? get size => throw _privateConstructorUsedError;
 
   /// Defaults to url
@@ -198,8 +212,15 @@ mixin _$ImageRequest {
   /// `url` or `b64_json`.
   String? get responseFormat => throw _privateConstructorUsedError;
 
+  /// The style of the generated images. Must be one of `vivid` or `natural`.
+  ///  Vivid causes the model to lean towards generating hyper-real and
+  /// dramatic images. Natural causes the model to produce more natural,
+  /// less hyper-real looking images. This param is only supported
+  /// for dall-e-3. Defaults to vivid
+  String? get style => throw _privateConstructorUsedError;
+
   /// A unique identifier representing your end-user, which can help OpenAI
-  /// to monitor and detect abuse. Learn more.
+  /// to monitor and detect abuse. [Learn more.](https://platform.openai.com/docs/guides/safety-best-practices/end-user-ids)
   String? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -216,9 +237,12 @@ abstract class $ImageRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String prompt,
+      String model,
       int? n,
+      String? quality,
       String? size,
       String? responseFormat,
+      String? style,
       String? user});
 }
 
@@ -236,9 +260,12 @@ class _$ImageRequestCopyWithImpl<$Res, $Val extends ImageRequest>
   @override
   $Res call({
     Object? prompt = null,
+    Object? model = null,
     Object? n = freezed,
+    Object? quality = freezed,
     Object? size = freezed,
     Object? responseFormat = freezed,
+    Object? style = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -246,10 +273,18 @@ class _$ImageRequestCopyWithImpl<$Res, $Val extends ImageRequest>
           ? _value.prompt
           : prompt // ignore: cast_nullable_to_non_nullable
               as String,
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as String,
       n: freezed == n
           ? _value.n
           : n // ignore: cast_nullable_to_non_nullable
               as int?,
+      quality: freezed == quality
+          ? _value.quality
+          : quality // ignore: cast_nullable_to_non_nullable
+              as String?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -257,6 +292,10 @@ class _$ImageRequestCopyWithImpl<$Res, $Val extends ImageRequest>
       responseFormat: freezed == responseFormat
           ? _value.responseFormat
           : responseFormat // ignore: cast_nullable_to_non_nullable
+              as String?,
+      style: freezed == style
+          ? _value.style
+          : style // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
@@ -276,9 +315,12 @@ abstract class _$$ImageRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String prompt,
+      String model,
       int? n,
+      String? quality,
       String? size,
       String? responseFormat,
+      String? style,
       String? user});
 }
 
@@ -294,9 +336,12 @@ class __$$ImageRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? prompt = null,
+    Object? model = null,
     Object? n = freezed,
+    Object? quality = freezed,
     Object? size = freezed,
     Object? responseFormat = freezed,
+    Object? style = freezed,
     Object? user = freezed,
   }) {
     return _then(_$ImageRequestImpl(
@@ -304,10 +349,18 @@ class __$$ImageRequestImplCopyWithImpl<$Res>
           ? _value.prompt
           : prompt // ignore: cast_nullable_to_non_nullable
               as String,
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as String,
       n: freezed == n
           ? _value.n
           : n // ignore: cast_nullable_to_non_nullable
               as int?,
+      quality: freezed == quality
+          ? _value.quality
+          : quality // ignore: cast_nullable_to_non_nullable
+              as String?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -315,6 +368,10 @@ class __$$ImageRequestImplCopyWithImpl<$Res>
       responseFormat: freezed == responseFormat
           ? _value.responseFormat
           : responseFormat // ignore: cast_nullable_to_non_nullable
+              as String?,
+      style: freezed == style
+          ? _value.style
+          : style // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
@@ -329,25 +386,45 @@ class __$$ImageRequestImplCopyWithImpl<$Res>
 class _$ImageRequestImpl implements _ImageRequest {
   const _$ImageRequestImpl(
       {required this.prompt,
+      this.model = Models.dallE2,
       this.n,
+      this.quality,
       this.size,
       this.responseFormat,
+      this.style,
       this.user});
 
   factory _$ImageRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ImageRequestImplFromJson(json);
 
-  /// A text description of the desired image(s). The maximum length is 1000 characters.
+  /// A text description of the desired image(s).
+  /// The maximum length is 1000 characters for dall-e-2 and
+  /// 4000 characters for dall-e-3.
   @override
   final String prompt;
 
+  /// The model to use for image generation. Must be one of `dall-e-2` or `dall-e-3`.
+  @override
+  @JsonKey()
+  final String model;
+
   /// The number of images to generate. Must be between 1 and 10.
+  /// For dall-e-3, only n=1 is supported.
   /// Defaults to 1
   @override
   final int? n;
 
-  /// The size of the generated images. Must be one of 256x256, 512x512, or
-  /// 1024x1024. Defaults to 1024x1024
+  /// The quality of the image that will be generated.
+  /// `hd` creates images with finer details and greater consistency across
+  /// the image. This param is only supported for dall-e-3.
+  /// Defaults to `standard`
+  @override
+  final String? quality;
+
+  /// Defaults to 1024x1024
+  /// The size of the generated images. Must be one of 256x256, 512x512,
+  /// or 1024x1024 for dall-e-2. Must be one of 1024x1024, 1792x1024,
+  /// or 1024x1792 for dall-e-3 models.
   @override
   final String? size;
 
@@ -357,14 +434,22 @@ class _$ImageRequestImpl implements _ImageRequest {
   @override
   final String? responseFormat;
 
+  /// The style of the generated images. Must be one of `vivid` or `natural`.
+  ///  Vivid causes the model to lean towards generating hyper-real and
+  /// dramatic images. Natural causes the model to produce more natural,
+  /// less hyper-real looking images. This param is only supported
+  /// for dall-e-3. Defaults to vivid
+  @override
+  final String? style;
+
   /// A unique identifier representing your end-user, which can help OpenAI
-  /// to monitor and detect abuse. Learn more.
+  /// to monitor and detect abuse. [Learn more.](https://platform.openai.com/docs/guides/safety-best-practices/end-user-ids)
   @override
   final String? user;
 
   @override
   String toString() {
-    return 'ImageRequest(prompt: $prompt, n: $n, size: $size, responseFormat: $responseFormat, user: $user)';
+    return 'ImageRequest(prompt: $prompt, model: $model, n: $n, quality: $quality, size: $size, responseFormat: $responseFormat, style: $style, user: $user)';
   }
 
   @override
@@ -373,17 +458,20 @@ class _$ImageRequestImpl implements _ImageRequest {
         (other.runtimeType == runtimeType &&
             other is _$ImageRequestImpl &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
+            (identical(other.model, model) || other.model == model) &&
             (identical(other.n, n) || other.n == n) &&
+            (identical(other.quality, quality) || other.quality == quality) &&
             (identical(other.size, size) || other.size == size) &&
             (identical(other.responseFormat, responseFormat) ||
                 other.responseFormat == responseFormat) &&
+            (identical(other.style, style) || other.style == style) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, prompt, n, size, responseFormat, user);
+  int get hashCode => Object.hash(runtimeType, prompt, model, n, quality, size,
+      responseFormat, style, user);
 
   @JsonKey(ignore: true)
   @override
@@ -402,9 +490,12 @@ class _$ImageRequestImpl implements _ImageRequest {
 abstract class _ImageRequest implements ImageRequest {
   const factory _ImageRequest(
       {required final String prompt,
+      final String model,
       final int? n,
+      final String? quality,
       final String? size,
       final String? responseFormat,
+      final String? style,
       final String? user}) = _$ImageRequestImpl;
 
   factory _ImageRequest.fromJson(Map<String, dynamic> json) =
@@ -412,17 +503,33 @@ abstract class _ImageRequest implements ImageRequest {
 
   @override
 
-  /// A text description of the desired image(s). The maximum length is 1000 characters.
+  /// A text description of the desired image(s).
+  /// The maximum length is 1000 characters for dall-e-2 and
+  /// 4000 characters for dall-e-3.
   String get prompt;
   @override
 
+  /// The model to use for image generation. Must be one of `dall-e-2` or `dall-e-3`.
+  String get model;
+  @override
+
   /// The number of images to generate. Must be between 1 and 10.
+  /// For dall-e-3, only n=1 is supported.
   /// Defaults to 1
   int? get n;
   @override
 
-  /// The size of the generated images. Must be one of 256x256, 512x512, or
-  /// 1024x1024. Defaults to 1024x1024
+  /// The quality of the image that will be generated.
+  /// `hd` creates images with finer details and greater consistency across
+  /// the image. This param is only supported for dall-e-3.
+  /// Defaults to `standard`
+  String? get quality;
+  @override
+
+  /// Defaults to 1024x1024
+  /// The size of the generated images. Must be one of 256x256, 512x512,
+  /// or 1024x1024 for dall-e-2. Must be one of 1024x1024, 1792x1024,
+  /// or 1024x1792 for dall-e-3 models.
   String? get size;
   @override
 
@@ -432,8 +539,16 @@ abstract class _ImageRequest implements ImageRequest {
   String? get responseFormat;
   @override
 
+  /// The style of the generated images. Must be one of `vivid` or `natural`.
+  ///  Vivid causes the model to lean towards generating hyper-real and
+  /// dramatic images. Natural causes the model to produce more natural,
+  /// less hyper-real looking images. This param is only supported
+  /// for dall-e-3. Defaults to vivid
+  String? get style;
+  @override
+
   /// A unique identifier representing your end-user, which can help OpenAI
-  /// to monitor and detect abuse. Learn more.
+  /// to monitor and detect abuse. [Learn more.](https://platform.openai.com/docs/guides/safety-best-practices/end-user-ids)
   String? get user;
   @override
   @JsonKey(ignore: true)

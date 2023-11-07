@@ -29,15 +29,19 @@ Map<String, dynamic> _$$ImageDataImplToJson(_$ImageDataImpl instance) {
 _$ImageRequestImpl _$$ImageRequestImplFromJson(Map<String, dynamic> json) =>
     _$ImageRequestImpl(
       prompt: json['prompt'] as String,
+      model: json['model'] as String? ?? Models.dallE2,
       n: json['n'] as int?,
+      quality: json['quality'] as String?,
       size: json['size'] as String?,
       responseFormat: json['response_format'] as String?,
+      style: json['style'] as String?,
       user: json['user'] as String?,
     );
 
 Map<String, dynamic> _$$ImageRequestImplToJson(_$ImageRequestImpl instance) {
   final val = <String, dynamic>{
     'prompt': instance.prompt,
+    'model': instance.model,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -47,8 +51,10 @@ Map<String, dynamic> _$$ImageRequestImplToJson(_$ImageRequestImpl instance) {
   }
 
   writeNotNull('n', instance.n);
+  writeNotNull('quality', instance.quality);
   writeNotNull('size', instance.size);
   writeNotNull('response_format', instance.responseFormat);
+  writeNotNull('style', instance.style);
   writeNotNull('user', instance.user);
   return val;
 }
