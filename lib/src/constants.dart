@@ -15,7 +15,7 @@ class Models {
   static const String gpt3_5Turbo = 'gpt-3.5-turbo';
   static const String gpt3_5Turbo_0301 = 'gpt-3.5-turbo-0301';
   static const String gpt3_5Turbo_0613 = 'gpt-3.5-turbo-0613';
-  static const String gpt3_5Turbo_1108 = 'gpt-3.5-turbo-1106';
+  static const String gpt3_5Turbo_1106 = 'gpt-3.5-turbo-1106';
   static const String gpt3_5Turbo_16k = 'gpt-3.5-turbo-16k';
   static const String gpt3_5Turbo_16k_0613 = 'gpt-3.5-turbo-16k-0613';
   static const String dallE3 = 'dall-e-3';
