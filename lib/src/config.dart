@@ -24,6 +24,9 @@ class OpenaiConfig {
     if (_baseUrl.endsWith("/")) {
       _baseUrl = _baseUrl.replaceAll(RegExp(r'/+$'), "");
     }
+    if (_baseUrl.endsWith("/v1")) {
+      return _baseUrl;
+    }
     return "$_baseUrl/v1";
   }
 }
