@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:openai_api/openai_api.dart';
 import 'package:openai_api/src/audio/speech.dart';
