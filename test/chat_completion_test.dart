@@ -4,6 +4,7 @@ import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
 
+import '../example/lib/env.dart';
 import 'utils.dart';
 
 void main() {
@@ -135,6 +136,22 @@ void main() {
         },
       );
       print(result);
+    });
+
+    test("gpt4-turbo", () async {
+      final client = OpenaiClient(
+        config: OpenaiConfig(apiKey: Env.apiKey, baseUrl: Env.baseUrl),
+      );
+      final result = await client.sendChatCompletion(
+          ChatCompletionRequest(model: Models.gpt4_1106Preview, messages: [
+        ChatMessage(
+            content: "Hello, how are you?", role: ChatMessageRole.system),
+        ChatMessage(
+            role: ChatMessageRole.user,
+            content: "I'm fine, thanks. Show me a photo about storm"),
+      ]));
+
+      print(result.choices.first.message?.content);
     });
   });
 }

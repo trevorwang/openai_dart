@@ -415,6 +415,7 @@ mixin _$ChatCompletionRequest {
   List<ChatMessage> get messages => throw _privateConstructorUsedError;
 
   /// A list of functions the model may generate JSON inputs for.
+  @Deprecated("Use tools instead")
   List<ChatFunction>? get functions => throw _privateConstructorUsedError;
 
   ///Controls how the model responds to function calls. "none" means the model
@@ -423,6 +424,7 @@ mixin _$ChatCompletionRequest {
   ///Specifying a particular function via {"name":\ "my_function"} forces
   ///the model to call that function. "none" is the default when no functions
   ///are present. "auto" is the default if functions are present.
+  @Deprecated("use toolChoice instead")
   dynamic get functionCall => throw _privateConstructorUsedError;
 
   /// The sampling temperature. Defaults to 1.
@@ -483,6 +485,21 @@ mixin _$ChatCompletionRequest {
   /// of the relevant token.
   Map<String, dynamic>? get logitBias => throw _privateConstructorUsedError;
 
+  /// A list of tools the model may call. Currently,
+  /// only functions are supported as a tool. Use this to provide a list of
+  /// functions the model may generate JSON inputs for.
+  List<ChatTool>? get tools => throw _privateConstructorUsedError;
+
+  /// Controls which (if any) function is called by the model. `none` means the
+  /// model will not call a function and instead generates a message.
+  /// `auto` means the model can pick between generating a message or calling
+  /// a function. Specifying a particular function via
+  ///  `{"type: "function", "function": {"name": "my_function"}}` forces the
+  ///  model to call that function.
+  /// `none` is the default when no functions are present. `auto` is the
+  /// default if functions are present.
+  dynamic get toolChoice => throw _privateConstructorUsedError;
+
   /// A unique identifier representing your end-user, which can help OpenAI to
   /// monitor and detect abuse. Learn more.
   String? get user => throw _privateConstructorUsedError;
@@ -502,8 +519,8 @@ abstract class $ChatCompletionRequestCopyWith<$Res> {
   $Res call(
       {String model,
       List<ChatMessage> messages,
-      List<ChatFunction>? functions,
-      dynamic functionCall,
+      @Deprecated("Use tools instead") List<ChatFunction>? functions,
+      @Deprecated("use toolChoice instead") dynamic functionCall,
       double? temperature,
       double? topP,
       int? n,
@@ -513,6 +530,8 @@ abstract class $ChatCompletionRequestCopyWith<$Res> {
       double? presencePenalty,
       double? frequencyPenalty,
       Map<String, dynamic>? logitBias,
+      List<ChatTool>? tools,
+      dynamic toolChoice,
       String? user});
 }
 
@@ -543,6 +562,8 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
     Object? presencePenalty = freezed,
     Object? frequencyPenalty = freezed,
     Object? logitBias = freezed,
+    Object? tools = freezed,
+    Object? toolChoice = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -598,6 +619,14 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
           ? _value.logitBias
           : logitBias // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      tools: freezed == tools
+          ? _value.tools
+          : tools // ignore: cast_nullable_to_non_nullable
+              as List<ChatTool>?,
+      toolChoice: freezed == toolChoice
+          ? _value.toolChoice
+          : toolChoice // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -618,8 +647,8 @@ abstract class _$$ChatCompletionRequestImplCopyWith<$Res>
   $Res call(
       {String model,
       List<ChatMessage> messages,
-      List<ChatFunction>? functions,
-      dynamic functionCall,
+      @Deprecated("Use tools instead") List<ChatFunction>? functions,
+      @Deprecated("use toolChoice instead") dynamic functionCall,
       double? temperature,
       double? topP,
       int? n,
@@ -629,6 +658,8 @@ abstract class _$$ChatCompletionRequestImplCopyWith<$Res>
       double? presencePenalty,
       double? frequencyPenalty,
       Map<String, dynamic>? logitBias,
+      List<ChatTool>? tools,
+      dynamic toolChoice,
       String? user});
 }
 
@@ -657,6 +688,8 @@ class __$$ChatCompletionRequestImplCopyWithImpl<$Res>
     Object? presencePenalty = freezed,
     Object? frequencyPenalty = freezed,
     Object? logitBias = freezed,
+    Object? tools = freezed,
+    Object? toolChoice = freezed,
     Object? user = freezed,
   }) {
     return _then(_$ChatCompletionRequestImpl(
@@ -712,6 +745,14 @@ class __$$ChatCompletionRequestImplCopyWithImpl<$Res>
           ? _value._logitBias
           : logitBias // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      tools: freezed == tools
+          ? _value._tools
+          : tools // ignore: cast_nullable_to_non_nullable
+              as List<ChatTool>?,
+      toolChoice: freezed == toolChoice
+          ? _value.toolChoice
+          : toolChoice // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -726,8 +767,8 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
   const _$ChatCompletionRequestImpl(
       {required this.model,
       required final List<ChatMessage> messages,
-      final List<ChatFunction>? functions,
-      this.functionCall,
+      @Deprecated("Use tools instead") final List<ChatFunction>? functions,
+      @Deprecated("use toolChoice instead") this.functionCall,
       this.temperature,
       this.topP,
       this.n,
@@ -737,11 +778,14 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
       this.presencePenalty,
       this.frequencyPenalty,
       final Map<String, dynamic>? logitBias,
+      final List<ChatTool>? tools,
+      this.toolChoice,
       this.user})
       : _messages = messages,
         _functions = functions,
         _stop = stop,
-        _logitBias = logitBias;
+        _logitBias = logitBias,
+        _tools = tools;
 
   factory _$ChatCompletionRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatCompletionRequestImplFromJson(json);
@@ -768,6 +812,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
 
   /// A list of functions the model may generate JSON inputs for.
   @override
+  @Deprecated("Use tools instead")
   List<ChatFunction>? get functions {
     final value = _functions;
     if (value == null) return null;
@@ -783,6 +828,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
   ///the model to call that function. "none" is the default when no functions
   ///are present. "auto" is the default if functions are present.
   @override
+  @Deprecated("use toolChoice instead")
   final dynamic functionCall;
 
   /// The sampling temperature. Defaults to 1.
@@ -879,6 +925,34 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
     return EqualUnmodifiableMapView(value);
   }
 
+  /// A list of tools the model may call. Currently,
+  /// only functions are supported as a tool. Use this to provide a list of
+  /// functions the model may generate JSON inputs for.
+  final List<ChatTool>? _tools;
+
+  /// A list of tools the model may call. Currently,
+  /// only functions are supported as a tool. Use this to provide a list of
+  /// functions the model may generate JSON inputs for.
+  @override
+  List<ChatTool>? get tools {
+    final value = _tools;
+    if (value == null) return null;
+    if (_tools is EqualUnmodifiableListView) return _tools;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Controls which (if any) function is called by the model. `none` means the
+  /// model will not call a function and instead generates a message.
+  /// `auto` means the model can pick between generating a message or calling
+  /// a function. Specifying a particular function via
+  ///  `{"type: "function", "function": {"name": "my_function"}}` forces the
+  ///  model to call that function.
+  /// `none` is the default when no functions are present. `auto` is the
+  /// default if functions are present.
+  @override
+  final dynamic toolChoice;
+
   /// A unique identifier representing your end-user, which can help OpenAI to
   /// monitor and detect abuse. Learn more.
   @override
@@ -886,7 +960,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
 
   @override
   String toString() {
-    return 'ChatCompletionRequest(model: $model, messages: $messages, functions: $functions, functionCall: $functionCall, temperature: $temperature, topP: $topP, n: $n, stream: $stream, stop: $stop, maxTokens: $maxTokens, presencePenalty: $presencePenalty, frequencyPenalty: $frequencyPenalty, logitBias: $logitBias, user: $user)';
+    return 'ChatCompletionRequest(model: $model, messages: $messages, functions: $functions, functionCall: $functionCall, temperature: $temperature, topP: $topP, n: $n, stream: $stream, stop: $stop, maxTokens: $maxTokens, presencePenalty: $presencePenalty, frequencyPenalty: $frequencyPenalty, logitBias: $logitBias, tools: $tools, toolChoice: $toolChoice, user: $user)';
   }
 
   @override
@@ -914,6 +988,9 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
                 other.frequencyPenalty == frequencyPenalty) &&
             const DeepCollectionEquality()
                 .equals(other._logitBias, _logitBias) &&
+            const DeepCollectionEquality().equals(other._tools, _tools) &&
+            const DeepCollectionEquality()
+                .equals(other.toolChoice, toolChoice) &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -934,6 +1011,8 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
       presencePenalty,
       frequencyPenalty,
       const DeepCollectionEquality().hash(_logitBias),
+      const DeepCollectionEquality().hash(_tools),
+      const DeepCollectionEquality().hash(toolChoice),
       user);
 
   @JsonKey(ignore: true)
@@ -955,8 +1034,8 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   const factory _ChatCompletionRequest(
       {required final String model,
       required final List<ChatMessage> messages,
-      final List<ChatFunction>? functions,
-      final dynamic functionCall,
+      @Deprecated("Use tools instead") final List<ChatFunction>? functions,
+      @Deprecated("use toolChoice instead") final dynamic functionCall,
       final double? temperature,
       final double? topP,
       final int? n,
@@ -966,6 +1045,8 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
       final double? presencePenalty,
       final double? frequencyPenalty,
       final Map<String, dynamic>? logitBias,
+      final List<ChatTool>? tools,
+      final dynamic toolChoice,
       final String? user}) = _$ChatCompletionRequestImpl;
 
   factory _ChatCompletionRequest.fromJson(Map<String, dynamic> json) =
@@ -984,6 +1065,7 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   @override
 
   /// A list of functions the model may generate JSON inputs for.
+  @Deprecated("Use tools instead")
   List<ChatFunction>? get functions;
   @override
 
@@ -993,6 +1075,7 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   ///Specifying a particular function via {"name":\ "my_function"} forces
   ///the model to call that function. "none" is the default when no functions
   ///are present. "auto" is the default if functions are present.
+  @Deprecated("use toolChoice instead")
   dynamic get functionCall;
   @override
 
@@ -1063,6 +1146,23 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   Map<String, dynamic>? get logitBias;
   @override
 
+  /// A list of tools the model may call. Currently,
+  /// only functions are supported as a tool. Use this to provide a list of
+  /// functions the model may generate JSON inputs for.
+  List<ChatTool>? get tools;
+  @override
+
+  /// Controls which (if any) function is called by the model. `none` means the
+  /// model will not call a function and instead generates a message.
+  /// `auto` means the model can pick between generating a message or calling
+  /// a function. Specifying a particular function via
+  ///  `{"type: "function", "function": {"name": "my_function"}}` forces the
+  ///  model to call that function.
+  /// `none` is the default when no functions are present. `auto` is the
+  /// default if functions are present.
+  dynamic get toolChoice;
+  @override
+
   /// A unique identifier representing your end-user, which can help OpenAI to
   /// monitor and detect abuse. Learn more.
   String? get user;
@@ -1070,6 +1170,348 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   @JsonKey(ignore: true)
   _$$ChatCompletionRequestImplCopyWith<_$ChatCompletionRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+ToolChoice _$ToolChoiceFromJson(Map<String, dynamic> json) {
+  return _ToolChoice.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ToolChoice {
+  String? get type => throw _privateConstructorUsedError;
+  ChatFunction? get function => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ToolChoiceCopyWith<ToolChoice> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ToolChoiceCopyWith<$Res> {
+  factory $ToolChoiceCopyWith(
+          ToolChoice value, $Res Function(ToolChoice) then) =
+      _$ToolChoiceCopyWithImpl<$Res, ToolChoice>;
+  @useResult
+  $Res call({String? type, ChatFunction? function});
+
+  $ChatFunctionCopyWith<$Res>? get function;
+}
+
+/// @nodoc
+class _$ToolChoiceCopyWithImpl<$Res, $Val extends ToolChoice>
+    implements $ToolChoiceCopyWith<$Res> {
+  _$ToolChoiceCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? function = freezed,
+  }) {
+    return _then(_value.copyWith(
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      function: freezed == function
+          ? _value.function
+          : function // ignore: cast_nullable_to_non_nullable
+              as ChatFunction?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatFunctionCopyWith<$Res>? get function {
+    if (_value.function == null) {
+      return null;
+    }
+
+    return $ChatFunctionCopyWith<$Res>(_value.function!, (value) {
+      return _then(_value.copyWith(function: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ToolChoiceImplCopyWith<$Res>
+    implements $ToolChoiceCopyWith<$Res> {
+  factory _$$ToolChoiceImplCopyWith(
+          _$ToolChoiceImpl value, $Res Function(_$ToolChoiceImpl) then) =
+      __$$ToolChoiceImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? type, ChatFunction? function});
+
+  @override
+  $ChatFunctionCopyWith<$Res>? get function;
+}
+
+/// @nodoc
+class __$$ToolChoiceImplCopyWithImpl<$Res>
+    extends _$ToolChoiceCopyWithImpl<$Res, _$ToolChoiceImpl>
+    implements _$$ToolChoiceImplCopyWith<$Res> {
+  __$$ToolChoiceImplCopyWithImpl(
+      _$ToolChoiceImpl _value, $Res Function(_$ToolChoiceImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? function = freezed,
+  }) {
+    return _then(_$ToolChoiceImpl(
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      function: freezed == function
+          ? _value.function
+          : function // ignore: cast_nullable_to_non_nullable
+              as ChatFunction?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ToolChoiceImpl implements _ToolChoice {
+  const _$ToolChoiceImpl({this.type, this.function});
+
+  factory _$ToolChoiceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ToolChoiceImplFromJson(json);
+
+  @override
+  final String? type;
+  @override
+  final ChatFunction? function;
+
+  @override
+  String toString() {
+    return 'ToolChoice(type: $type, function: $function)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToolChoiceImpl &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.function, function) ||
+                other.function == function));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, type, function);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToolChoiceImplCopyWith<_$ToolChoiceImpl> get copyWith =>
+      __$$ToolChoiceImplCopyWithImpl<_$ToolChoiceImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ToolChoiceImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ToolChoice implements ToolChoice {
+  const factory _ToolChoice(
+      {final String? type, final ChatFunction? function}) = _$ToolChoiceImpl;
+
+  factory _ToolChoice.fromJson(Map<String, dynamic> json) =
+      _$ToolChoiceImpl.fromJson;
+
+  @override
+  String? get type;
+  @override
+  ChatFunction? get function;
+  @override
+  @JsonKey(ignore: true)
+  _$$ToolChoiceImplCopyWith<_$ToolChoiceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ChatTool _$ChatToolFromJson(Map<String, dynamic> json) {
+  return _ChatTool.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ChatTool {
+  /// The type of the tool. Currently, only `function` is supported.
+  String get type => throw _privateConstructorUsedError;
+  ChatFunction get function => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ChatToolCopyWith<ChatTool> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChatToolCopyWith<$Res> {
+  factory $ChatToolCopyWith(ChatTool value, $Res Function(ChatTool) then) =
+      _$ChatToolCopyWithImpl<$Res, ChatTool>;
+  @useResult
+  $Res call({String type, ChatFunction function});
+
+  $ChatFunctionCopyWith<$Res> get function;
+}
+
+/// @nodoc
+class _$ChatToolCopyWithImpl<$Res, $Val extends ChatTool>
+    implements $ChatToolCopyWith<$Res> {
+  _$ChatToolCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? function = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      function: null == function
+          ? _value.function
+          : function // ignore: cast_nullable_to_non_nullable
+              as ChatFunction,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatFunctionCopyWith<$Res> get function {
+    return $ChatFunctionCopyWith<$Res>(_value.function, (value) {
+      return _then(_value.copyWith(function: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ChatToolImplCopyWith<$Res>
+    implements $ChatToolCopyWith<$Res> {
+  factory _$$ChatToolImplCopyWith(
+          _$ChatToolImpl value, $Res Function(_$ChatToolImpl) then) =
+      __$$ChatToolImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String type, ChatFunction function});
+
+  @override
+  $ChatFunctionCopyWith<$Res> get function;
+}
+
+/// @nodoc
+class __$$ChatToolImplCopyWithImpl<$Res>
+    extends _$ChatToolCopyWithImpl<$Res, _$ChatToolImpl>
+    implements _$$ChatToolImplCopyWith<$Res> {
+  __$$ChatToolImplCopyWithImpl(
+      _$ChatToolImpl _value, $Res Function(_$ChatToolImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? function = null,
+  }) {
+    return _then(_$ChatToolImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      function: null == function
+          ? _value.function
+          : function // ignore: cast_nullable_to_non_nullable
+              as ChatFunction,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ChatToolImpl implements _ChatTool {
+  const _$ChatToolImpl({required this.type, required this.function});
+
+  factory _$ChatToolImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatToolImplFromJson(json);
+
+  /// The type of the tool. Currently, only `function` is supported.
+  @override
+  final String type;
+  @override
+  final ChatFunction function;
+
+  @override
+  String toString() {
+    return 'ChatTool(type: $type, function: $function)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChatToolImpl &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.function, function) ||
+                other.function == function));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, type, function);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChatToolImplCopyWith<_$ChatToolImpl> get copyWith =>
+      __$$ChatToolImplCopyWithImpl<_$ChatToolImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ChatToolImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ChatTool implements ChatTool {
+  const factory _ChatTool(
+      {required final String type,
+      required final ChatFunction function}) = _$ChatToolImpl;
+
+  factory _ChatTool.fromJson(Map<String, dynamic> json) =
+      _$ChatToolImpl.fromJson;
+
+  @override
+
+  /// The type of the tool. Currently, only `function` is supported.
+  String get type;
+  @override
+  ChatFunction get function;
+  @override
+  @JsonKey(ignore: true)
+  _$$ChatToolImplCopyWith<_$ChatToolImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ChatCompletionResponse _$ChatCompletionResponseFromJson(
@@ -1085,11 +1527,15 @@ mixin _$ChatCompletionResponse {
   /// The ID of the completion.
   String get id => throw _privateConstructorUsedError;
 
-  /// The object type of the completion.
+  /// The object type, which is always `chat.completion`.
   String get object => throw _privateConstructorUsedError;
 
   /// The time the completion was created.
   int get created => throw _privateConstructorUsedError;
+
+  /// This fingerprint represents the backend configuration that the model runs with.
+  /// Can be used in conjunction with the seed request parameter to understand when backend
+  String get systemFingerprint => throw _privateConstructorUsedError;
 
   /// The usage statistics for the completion.
   ChatCompletionUsage? get usage => throw _privateConstructorUsedError;
@@ -1111,6 +1557,7 @@ abstract class $ChatCompletionResponseCopyWith<$Res> {
       String id,
       String object,
       int created,
+      String systemFingerprint,
       ChatCompletionUsage? usage});
 
   $ChatCompletionUsageCopyWith<$Res>? get usage;
@@ -1134,6 +1581,7 @@ class _$ChatCompletionResponseCopyWithImpl<$Res,
     Object? id = null,
     Object? object = null,
     Object? created = null,
+    Object? systemFingerprint = null,
     Object? usage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1153,6 +1601,10 @@ class _$ChatCompletionResponseCopyWithImpl<$Res,
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int,
+      systemFingerprint: null == systemFingerprint
+          ? _value.systemFingerprint
+          : systemFingerprint // ignore: cast_nullable_to_non_nullable
+              as String,
       usage: freezed == usage
           ? _value.usage
           : usage // ignore: cast_nullable_to_non_nullable
@@ -1187,6 +1639,7 @@ abstract class _$$ChatCompletionResponseImplCopyWith<$Res>
       String id,
       String object,
       int created,
+      String systemFingerprint,
       ChatCompletionUsage? usage});
 
   @override
@@ -1210,6 +1663,7 @@ class __$$ChatCompletionResponseImplCopyWithImpl<$Res>
     Object? id = null,
     Object? object = null,
     Object? created = null,
+    Object? systemFingerprint = null,
     Object? usage = freezed,
   }) {
     return _then(_$ChatCompletionResponseImpl(
@@ -1229,6 +1683,10 @@ class __$$ChatCompletionResponseImplCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int,
+      systemFingerprint: null == systemFingerprint
+          ? _value.systemFingerprint
+          : systemFingerprint // ignore: cast_nullable_to_non_nullable
+              as String,
       usage: freezed == usage
           ? _value.usage
           : usage // ignore: cast_nullable_to_non_nullable
@@ -1245,6 +1703,7 @@ class _$ChatCompletionResponseImpl implements _ChatCompletionResponse {
       required this.id,
       required this.object,
       required this.created,
+      required this.systemFingerprint,
       this.usage})
       : _choices = choices;
 
@@ -1266,7 +1725,7 @@ class _$ChatCompletionResponseImpl implements _ChatCompletionResponse {
   @override
   final String id;
 
-  /// The object type of the completion.
+  /// The object type, which is always `chat.completion`.
   @override
   final String object;
 
@@ -1274,13 +1733,18 @@ class _$ChatCompletionResponseImpl implements _ChatCompletionResponse {
   @override
   final int created;
 
+  /// This fingerprint represents the backend configuration that the model runs with.
+  /// Can be used in conjunction with the seed request parameter to understand when backend
+  @override
+  final String systemFingerprint;
+
   /// The usage statistics for the completion.
   @override
   final ChatCompletionUsage? usage;
 
   @override
   String toString() {
-    return 'ChatCompletionResponse(choices: $choices, id: $id, object: $object, created: $created, usage: $usage)';
+    return 'ChatCompletionResponse(choices: $choices, id: $id, object: $object, created: $created, systemFingerprint: $systemFingerprint, usage: $usage)';
   }
 
   @override
@@ -1292,6 +1756,8 @@ class _$ChatCompletionResponseImpl implements _ChatCompletionResponse {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.object, object) || other.object == object) &&
             (identical(other.created, created) || other.created == created) &&
+            (identical(other.systemFingerprint, systemFingerprint) ||
+                other.systemFingerprint == systemFingerprint) &&
             (identical(other.usage, usage) || other.usage == usage));
   }
 
@@ -1303,6 +1769,7 @@ class _$ChatCompletionResponseImpl implements _ChatCompletionResponse {
       id,
       object,
       created,
+      systemFingerprint,
       usage);
 
   @JsonKey(ignore: true)
@@ -1326,6 +1793,7 @@ abstract class _ChatCompletionResponse implements ChatCompletionResponse {
       required final String id,
       required final String object,
       required final int created,
+      required final String systemFingerprint,
       final ChatCompletionUsage? usage}) = _$ChatCompletionResponseImpl;
 
   factory _ChatCompletionResponse.fromJson(Map<String, dynamic> json) =
@@ -1341,12 +1809,17 @@ abstract class _ChatCompletionResponse implements ChatCompletionResponse {
   String get id;
   @override
 
-  /// The object type of the completion.
+  /// The object type, which is always `chat.completion`.
   String get object;
   @override
 
   /// The time the completion was created.
   int get created;
+  @override
+
+  /// This fingerprint represents the backend configuration that the model runs with.
+  /// Can be used in conjunction with the seed request parameter to understand when backend
+  String get systemFingerprint;
   @override
 
   /// The usage statistics for the completion.
@@ -1948,9 +2421,12 @@ mixin _$ChatFunction {
   /// The description of what the function does.
   String? get description => throw _privateConstructorUsedError;
 
-  ///The parameters the functions accepts, described as a JSON Schema object.
-  ///See the guide for examples, and the JSON Schema reference for
-  ///documentation about the format.
+  /// The parameters the functions accepts, described as a JSON Schema object.
+  /// See the [guide](https://platform.openai.com/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for
+  /// documentation about the format.
+  /// To describe a function that accepts no parameters, provide
+  /// the value {"type": "object", "properties": {}}.
+  ///
   ///```python
   /// response = openai.ChatCompletion.create(
   ///     model="gpt-3.5-turbo-0613",
@@ -2106,9 +2582,12 @@ class _$ChatFunctionImpl implements _ChatFunction {
   @override
   final String? description;
 
-  ///The parameters the functions accepts, described as a JSON Schema object.
-  ///See the guide for examples, and the JSON Schema reference for
-  ///documentation about the format.
+  /// The parameters the functions accepts, described as a JSON Schema object.
+  /// See the [guide](https://platform.openai.com/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for
+  /// documentation about the format.
+  /// To describe a function that accepts no parameters, provide
+  /// the value {"type": "object", "properties": {}}.
+  ///
   ///```python
   /// response = openai.ChatCompletion.create(
   ///     model="gpt-3.5-turbo-0613",
@@ -2191,9 +2670,12 @@ abstract class _ChatFunction implements ChatFunction {
   String? get description;
   @override
 
-  ///The parameters the functions accepts, described as a JSON Schema object.
-  ///See the guide for examples, and the JSON Schema reference for
-  ///documentation about the format.
+  /// The parameters the functions accepts, described as a JSON Schema object.
+  /// See the [guide](https://platform.openai.com/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for
+  /// documentation about the format.
+  /// To describe a function that accepts no parameters, provide
+  /// the value {"type": "object", "properties": {}}.
+  ///
   ///```python
   /// response = openai.ChatCompletion.create(
   ///     model="gpt-3.5-turbo-0613",

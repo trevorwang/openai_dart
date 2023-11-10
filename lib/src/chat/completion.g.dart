@@ -77,6 +77,10 @@ _$ChatCompletionRequestImpl _$$ChatCompletionRequestImplFromJson(
       presencePenalty: (json['presence_penalty'] as num?)?.toDouble(),
       frequencyPenalty: (json['frequency_penalty'] as num?)?.toDouble(),
       logitBias: json['logit_bias'] as Map<String, dynamic>?,
+      tools: (json['tools'] as List<dynamic>?)
+          ?.map((e) => ChatTool.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      toolChoice: json['tool_choice'],
       user: json['user'] as String?,
     );
 
@@ -105,9 +109,45 @@ Map<String, dynamic> _$$ChatCompletionRequestImplToJson(
   writeNotNull('presence_penalty', instance.presencePenalty);
   writeNotNull('frequency_penalty', instance.frequencyPenalty);
   writeNotNull('logit_bias', instance.logitBias);
+  writeNotNull('tools', instance.tools?.map((e) => e.toJson()).toList());
+  writeNotNull('tool_choice', instance.toolChoice);
   writeNotNull('user', instance.user);
   return val;
 }
+
+_$ToolChoiceImpl _$$ToolChoiceImplFromJson(Map<String, dynamic> json) =>
+    _$ToolChoiceImpl(
+      type: json['type'] as String?,
+      function: json['function'] == null
+          ? null
+          : ChatFunction.fromJson(json['function'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$ToolChoiceImplToJson(_$ToolChoiceImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('type', instance.type);
+  writeNotNull('function', instance.function?.toJson());
+  return val;
+}
+
+_$ChatToolImpl _$$ChatToolImplFromJson(Map<String, dynamic> json) =>
+    _$ChatToolImpl(
+      type: json['type'] as String,
+      function: ChatFunction.fromJson(json['function'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$ChatToolImplToJson(_$ChatToolImpl instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'function': instance.function.toJson(),
+    };
 
 _$ChatCompletionResponseImpl _$$ChatCompletionResponseImplFromJson(
         Map<String, dynamic> json) =>
@@ -118,6 +158,7 @@ _$ChatCompletionResponseImpl _$$ChatCompletionResponseImplFromJson(
       id: json['id'] as String,
       object: json['object'] as String,
       created: json['created'] as int,
+      systemFingerprint: json['system_fingerprint'] as String,
       usage: json['usage'] == null
           ? null
           : ChatCompletionUsage.fromJson(json['usage'] as Map<String, dynamic>),
@@ -130,6 +171,7 @@ Map<String, dynamic> _$$ChatCompletionResponseImplToJson(
     'id': instance.id,
     'object': instance.object,
     'created': instance.created,
+    'system_fingerprint': instance.systemFingerprint,
   };
 
   void writeNotNull(String key, dynamic value) {

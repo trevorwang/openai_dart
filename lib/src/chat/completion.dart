@@ -45,7 +45,7 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
     required List<ChatMessage> messages,
 
     /// A list of functions the model may generate JSON inputs for.
-    List<ChatFunction>? functions,
+    @Deprecated("Use tools instead") List<ChatFunction>? functions,
 
     ///Controls how the model responds to function calls. "none" means the model
     ///does not call a function, and responds to the end-user. "auto" means
@@ -53,7 +53,7 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
     ///Specifying a particular function via {"name":\ "my_function"} forces
     ///the model to call that function. "none" is the default when no functions
     ///are present. "auto" is the default if functions are present.
-    dynamic functionCall,
+    @Deprecated("use toolChoice instead") dynamic functionCall,
 
     /// The sampling temperature. Defaults to 1.
     /// What sampling temperature to use, between 0 and 2. Higher values l
@@ -113,6 +113,21 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
     /// of the relevant token.
     Map<String, dynamic>? logitBias,
 
+    /// A list of tools the model may call. Currently,
+    /// only functions are supported as a tool. Use this to provide a list of
+    /// functions the model may generate JSON inputs for.
+    List<ChatTool>? tools,
+
+    /// Controls which (if any) function is called by the model. `none` means the
+    /// model will not call a function and instead generates a message.
+    /// `auto` means the model can pick between generating a message or calling
+    /// a function. Specifying a particular function via
+    ///  `{"type: "function", "function": {"name": "my_function"}}` forces the
+    ///  model to call that function.
+    /// `none` is the default when no functions are present. `auto` is the
+    /// default if functions are present.
+    dynamic toolChoice,
+
     /// A unique identifier representing your end-user, which can help OpenAI to
     /// monitor and detect abuse. Learn more.
     String? user,
@@ -120,6 +135,27 @@ class ChatCompletionRequest with _$ChatCompletionRequest {
 
   factory ChatCompletionRequest.fromJson(Map<String, Object?> json) =>
       _$ChatCompletionRequestFromJson(json);
+}
+
+@freezed
+class ToolChoice with _$ToolChoice {
+  const factory ToolChoice({String? type, ChatFunction? function}) =
+      _ToolChoice;
+
+  factory ToolChoice.fromJson(Map<String, Object?> json) =>
+      _$ToolChoiceFromJson(json);
+}
+
+@freezed
+class ChatTool with _$ChatTool {
+  const factory ChatTool({
+    /// The type of the tool. Currently, only `function` is supported.
+    required String type,
+    required ChatFunction function,
+  }) = _ChatTool;
+
+  factory ChatTool.fromJson(Map<String, Object?> json) =>
+      _$ChatToolFromJson(json);
 }
 
 /// ChatCompletionResponse is the response body for the chat completion endpoint.
@@ -152,11 +188,15 @@ class ChatCompletionResponse with _$ChatCompletionResponse {
     /// The ID of the completion.
     required String id,
 
-    /// The object type of the completion.
+    /// The object type, which is always `chat.completion`.
     required String object,
 
     /// The time the completion was created.
     required int created,
+
+    /// This fingerprint represents the backend configuration that the model runs with.
+    /// Can be used in conjunction with the seed request parameter to understand when backend
+    required String systemFingerprint,
 
     /// The usage statistics for the completion.
     ChatCompletionUsage? usage,
@@ -225,9 +265,12 @@ class ChatFunction with _$ChatFunction {
     /// The description of what the function does.
     String? description,
 
-    ///The parameters the functions accepts, described as a JSON Schema object.
-    ///See the guide for examples, and the JSON Schema reference for
-    ///documentation about the format.
+    /// The parameters the functions accepts, described as a JSON Schema object.
+    /// See the [guide](https://platform.openai.com/docs/guides/gpt/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for
+    /// documentation about the format.
+    /// To describe a function that accepts no parameters, provide
+    /// the value {"type": "object", "properties": {}}.
+    ///
     ///```python
     /// response = openai.ChatCompletion.create(
     ///     model="gpt-3.5-turbo-0613",
