@@ -443,7 +443,7 @@ mixin _$ChatCompletionRequest {
   String get model => throw _privateConstructorUsedError;
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
-  List<ChatMessage> get messages => throw _privateConstructorUsedError;
+  List<dynamic> get messages => throw _privateConstructorUsedError;
 
   /// A list of functions the model may generate JSON inputs for.
   @Deprecated("Use tools instead")
@@ -549,7 +549,7 @@ abstract class $ChatCompletionRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String model,
-      List<ChatMessage> messages,
+      List<dynamic> messages,
       @Deprecated("Use tools instead") List<ChatFunction>? functions,
       @Deprecated("use toolChoice instead") dynamic functionCall,
       double? temperature,
@@ -605,7 +605,7 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
       messages: null == messages
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
-              as List<ChatMessage>,
+              as List<dynamic>,
       functions: freezed == functions
           ? _value.functions
           : functions // ignore: cast_nullable_to_non_nullable
@@ -677,7 +677,7 @@ abstract class _$$ChatCompletionRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String model,
-      List<ChatMessage> messages,
+      List<dynamic> messages,
       @Deprecated("Use tools instead") List<ChatFunction>? functions,
       @Deprecated("use toolChoice instead") dynamic functionCall,
       double? temperature,
@@ -731,7 +731,7 @@ class __$$ChatCompletionRequestImplCopyWithImpl<$Res>
       messages: null == messages
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
-              as List<ChatMessage>,
+              as List<dynamic>,
       functions: freezed == functions
           ? _value._functions
           : functions // ignore: cast_nullable_to_non_nullable
@@ -797,7 +797,7 @@ class __$$ChatCompletionRequestImplCopyWithImpl<$Res>
 class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
   const _$ChatCompletionRequestImpl(
       {required this.model,
-      required final List<ChatMessage> messages,
+      required final List<dynamic> messages,
       @Deprecated("Use tools instead") final List<ChatFunction>? functions,
       @Deprecated("use toolChoice instead") this.functionCall,
       this.temperature,
@@ -828,11 +828,11 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
   final String model;
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
-  final List<ChatMessage> _messages;
+  final List<dynamic> _messages;
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
   @override
-  List<ChatMessage> get messages {
+  List<dynamic> get messages {
     if (_messages is EqualUnmodifiableListView) return _messages;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_messages);
@@ -1064,7 +1064,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
 abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   const factory _ChatCompletionRequest(
       {required final String model,
-      required final List<ChatMessage> messages,
+      required final List<dynamic> messages,
       @Deprecated("Use tools instead") final List<ChatFunction>? functions,
       @Deprecated("use toolChoice instead") final dynamic functionCall,
       final double? temperature,
@@ -1092,7 +1092,7 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   @override
 
   /// The messages to generate chat completions for, in the [chat format](https://platform.openai.com/docs/guides/chat/introduction).
-  List<ChatMessage> get messages;
+  List<dynamic> get messages;
   @override
 
   /// A list of functions the model may generate JSON inputs for.
@@ -2347,8 +2347,13 @@ MessageToolCall _$MessageToolCallFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageToolCall {
+  /// The ID of the tool call.
   String get id => throw _privateConstructorUsedError;
+
+  /// The type of the tool. Currently, only function is supported.
   String get type => throw _privateConstructorUsedError;
+
+  /// The function that the model called.
   ChatFunctionCall get function => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2465,10 +2470,15 @@ class _$MessageToolCallImpl implements _MessageToolCall {
   factory _$MessageToolCallImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageToolCallImplFromJson(json);
 
+  /// The ID of the tool call.
   @override
   final String id;
+
+  /// The type of the tool. Currently, only function is supported.
   @override
   final String type;
+
+  /// The function that the model called.
   @override
   final ChatFunctionCall function;
 
@@ -2517,10 +2527,16 @@ abstract class _MessageToolCall implements MessageToolCall {
       _$MessageToolCallImpl.fromJson;
 
   @override
+
+  /// The ID of the tool call.
   String get id;
   @override
+
+  /// The type of the tool. Currently, only function is supported.
   String get type;
   @override
+
+  /// The function that the model called.
   ChatFunctionCall get function;
   @override
   @JsonKey(ignore: true)
@@ -2534,8 +2550,14 @@ ChatFunctionCall _$ChatFunctionCallFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatFunctionCall {
+  /// The name of the function to call.
   String get name => throw _privateConstructorUsedError;
-  Map<String, dynamic>? get arguments => throw _privateConstructorUsedError;
+
+  /// The arguments to call the function with, as generated by the model in
+  /// JSON format. Note that the model does not always generate valid JSON,
+  /// and may hallucinate parameters not defined by your function schema.
+  /// Validate the arguments in your code before calling your function.
+  Map<String, dynamic> get arguments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2549,7 +2571,7 @@ abstract class $ChatFunctionCallCopyWith<$Res> {
           ChatFunctionCall value, $Res Function(ChatFunctionCall) then) =
       _$ChatFunctionCallCopyWithImpl<$Res, ChatFunctionCall>;
   @useResult
-  $Res call({String name, Map<String, dynamic>? arguments});
+  $Res call({String name, Map<String, dynamic> arguments});
 }
 
 /// @nodoc
@@ -2566,17 +2588,17 @@ class _$ChatFunctionCallCopyWithImpl<$Res, $Val extends ChatFunctionCall>
   @override
   $Res call({
     Object? name = null,
-    Object? arguments = freezed,
+    Object? arguments = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      arguments: freezed == arguments
+      arguments: null == arguments
           ? _value.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, dynamic>,
     ) as $Val);
   }
 }
@@ -2589,7 +2611,7 @@ abstract class _$$ChatFunctionCallImplCopyWith<$Res>
       __$$ChatFunctionCallImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Map<String, dynamic>? arguments});
+  $Res call({String name, Map<String, dynamic> arguments});
 }
 
 /// @nodoc
@@ -2604,17 +2626,17 @@ class __$$ChatFunctionCallImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? arguments = freezed,
+    Object? arguments = null,
   }) {
     return _then(_$ChatFunctionCallImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      arguments: freezed == arguments
+      arguments: null == arguments
           ? _value._arguments
           : arguments // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -2623,22 +2645,31 @@ class __$$ChatFunctionCallImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatFunctionCallImpl implements _ChatFunctionCall {
   const _$ChatFunctionCallImpl(
-      {required this.name, final Map<String, dynamic>? arguments})
+      {required this.name, required final Map<String, dynamic> arguments})
       : _arguments = arguments;
 
   factory _$ChatFunctionCallImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatFunctionCallImplFromJson(json);
 
+  /// The name of the function to call.
   @override
   final String name;
-  final Map<String, dynamic>? _arguments;
+
+  /// The arguments to call the function with, as generated by the model in
+  /// JSON format. Note that the model does not always generate valid JSON,
+  /// and may hallucinate parameters not defined by your function schema.
+  /// Validate the arguments in your code before calling your function.
+  final Map<String, dynamic> _arguments;
+
+  /// The arguments to call the function with, as generated by the model in
+  /// JSON format. Note that the model does not always generate valid JSON,
+  /// and may hallucinate parameters not defined by your function schema.
+  /// Validate the arguments in your code before calling your function.
   @override
-  Map<String, dynamic>? get arguments {
-    final value = _arguments;
-    if (value == null) return null;
+  Map<String, dynamic> get arguments {
     if (_arguments is EqualUnmodifiableMapView) return _arguments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableMapView(_arguments);
   }
 
   @override
@@ -2679,15 +2710,22 @@ class _$ChatFunctionCallImpl implements _ChatFunctionCall {
 abstract class _ChatFunctionCall implements ChatFunctionCall {
   const factory _ChatFunctionCall(
       {required final String name,
-      final Map<String, dynamic>? arguments}) = _$ChatFunctionCallImpl;
+      required final Map<String, dynamic> arguments}) = _$ChatFunctionCallImpl;
 
   factory _ChatFunctionCall.fromJson(Map<String, dynamic> json) =
       _$ChatFunctionCallImpl.fromJson;
 
   @override
+
+  /// The name of the function to call.
   String get name;
   @override
-  Map<String, dynamic>? get arguments;
+
+  /// The arguments to call the function with, as generated by the model in
+  /// JSON format. Note that the model does not always generate valid JSON,
+  /// and may hallucinate parameters not defined by your function schema.
+  /// Validate the arguments in your code before calling your function.
+  Map<String, dynamic> get arguments;
   @override
   @JsonKey(ignore: true)
   _$$ChatFunctionCallImplCopyWith<_$ChatFunctionCallImpl> get copyWith =>

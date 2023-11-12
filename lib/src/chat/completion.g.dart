@@ -61,9 +61,7 @@ _$ChatCompletionRequestImpl _$$ChatCompletionRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatCompletionRequestImpl(
       model: json['model'] as String,
-      messages: (json['messages'] as List<dynamic>)
-          .map((e) => ChatMessage.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      messages: json['messages'] as List<dynamic>,
       functions: (json['functions'] as List<dynamic>?)
           ?.map((e) => ChatFunction.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -88,7 +86,7 @@ Map<String, dynamic> _$$ChatCompletionRequestImplToJson(
     _$ChatCompletionRequestImpl instance) {
   final val = <String, dynamic>{
     'model': instance.model,
-    'messages': instance.messages.map((e) => e.toJson()).toList(),
+    'messages': instance.messages,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -233,6 +231,7 @@ const _$ChatMessageRoleEnumMap = {
   ChatMessageRole.system: 'system',
   ChatMessageRole.assistant: 'assistant',
   ChatMessageRole.function: 'function',
+  ChatMessageRole.tool: 'tool',
   ChatMessageRole.user: 'user',
 };
 
@@ -257,24 +256,15 @@ _$ChatFunctionCallImpl _$$ChatFunctionCallImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatFunctionCallImpl(
       name: json['name'] as String,
-      arguments: json['arguments'] as Map<String, dynamic>?,
+      arguments: json['arguments'] as Map<String, dynamic>,
     );
 
 Map<String, dynamic> _$$ChatFunctionCallImplToJson(
-    _$ChatFunctionCallImpl instance) {
-  final val = <String, dynamic>{
-    'name': instance.name,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('arguments', instance.arguments);
-  return val;
-}
+        _$ChatFunctionCallImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'arguments': instance.arguments,
+    };
 
 _$ChatFunctionImpl _$$ChatFunctionImplFromJson(Map<String, dynamic> json) =>
     _$ChatFunctionImpl(

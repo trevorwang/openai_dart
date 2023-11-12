@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
+import 'package:openai_api/src/chat/message.dart';
 import 'package:test/test.dart';
 
-import '../example/lib/env.dart';
+import 'env.dart';
 import 'utils.dart';
 
 void main() {
@@ -140,18 +141,29 @@ void main() {
 
     test("gpt4-turbo", () async {
       final client = OpenaiClient(
-        config: OpenaiConfig(apiKey: Env.apiKey, baseUrl: Env.baseUrl),
+        config: OpenaiConfig(
+          apiKey: Env.apiKey,
+          baseUrl: Env.baseUrl,
+          httpProxy: Env.httpProxy,
+        ),
       );
-      final result = await client.sendChatCompletion(
-          ChatCompletionRequest(model: Models.gpt4_1106Preview, messages: [
-        ChatMessage(
-            content: "Hello, how are you?", role: ChatMessageRole.system),
-        ChatMessage(
-            role: ChatMessageRole.user,
-            content: "I'm fine, thanks. Show me a photo about storm"),
-      ]));
+      final ic = ImageContent(
+        imageUrl: ImageUrl(
+            url:
+                "https://pics0.baidu.com/feed/314e251f95cad1c84595a5ad29667204c83d51f7.jpeg@f_auto?token=8ad7fa4a5a222a9039b02f92114bfc07"),
+      );
 
-      print(result.choices.first.message?.content);
+      final request =
+          ChatCompletionRequest(model: Models.gpt4_1106VisonPreview, messages: [
+        SystemMessage(
+            content: "Hello, how are you?", role: ChatMessageRole.system),
+        UserMessage(content: [
+          TextContent(text: "show me what you see in the following image"),
+          ic,
+        ]),
+      ]);
+      var result = await client.sendChatCompletion(request);
+      print(result.choices.first.message?.content ?? "");
     });
   });
 }
