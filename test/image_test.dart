@@ -2,8 +2,18 @@ import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
 
+import 'env.dart';
+
 void main() {
   group('image', () {
+    final client = OpenaiClient(
+      config: OpenaiConfig(
+        apiKey: Env.apiKey,
+        httpProxy: Env.httpProxy,
+        baseUrl: Env.baseUrl,
+      ),
+    );
+
     test('generation', () async {
       final client = OpenaiClient(
           config: OpenaiConfig(apiKey: "xxx"),
@@ -57,6 +67,13 @@ void main() {
       expect(res.created, 1589478378);
       expect(res.data.length, 1);
       expect(res.data.first.b64Json, isNotEmpty);
+    });
+
+    test("generate image", () async {
+      final res = await client.createImage(ImageRequest(
+          prompt: "一直贵宾犬开着直升机在悬崖旁边就一个小朋友,卡通,3d,暴雨,", model: Models.dallE3));
+      print(res.toJson());
+      expect(res.created, isNotNull);
     });
   });
 }
