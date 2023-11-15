@@ -709,6 +709,7 @@ mixin _$ChatCompletionRequest {
   /// based on whether they appear in the text so far, increasing the
   /// model's likelihood to talk about new topics.
   double? get frequencyPenalty => throw _privateConstructorUsedError;
+  ResponseFormat? get responseFormat => throw _privateConstructorUsedError;
 
   /// Modify the likelihood of specified tokens appearing in the completion.
   /// Defaults to null.
@@ -765,10 +766,13 @@ abstract class $ChatCompletionRequestCopyWith<$Res> {
       int? maxTokens,
       double? presencePenalty,
       double? frequencyPenalty,
+      ResponseFormat? responseFormat,
       Map<String, dynamic>? logitBias,
       List<ChatTool>? tools,
       dynamic toolChoice,
       String? user});
+
+  $ResponseFormatCopyWith<$Res>? get responseFormat;
 }
 
 /// @nodoc
@@ -797,6 +801,7 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
     Object? maxTokens = freezed,
     Object? presencePenalty = freezed,
     Object? frequencyPenalty = freezed,
+    Object? responseFormat = freezed,
     Object? logitBias = freezed,
     Object? tools = freezed,
     Object? toolChoice = freezed,
@@ -851,6 +856,10 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
           ? _value.frequencyPenalty
           : frequencyPenalty // ignore: cast_nullable_to_non_nullable
               as double?,
+      responseFormat: freezed == responseFormat
+          ? _value.responseFormat
+          : responseFormat // ignore: cast_nullable_to_non_nullable
+              as ResponseFormat?,
       logitBias: freezed == logitBias
           ? _value.logitBias
           : logitBias // ignore: cast_nullable_to_non_nullable
@@ -868,6 +877,18 @@ class _$ChatCompletionRequestCopyWithImpl<$Res,
           : user // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ResponseFormatCopyWith<$Res>? get responseFormat {
+    if (_value.responseFormat == null) {
+      return null;
+    }
+
+    return $ResponseFormatCopyWith<$Res>(_value.responseFormat!, (value) {
+      return _then(_value.copyWith(responseFormat: value) as $Val);
+    });
   }
 }
 
@@ -893,10 +914,14 @@ abstract class _$$ChatCompletionRequestImplCopyWith<$Res>
       int? maxTokens,
       double? presencePenalty,
       double? frequencyPenalty,
+      ResponseFormat? responseFormat,
       Map<String, dynamic>? logitBias,
       List<ChatTool>? tools,
       dynamic toolChoice,
       String? user});
+
+  @override
+  $ResponseFormatCopyWith<$Res>? get responseFormat;
 }
 
 /// @nodoc
@@ -923,6 +948,7 @@ class __$$ChatCompletionRequestImplCopyWithImpl<$Res>
     Object? maxTokens = freezed,
     Object? presencePenalty = freezed,
     Object? frequencyPenalty = freezed,
+    Object? responseFormat = freezed,
     Object? logitBias = freezed,
     Object? tools = freezed,
     Object? toolChoice = freezed,
@@ -977,6 +1003,10 @@ class __$$ChatCompletionRequestImplCopyWithImpl<$Res>
           ? _value.frequencyPenalty
           : frequencyPenalty // ignore: cast_nullable_to_non_nullable
               as double?,
+      responseFormat: freezed == responseFormat
+          ? _value.responseFormat
+          : responseFormat // ignore: cast_nullable_to_non_nullable
+              as ResponseFormat?,
       logitBias: freezed == logitBias
           ? _value._logitBias
           : logitBias // ignore: cast_nullable_to_non_nullable
@@ -1013,6 +1043,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
       this.maxTokens,
       this.presencePenalty,
       this.frequencyPenalty,
+      this.responseFormat,
       final Map<String, dynamic>? logitBias,
       final List<ChatTool>? tools,
       this.toolChoice,
@@ -1131,6 +1162,8 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
   /// model's likelihood to talk about new topics.
   @override
   final double? frequencyPenalty;
+  @override
+  final ResponseFormat? responseFormat;
 
   /// Modify the likelihood of specified tokens appearing in the completion.
   /// Defaults to null.
@@ -1196,7 +1229,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
 
   @override
   String toString() {
-    return 'ChatCompletionRequest(model: $model, messages: $messages, functions: $functions, functionCall: $functionCall, temperature: $temperature, topP: $topP, n: $n, stream: $stream, stop: $stop, maxTokens: $maxTokens, presencePenalty: $presencePenalty, frequencyPenalty: $frequencyPenalty, logitBias: $logitBias, tools: $tools, toolChoice: $toolChoice, user: $user)';
+    return 'ChatCompletionRequest(model: $model, messages: $messages, functions: $functions, functionCall: $functionCall, temperature: $temperature, topP: $topP, n: $n, stream: $stream, stop: $stop, maxTokens: $maxTokens, presencePenalty: $presencePenalty, frequencyPenalty: $frequencyPenalty, responseFormat: $responseFormat, logitBias: $logitBias, tools: $tools, toolChoice: $toolChoice, user: $user)';
   }
 
   @override
@@ -1222,6 +1255,8 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
                 other.presencePenalty == presencePenalty) &&
             (identical(other.frequencyPenalty, frequencyPenalty) ||
                 other.frequencyPenalty == frequencyPenalty) &&
+            (identical(other.responseFormat, responseFormat) ||
+                other.responseFormat == responseFormat) &&
             const DeepCollectionEquality()
                 .equals(other._logitBias, _logitBias) &&
             const DeepCollectionEquality().equals(other._tools, _tools) &&
@@ -1246,6 +1281,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
       maxTokens,
       presencePenalty,
       frequencyPenalty,
+      responseFormat,
       const DeepCollectionEquality().hash(_logitBias),
       const DeepCollectionEquality().hash(_tools),
       const DeepCollectionEquality().hash(toolChoice),
@@ -1280,6 +1316,7 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
       final int? maxTokens,
       final double? presencePenalty,
       final double? frequencyPenalty,
+      final ResponseFormat? responseFormat,
       final Map<String, dynamic>? logitBias,
       final List<ChatTool>? tools,
       final dynamic toolChoice,
@@ -1369,6 +1406,8 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   /// model's likelihood to talk about new topics.
   double? get frequencyPenalty;
   @override
+  ResponseFormat? get responseFormat;
+  @override
 
   /// Modify the likelihood of specified tokens appearing in the completion.
   /// Defaults to null.
@@ -1406,6 +1445,151 @@ abstract class _ChatCompletionRequest implements ChatCompletionRequest {
   @JsonKey(ignore: true)
   _$$ChatCompletionRequestImplCopyWith<_$ChatCompletionRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+ResponseFormat _$ResponseFormatFromJson(Map<String, dynamic> json) {
+  return _ResponseFormat.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ResponseFormat {
+  /// Must be one of text or json_object.
+  /// Defaults to text
+  String get text => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ResponseFormatCopyWith<ResponseFormat> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResponseFormatCopyWith<$Res> {
+  factory $ResponseFormatCopyWith(
+          ResponseFormat value, $Res Function(ResponseFormat) then) =
+      _$ResponseFormatCopyWithImpl<$Res, ResponseFormat>;
+  @useResult
+  $Res call({String text});
+}
+
+/// @nodoc
+class _$ResponseFormatCopyWithImpl<$Res, $Val extends ResponseFormat>
+    implements $ResponseFormatCopyWith<$Res> {
+  _$ResponseFormatCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = null,
+  }) {
+    return _then(_value.copyWith(
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ResponseFormatImplCopyWith<$Res>
+    implements $ResponseFormatCopyWith<$Res> {
+  factory _$$ResponseFormatImplCopyWith(_$ResponseFormatImpl value,
+          $Res Function(_$ResponseFormatImpl) then) =
+      __$$ResponseFormatImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String text});
+}
+
+/// @nodoc
+class __$$ResponseFormatImplCopyWithImpl<$Res>
+    extends _$ResponseFormatCopyWithImpl<$Res, _$ResponseFormatImpl>
+    implements _$$ResponseFormatImplCopyWith<$Res> {
+  __$$ResponseFormatImplCopyWithImpl(
+      _$ResponseFormatImpl _value, $Res Function(_$ResponseFormatImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = null,
+  }) {
+    return _then(_$ResponseFormatImpl(
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ResponseFormatImpl implements _ResponseFormat {
+  const _$ResponseFormatImpl({required this.text});
+
+  factory _$ResponseFormatImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ResponseFormatImplFromJson(json);
+
+  /// Must be one of text or json_object.
+  /// Defaults to text
+  @override
+  final String text;
+
+  @override
+  String toString() {
+    return 'ResponseFormat(text: $text)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResponseFormatImpl &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResponseFormatImplCopyWith<_$ResponseFormatImpl> get copyWith =>
+      __$$ResponseFormatImplCopyWithImpl<_$ResponseFormatImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ResponseFormatImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ResponseFormat implements ResponseFormat {
+  const factory _ResponseFormat({required final String text}) =
+      _$ResponseFormatImpl;
+
+  factory _ResponseFormat.fromJson(Map<String, dynamic> json) =
+      _$ResponseFormatImpl.fromJson;
+
+  @override
+
+  /// Must be one of text or json_object.
+  /// Defaults to text
+  String get text;
+  @override
+  @JsonKey(ignore: true)
+  _$$ResponseFormatImplCopyWith<_$ResponseFormatImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ToolChoice _$ToolChoiceFromJson(Map<String, dynamic> json) {

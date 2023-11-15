@@ -94,6 +94,10 @@ _$ChatCompletionRequestImpl _$$ChatCompletionRequestImplFromJson(
       maxTokens: json['max_tokens'] as int?,
       presencePenalty: (json['presence_penalty'] as num?)?.toDouble(),
       frequencyPenalty: (json['frequency_penalty'] as num?)?.toDouble(),
+      responseFormat: json['response_format'] == null
+          ? null
+          : ResponseFormat.fromJson(
+              json['response_format'] as Map<String, dynamic>),
       logitBias: json['logit_bias'] as Map<String, dynamic>?,
       tools: (json['tools'] as List<dynamic>?)
           ?.map((e) => ChatTool.fromJson(e as Map<String, dynamic>))
@@ -126,12 +130,24 @@ Map<String, dynamic> _$$ChatCompletionRequestImplToJson(
   writeNotNull('max_tokens', instance.maxTokens);
   writeNotNull('presence_penalty', instance.presencePenalty);
   writeNotNull('frequency_penalty', instance.frequencyPenalty);
+  writeNotNull('response_format', instance.responseFormat?.toJson());
   writeNotNull('logit_bias', instance.logitBias);
   writeNotNull('tools', instance.tools?.map((e) => e.toJson()).toList());
   writeNotNull('tool_choice', instance.toolChoice);
   writeNotNull('user', instance.user);
   return val;
 }
+
+_$ResponseFormatImpl _$$ResponseFormatImplFromJson(Map<String, dynamic> json) =>
+    _$ResponseFormatImpl(
+      text: json['text'] as String,
+    );
+
+Map<String, dynamic> _$$ResponseFormatImplToJson(
+        _$ResponseFormatImpl instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+    };
 
 _$ToolChoiceImpl _$$ToolChoiceImplFromJson(Map<String, dynamic> json) =>
     _$ToolChoiceImpl(
