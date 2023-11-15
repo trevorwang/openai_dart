@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.0
+
+- Support GPT4 version
+
 ## 0.2.0
 
 - Implement latest audio API
