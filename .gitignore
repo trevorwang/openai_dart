@@ -41,3 +41,7 @@ example/**/*.freezed.dart
 node_modules
 .env
 env.g.dart
+
+# IntelliJ related
+.idea
+*.iml
