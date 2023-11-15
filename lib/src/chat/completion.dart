@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:cancellation_token_http/http.dart' as http;
-import 'package:openai_api/src/chat/message.dart';
 
 import '../client.dart';
 

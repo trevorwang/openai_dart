@@ -69,7 +69,7 @@ void main() {
       expect(res.data.first.b64Json, isNotEmpty);
     });
 
-    test("generate image", () async {
+    test("generate image", skip: "Manual test only", () async {
       final res = await client.createImage(ImageRequest(
           prompt: "一直贵宾犬开着直升机在悬崖旁边就一个小朋友,卡通,3d,暴雨,", model: Models.dallE3));
       print(res.toJson());

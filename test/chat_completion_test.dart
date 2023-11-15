@@ -34,13 +34,17 @@ void main() {
         ChatMessage(
             content: "Hello, how are you?", role: ChatMessageRole.system),
       ]);
-
-      expect(request.toJson(), {
-        "model": "gpt-3.5-turbo",
-        "messages": [
-          {"content": "Hello, how are you?", "role": "system"}
-        ]
-      });
+      expect(
+          jsonEncode(request.toJson()),
+          jsonEncode({
+            "model": "gpt-3.5-turbo",
+            "messages": [
+              {
+                "content": "Hello, how are you?",
+                "role": "system",
+              }
+            ]
+          }));
     });
 
     test('custom request', () {
@@ -60,21 +64,23 @@ void main() {
         logitBias: {"HELLO": 1},
         user: "user",
       );
-      expect(request.toJson(), {
-        "model": "gpt-3.5-turbo",
-        "messages": [
-          {"content": "Hello, how are you?", "role": "system"}
-        ],
-        "temperature": 0.5,
-        "top_p": 0.5,
-        "n": 1,
-        "stream": false,
-        "stop": ["<STOP>"],
-        "presence_penalty": 1,
-        "frequency_penalty": 1,
-        "logit_bias": {"HELLO": 1},
-        "user": "user",
-      });
+      expect(
+          jsonEncode(request.toJson()),
+          jsonEncode({
+            "model": "gpt-3.5-turbo",
+            "messages": [
+              {"content": "Hello, how are you?", "role": "system"}
+            ],
+            "temperature": 0.5,
+            "top_p": 0.5,
+            "n": 1,
+            "stream": false,
+            "stop": ["<STOP>"],
+            "presence_penalty": 1.0,
+            "frequency_penalty": 1.0,
+            "logit_bias": {"HELLO": 1},
+            "user": "user",
+          }));
     });
     test('response', () {
       final res = ChatCompletionResponse.fromJson(jsonDecode(data));
@@ -139,7 +145,7 @@ void main() {
       print(result);
     });
 
-    test("gpt4-turbo", () async {
+    test("gpt4-turbo", skip: "Manual test only", () async {
       final client = OpenaiClient(
         config: OpenaiConfig(
           apiKey: Env.apiKey,
