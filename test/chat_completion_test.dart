@@ -145,7 +145,7 @@ void main() {
       print(result);
     });
 
-    test("gpt4-turbo", skip: "Manual test only", () async {
+    test("gpt4-version", skip: "Manual test only", () async {
       final client = OpenaiClient(
         config: OpenaiConfig(
           apiKey: Env.apiKey,
@@ -168,8 +168,10 @@ void main() {
           ic,
         ]),
       ]);
-      var result = await client.sendChatCompletion(request);
-      print(result.choices.first.message?.content ?? "");
+      await client.sendChatCompletionStream(request, onSuccess: (res) {
+        expect(true, false);
+        print(res.choices.first.delta?.content);
+      });
     });
   });
 }

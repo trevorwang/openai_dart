@@ -16,6 +16,10 @@ _$ChatChoiceImpl _$$ChatChoiceImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ChatChoiceDelta.fromJson(json['delta'] as Map<String, dynamic>),
       finishReason: json['finish_reason'] as String?,
+      finishDetails: json['finish_details'] == null
+          ? null
+          : FinishDetails.fromJson(
+              json['finish_details'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ChatChoiceImplToJson(_$ChatChoiceImpl instance) {
@@ -32,14 +36,28 @@ Map<String, dynamic> _$$ChatChoiceImplToJson(_$ChatChoiceImpl instance) {
   writeNotNull('message', instance.message?.toJson());
   writeNotNull('delta', instance.delta?.toJson());
   writeNotNull('finish_reason', instance.finishReason);
+  writeNotNull('finish_details', instance.finishDetails?.toJson());
   return val;
 }
+
+_$FinishDetailsImpl _$$FinishDetailsImplFromJson(Map<String, dynamic> json) =>
+    _$FinishDetailsImpl(
+      type: json['type'] as String,
+    );
+
+Map<String, dynamic> _$$FinishDetailsImplToJson(_$FinishDetailsImpl instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+    };
 
 _$ChatChoiceDeltaImpl _$$ChatChoiceDeltaImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatChoiceDeltaImpl(
       content: json['content'] as String?,
       role: json['role'] as String?,
+      toolCalls: (json['tool_calls'] as List<dynamic>?)
+          ?.map((e) => MessageToolCall.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$ChatChoiceDeltaImplToJson(
@@ -54,6 +72,8 @@ Map<String, dynamic> _$$ChatChoiceDeltaImplToJson(
 
   writeNotNull('content', instance.content);
   writeNotNull('role', instance.role);
+  writeNotNull(
+      'tool_calls', instance.toolCalls?.map((e) => e.toJson()).toList());
   return val;
 }
 
@@ -238,6 +258,7 @@ const _$ChatMessageRoleEnumMap = {
 _$MessageToolCallImpl _$$MessageToolCallImplFromJson(
         Map<String, dynamic> json) =>
     _$MessageToolCallImpl(
+      index: json['index'] as int?,
       id: json['id'] as String,
       type: json['type'] as String,
       function:
@@ -245,12 +266,21 @@ _$MessageToolCallImpl _$$MessageToolCallImplFromJson(
     );
 
 Map<String, dynamic> _$$MessageToolCallImplToJson(
-        _$MessageToolCallImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'type': instance.type,
-      'function': instance.function.toJson(),
-    };
+    _$MessageToolCallImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('index', instance.index);
+  val['id'] = instance.id;
+  val['type'] = instance.type;
+  val['function'] = instance.function.toJson();
+  return val;
+}
 
 _$ChatFunctionCallImpl _$$ChatFunctionCallImplFromJson(
         Map<String, dynamic> json) =>

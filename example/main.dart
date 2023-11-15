@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:openai_api/openai_api.dart';
 import 'package:openai_api/src/audio/speech.dart';
+import 'package:openai_api/src/chat/message.dart';
 
 import 'lib/env.dart';
 
@@ -14,7 +15,7 @@ void main() async {
     ),
   );
 
-  // chatCompletionStsream(client);
+  chatCompletionStsream(client);
 
   // chatCompletion(client);
   // await transcripte(client);
@@ -26,8 +27,8 @@ void main() async {
   // List<int> mp3 = await testSpeech(client);
   // await File("./hello.mp3").writeAsBytes(mp3);
 
-  final r = await testImageGenerate(client);
-  print(r);
+  // final r = await testImageGenerate(client);
+  // print(r);
 
   // print(await client.createImage(
   //   ImageRequest(
@@ -94,11 +95,13 @@ Future<void> translate(OpenaiClient client) async {
 void chatCompletionStsream(OpenaiClient client) {
   client.sendChatCompletionStream(
     ChatCompletionRequest(
-      model: Models.gpt3_5Turbo,
+      model: Models.gpt4_1106VisonPreview,
+      maxTokens: 2000,
       stream: true,
       messages: [
-        ChatMessage(
-            content: "Act as a golang runtime", role: ChatMessageRole.user),
+        UserMessage(
+          content: "show me golang code sample here",
+        ),
       ],
     ),
     onSuccess: (p0) {

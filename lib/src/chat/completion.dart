@@ -25,6 +25,7 @@ class ChatChoice with _$ChatChoice {
     /// content filters, `tool_calls` if the model called a tool,
     /// or `function_call` (deprecated) if the model called a function.
     String? finishReason,
+    FinishDetails? finishDetails,
   }) = _ChatChoice;
 
   factory ChatChoice.fromJson(Map<String, Object?> json) =>
@@ -32,10 +33,21 @@ class ChatChoice with _$ChatChoice {
 }
 
 @freezed
+class FinishDetails with _$FinishDetails {
+  const factory FinishDetails({
+    required String type,
+  }) = _FinishDetails;
+
+  factory FinishDetails.fromJson(Map<String, Object?> json) =>
+      _$FinishDetailsFromJson(json);
+}
+
+@freezed
 class ChatChoiceDelta with _$ChatChoiceDelta {
   const factory ChatChoiceDelta({
     String? content,
     String? role,
+    List<MessageToolCall>? toolCalls,
   }) = _ChatChoiceDelta;
 
   factory ChatChoiceDelta.fromJson(Map<String, Object?> json) =>
@@ -265,6 +277,8 @@ class ChatMessage with _$ChatMessage {
 @freezed
 class MessageToolCall with _$MessageToolCall {
   const factory MessageToolCall({
+    int? index,
+
     /// The ID of the tool call.
     required String id,
 

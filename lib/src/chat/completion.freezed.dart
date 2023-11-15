@@ -34,6 +34,7 @@ mixin _$ChatChoice {
   /// content filters, `tool_calls` if the model called a tool,
   /// or `function_call` (deprecated) if the model called a function.
   String? get finishReason => throw _privateConstructorUsedError;
+  FinishDetails? get finishDetails => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,10 +52,12 @@ abstract class $ChatChoiceCopyWith<$Res> {
       {int index,
       ChatMessage? message,
       ChatChoiceDelta? delta,
-      String? finishReason});
+      String? finishReason,
+      FinishDetails? finishDetails});
 
   $ChatMessageCopyWith<$Res>? get message;
   $ChatChoiceDeltaCopyWith<$Res>? get delta;
+  $FinishDetailsCopyWith<$Res>? get finishDetails;
 }
 
 /// @nodoc
@@ -74,6 +77,7 @@ class _$ChatChoiceCopyWithImpl<$Res, $Val extends ChatChoice>
     Object? message = freezed,
     Object? delta = freezed,
     Object? finishReason = freezed,
+    Object? finishDetails = freezed,
   }) {
     return _then(_value.copyWith(
       index: null == index
@@ -92,6 +96,10 @@ class _$ChatChoiceCopyWithImpl<$Res, $Val extends ChatChoice>
           ? _value.finishReason
           : finishReason // ignore: cast_nullable_to_non_nullable
               as String?,
+      finishDetails: freezed == finishDetails
+          ? _value.finishDetails
+          : finishDetails // ignore: cast_nullable_to_non_nullable
+              as FinishDetails?,
     ) as $Val);
   }
 
@@ -118,6 +126,18 @@ class _$ChatChoiceCopyWithImpl<$Res, $Val extends ChatChoice>
       return _then(_value.copyWith(delta: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FinishDetailsCopyWith<$Res>? get finishDetails {
+    if (_value.finishDetails == null) {
+      return null;
+    }
+
+    return $FinishDetailsCopyWith<$Res>(_value.finishDetails!, (value) {
+      return _then(_value.copyWith(finishDetails: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -132,12 +152,15 @@ abstract class _$$ChatChoiceImplCopyWith<$Res>
       {int index,
       ChatMessage? message,
       ChatChoiceDelta? delta,
-      String? finishReason});
+      String? finishReason,
+      FinishDetails? finishDetails});
 
   @override
   $ChatMessageCopyWith<$Res>? get message;
   @override
   $ChatChoiceDeltaCopyWith<$Res>? get delta;
+  @override
+  $FinishDetailsCopyWith<$Res>? get finishDetails;
 }
 
 /// @nodoc
@@ -155,6 +178,7 @@ class __$$ChatChoiceImplCopyWithImpl<$Res>
     Object? message = freezed,
     Object? delta = freezed,
     Object? finishReason = freezed,
+    Object? finishDetails = freezed,
   }) {
     return _then(_$ChatChoiceImpl(
       index: null == index
@@ -173,6 +197,10 @@ class __$$ChatChoiceImplCopyWithImpl<$Res>
           ? _value.finishReason
           : finishReason // ignore: cast_nullable_to_non_nullable
               as String?,
+      finishDetails: freezed == finishDetails
+          ? _value.finishDetails
+          : finishDetails // ignore: cast_nullable_to_non_nullable
+              as FinishDetails?,
     ));
   }
 }
@@ -181,7 +209,11 @@ class __$$ChatChoiceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatChoiceImpl implements _ChatChoice {
   const _$ChatChoiceImpl(
-      {required this.index, this.message, this.delta, this.finishReason});
+      {required this.index,
+      this.message,
+      this.delta,
+      this.finishReason,
+      this.finishDetails});
 
   factory _$ChatChoiceImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatChoiceImplFromJson(json);
@@ -204,10 +236,12 @@ class _$ChatChoiceImpl implements _ChatChoice {
   /// or `function_call` (deprecated) if the model called a function.
   @override
   final String? finishReason;
+  @override
+  final FinishDetails? finishDetails;
 
   @override
   String toString() {
-    return 'ChatChoice(index: $index, message: $message, delta: $delta, finishReason: $finishReason)';
+    return 'ChatChoice(index: $index, message: $message, delta: $delta, finishReason: $finishReason, finishDetails: $finishDetails)';
   }
 
   @override
@@ -219,13 +253,15 @@ class _$ChatChoiceImpl implements _ChatChoice {
             (identical(other.message, message) || other.message == message) &&
             (identical(other.delta, delta) || other.delta == delta) &&
             (identical(other.finishReason, finishReason) ||
-                other.finishReason == finishReason));
+                other.finishReason == finishReason) &&
+            (identical(other.finishDetails, finishDetails) ||
+                other.finishDetails == finishDetails));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, index, message, delta, finishReason);
+  int get hashCode => Object.hash(
+      runtimeType, index, message, delta, finishReason, finishDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -246,7 +282,8 @@ abstract class _ChatChoice implements ChatChoice {
       {required final int index,
       final ChatMessage? message,
       final ChatChoiceDelta? delta,
-      final String? finishReason}) = _$ChatChoiceImpl;
+      final String? finishReason,
+      final FinishDetails? finishDetails}) = _$ChatChoiceImpl;
 
   factory _ChatChoice.fromJson(Map<String, dynamic> json) =
       _$ChatChoiceImpl.fromJson;
@@ -271,8 +308,147 @@ abstract class _ChatChoice implements ChatChoice {
   /// or `function_call` (deprecated) if the model called a function.
   String? get finishReason;
   @override
+  FinishDetails? get finishDetails;
+  @override
   @JsonKey(ignore: true)
   _$$ChatChoiceImplCopyWith<_$ChatChoiceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+FinishDetails _$FinishDetailsFromJson(Map<String, dynamic> json) {
+  return _FinishDetails.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FinishDetails {
+  String get type => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FinishDetailsCopyWith<FinishDetails> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FinishDetailsCopyWith<$Res> {
+  factory $FinishDetailsCopyWith(
+          FinishDetails value, $Res Function(FinishDetails) then) =
+      _$FinishDetailsCopyWithImpl<$Res, FinishDetails>;
+  @useResult
+  $Res call({String type});
+}
+
+/// @nodoc
+class _$FinishDetailsCopyWithImpl<$Res, $Val extends FinishDetails>
+    implements $FinishDetailsCopyWith<$Res> {
+  _$FinishDetailsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FinishDetailsImplCopyWith<$Res>
+    implements $FinishDetailsCopyWith<$Res> {
+  factory _$$FinishDetailsImplCopyWith(
+          _$FinishDetailsImpl value, $Res Function(_$FinishDetailsImpl) then) =
+      __$$FinishDetailsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String type});
+}
+
+/// @nodoc
+class __$$FinishDetailsImplCopyWithImpl<$Res>
+    extends _$FinishDetailsCopyWithImpl<$Res, _$FinishDetailsImpl>
+    implements _$$FinishDetailsImplCopyWith<$Res> {
+  __$$FinishDetailsImplCopyWithImpl(
+      _$FinishDetailsImpl _value, $Res Function(_$FinishDetailsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$FinishDetailsImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FinishDetailsImpl implements _FinishDetails {
+  const _$FinishDetailsImpl({required this.type});
+
+  factory _$FinishDetailsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FinishDetailsImplFromJson(json);
+
+  @override
+  final String type;
+
+  @override
+  String toString() {
+    return 'FinishDetails(type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FinishDetailsImpl &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FinishDetailsImplCopyWith<_$FinishDetailsImpl> get copyWith =>
+      __$$FinishDetailsImplCopyWithImpl<_$FinishDetailsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FinishDetailsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FinishDetails implements FinishDetails {
+  const factory _FinishDetails({required final String type}) =
+      _$FinishDetailsImpl;
+
+  factory _FinishDetails.fromJson(Map<String, dynamic> json) =
+      _$FinishDetailsImpl.fromJson;
+
+  @override
+  String get type;
+  @override
+  @JsonKey(ignore: true)
+  _$$FinishDetailsImplCopyWith<_$FinishDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -284,6 +460,7 @@ ChatChoiceDelta _$ChatChoiceDeltaFromJson(Map<String, dynamic> json) {
 mixin _$ChatChoiceDelta {
   String? get content => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
+  List<MessageToolCall>? get toolCalls => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -297,7 +474,7 @@ abstract class $ChatChoiceDeltaCopyWith<$Res> {
           ChatChoiceDelta value, $Res Function(ChatChoiceDelta) then) =
       _$ChatChoiceDeltaCopyWithImpl<$Res, ChatChoiceDelta>;
   @useResult
-  $Res call({String? content, String? role});
+  $Res call({String? content, String? role, List<MessageToolCall>? toolCalls});
 }
 
 /// @nodoc
@@ -315,6 +492,7 @@ class _$ChatChoiceDeltaCopyWithImpl<$Res, $Val extends ChatChoiceDelta>
   $Res call({
     Object? content = freezed,
     Object? role = freezed,
+    Object? toolCalls = freezed,
   }) {
     return _then(_value.copyWith(
       content: freezed == content
@@ -325,6 +503,10 @@ class _$ChatChoiceDeltaCopyWithImpl<$Res, $Val extends ChatChoiceDelta>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      toolCalls: freezed == toolCalls
+          ? _value.toolCalls
+          : toolCalls // ignore: cast_nullable_to_non_nullable
+              as List<MessageToolCall>?,
     ) as $Val);
   }
 }
@@ -337,7 +519,7 @@ abstract class _$$ChatChoiceDeltaImplCopyWith<$Res>
       __$$ChatChoiceDeltaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? content, String? role});
+  $Res call({String? content, String? role, List<MessageToolCall>? toolCalls});
 }
 
 /// @nodoc
@@ -353,6 +535,7 @@ class __$$ChatChoiceDeltaImplCopyWithImpl<$Res>
   $Res call({
     Object? content = freezed,
     Object? role = freezed,
+    Object? toolCalls = freezed,
   }) {
     return _then(_$ChatChoiceDeltaImpl(
       content: freezed == content
@@ -363,6 +546,10 @@ class __$$ChatChoiceDeltaImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String?,
+      toolCalls: freezed == toolCalls
+          ? _value._toolCalls
+          : toolCalls // ignore: cast_nullable_to_non_nullable
+              as List<MessageToolCall>?,
     ));
   }
 }
@@ -370,7 +557,9 @@ class __$$ChatChoiceDeltaImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ChatChoiceDeltaImpl implements _ChatChoiceDelta {
-  const _$ChatChoiceDeltaImpl({this.content, this.role});
+  const _$ChatChoiceDeltaImpl(
+      {this.content, this.role, final List<MessageToolCall>? toolCalls})
+      : _toolCalls = toolCalls;
 
   factory _$ChatChoiceDeltaImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatChoiceDeltaImplFromJson(json);
@@ -379,10 +568,19 @@ class _$ChatChoiceDeltaImpl implements _ChatChoiceDelta {
   final String? content;
   @override
   final String? role;
+  final List<MessageToolCall>? _toolCalls;
+  @override
+  List<MessageToolCall>? get toolCalls {
+    final value = _toolCalls;
+    if (value == null) return null;
+    if (_toolCalls is EqualUnmodifiableListView) return _toolCalls;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ChatChoiceDelta(content: $content, role: $role)';
+    return 'ChatChoiceDelta(content: $content, role: $role, toolCalls: $toolCalls)';
   }
 
   @override
@@ -391,12 +589,15 @@ class _$ChatChoiceDeltaImpl implements _ChatChoiceDelta {
         (other.runtimeType == runtimeType &&
             other is _$ChatChoiceDeltaImpl &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.role, role) || other.role == role) &&
+            const DeepCollectionEquality()
+                .equals(other._toolCalls, _toolCalls));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, content, role);
+  int get hashCode => Object.hash(runtimeType, content, role,
+      const DeepCollectionEquality().hash(_toolCalls));
 
   @JsonKey(ignore: true)
   @override
@@ -414,8 +615,10 @@ class _$ChatChoiceDeltaImpl implements _ChatChoiceDelta {
 }
 
 abstract class _ChatChoiceDelta implements ChatChoiceDelta {
-  const factory _ChatChoiceDelta({final String? content, final String? role}) =
-      _$ChatChoiceDeltaImpl;
+  const factory _ChatChoiceDelta(
+      {final String? content,
+      final String? role,
+      final List<MessageToolCall>? toolCalls}) = _$ChatChoiceDeltaImpl;
 
   factory _ChatChoiceDelta.fromJson(Map<String, dynamic> json) =
       _$ChatChoiceDeltaImpl.fromJson;
@@ -424,6 +627,8 @@ abstract class _ChatChoiceDelta implements ChatChoiceDelta {
   String? get content;
   @override
   String? get role;
+  @override
+  List<MessageToolCall>? get toolCalls;
   @override
   @JsonKey(ignore: true)
   _$$ChatChoiceDeltaImplCopyWith<_$ChatChoiceDeltaImpl> get copyWith =>
@@ -2347,6 +2552,8 @@ MessageToolCall _$MessageToolCallFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageToolCall {
+  int? get index => throw _privateConstructorUsedError;
+
   /// The ID of the tool call.
   String get id => throw _privateConstructorUsedError;
 
@@ -2368,7 +2575,7 @@ abstract class $MessageToolCallCopyWith<$Res> {
           MessageToolCall value, $Res Function(MessageToolCall) then) =
       _$MessageToolCallCopyWithImpl<$Res, MessageToolCall>;
   @useResult
-  $Res call({String id, String type, ChatFunctionCall function});
+  $Res call({int? index, String id, String type, ChatFunctionCall function});
 
   $ChatFunctionCallCopyWith<$Res> get function;
 }
@@ -2386,11 +2593,16 @@ class _$MessageToolCallCopyWithImpl<$Res, $Val extends MessageToolCall>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? index = freezed,
     Object? id = null,
     Object? type = null,
     Object? function = null,
   }) {
     return _then(_value.copyWith(
+      index: freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2423,7 +2635,7 @@ abstract class _$$MessageToolCallImplCopyWith<$Res>
       __$$MessageToolCallImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String type, ChatFunctionCall function});
+  $Res call({int? index, String id, String type, ChatFunctionCall function});
 
   @override
   $ChatFunctionCallCopyWith<$Res> get function;
@@ -2440,11 +2652,16 @@ class __$$MessageToolCallImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? index = freezed,
     Object? id = null,
     Object? type = null,
     Object? function = null,
   }) {
     return _then(_$MessageToolCallImpl(
+      index: freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2465,10 +2682,16 @@ class __$$MessageToolCallImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MessageToolCallImpl implements _MessageToolCall {
   const _$MessageToolCallImpl(
-      {required this.id, required this.type, required this.function});
+      {this.index,
+      required this.id,
+      required this.type,
+      required this.function});
 
   factory _$MessageToolCallImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageToolCallImplFromJson(json);
+
+  @override
+  final int? index;
 
   /// The ID of the tool call.
   @override
@@ -2484,7 +2707,7 @@ class _$MessageToolCallImpl implements _MessageToolCall {
 
   @override
   String toString() {
-    return 'MessageToolCall(id: $id, type: $type, function: $function)';
+    return 'MessageToolCall(index: $index, id: $id, type: $type, function: $function)';
   }
 
   @override
@@ -2492,6 +2715,7 @@ class _$MessageToolCallImpl implements _MessageToolCall {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageToolCallImpl &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.function, function) ||
@@ -2500,7 +2724,7 @@ class _$MessageToolCallImpl implements _MessageToolCall {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, function);
+  int get hashCode => Object.hash(runtimeType, index, id, type, function);
 
   @JsonKey(ignore: true)
   @override
@@ -2519,13 +2743,16 @@ class _$MessageToolCallImpl implements _MessageToolCall {
 
 abstract class _MessageToolCall implements MessageToolCall {
   const factory _MessageToolCall(
-      {required final String id,
+      {final int? index,
+      required final String id,
       required final String type,
       required final ChatFunctionCall function}) = _$MessageToolCallImpl;
 
   factory _MessageToolCall.fromJson(Map<String, dynamic> json) =
       _$MessageToolCallImpl.fromJson;
 
+  @override
+  int? get index;
   @override
 
   /// The ID of the tool call.
