@@ -158,7 +158,7 @@ _$ChatCompletionResponseImpl _$$ChatCompletionResponseImplFromJson(
       id: json['id'] as String,
       object: json['object'] as String,
       created: json['created'] as int,
-      systemFingerprint: json['system_fingerprint'] as String,
+      systemFingerprint: json['system_fingerprint'] as String?,
       usage: json['usage'] == null
           ? null
           : ChatCompletionUsage.fromJson(json['usage'] as Map<String, dynamic>),
@@ -171,7 +171,6 @@ Map<String, dynamic> _$$ChatCompletionResponseImplToJson(
     'id': instance.id,
     'object': instance.object,
     'created': instance.created,
-    'system_fingerprint': instance.systemFingerprint,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -180,6 +179,7 @@ Map<String, dynamic> _$$ChatCompletionResponseImplToJson(
     }
   }
 
+  writeNotNull('system_fingerprint', instance.systemFingerprint);
   writeNotNull('usage', instance.usage?.toJson());
   return val;
 }
@@ -205,6 +205,9 @@ _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
       content: json['content'] as String?,
       name: json['name'] as String?,
       role: $enumDecode(_$ChatMessageRoleEnumMap, json['role']),
+      toolCalls: (json['tool_calls'] as List<dynamic>?)
+          ?.map((e) => MessageToolCall.fromJson(e as Map<String, dynamic>))
+          .toList(),
       functionCall: json['function_call'],
     );
 
@@ -220,6 +223,8 @@ Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) {
   writeNotNull('content', instance.content);
   writeNotNull('name', instance.name);
   val['role'] = _$ChatMessageRoleEnumMap[instance.role]!;
+  writeNotNull(
+      'tool_calls', instance.toolCalls?.map((e) => e.toJson()).toList());
   writeNotNull('function_call', instance.functionCall);
   return val;
 }
@@ -230,6 +235,46 @@ const _$ChatMessageRoleEnumMap = {
   ChatMessageRole.function: 'function',
   ChatMessageRole.user: 'user',
 };
+
+_$MessageToolCallImpl _$$MessageToolCallImplFromJson(
+        Map<String, dynamic> json) =>
+    _$MessageToolCallImpl(
+      id: json['id'] as String,
+      type: json['type'] as String,
+      function:
+          ChatFunctionCall.fromJson(json['function'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$MessageToolCallImplToJson(
+        _$MessageToolCallImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': instance.type,
+      'function': instance.function.toJson(),
+    };
+
+_$ChatFunctionCallImpl _$$ChatFunctionCallImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatFunctionCallImpl(
+      name: json['name'] as String,
+      arguments: json['arguments'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$$ChatFunctionCallImplToJson(
+    _$ChatFunctionCallImpl instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('arguments', instance.arguments);
+  return val;
+}
 
 _$ChatFunctionImpl _$$ChatFunctionImplFromJson(Map<String, dynamic> json) =>
     _$ChatFunctionImpl(
