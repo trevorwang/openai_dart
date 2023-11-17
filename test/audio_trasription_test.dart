@@ -28,12 +28,12 @@ void main() {
               );
             },
           ));
-      final result = await client.createTrascription(TranscriptionRequest(
+      final result = await client.createTranscription(TranscriptionRequest(
         file: "assets/ttsmaker-file-2023-3-22-14-2-35.mp3",
       ));
       expect(
         result,
-        isA<TrascriptionResponse>().having(
+        isA<TranscriptionResponse>().having(
             (p0) => p0.text, "convert text is not correct", "hello world"),
       );
     });
