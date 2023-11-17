@@ -63,3 +63,13 @@ APIs have been supported by this library. Update to support latest models. Now y
     ),
   );
 ```
+## Contributors ✨
+
+Thanks goes to these wonderful people:
+
+<a href="https://github.com/trevorwang/openai_dart/graphs/contributors"><img src="https://opencollective.com/openai_dart/contributors.svg?width=890&button=false" /></a>
+
+Contributions of any kind welcome!
+## Activities
+
+![Alt](https://repobeats.axiom.co/api/embed/7f760105c1571e04ab3c945a6679c9f1f5bfb51f.svg "Repobeats analytics image")
