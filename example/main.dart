@@ -70,7 +70,7 @@ Future<void> testModel(OpenaiClient client) async {
 }
 
 Future<void> transcripte(OpenaiClient client) async {
-  final result = await client.createTrascription(
+  final result = await client.createTranscription(
     TranscriptionRequest(
       file: 'assets/ttsmaker-file-2023-3-22-14-57-0.mp3',
     ),
