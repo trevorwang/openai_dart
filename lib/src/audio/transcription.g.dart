@@ -9,7 +9,11 @@ part of 'transcription.dart';
 _$AudioTranscriptionRequestImpl _$$AudioTranscriptionRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$AudioTranscriptionRequestImpl(
-      file: json['file'] as String,
+      file: json['file'] as String?,
+      bufferedBytes: json['buffered_bytes'] == null
+          ? null
+          : BufferedBytes.fromJson(
+              json['buffered_bytes'] as Map<String, dynamic>),
       model: json['model'] as String? ?? Models.whisper_1,
       prompt: json['prompt'] as String?,
       responseFormat: json['response_format'] as String?,
@@ -19,10 +23,7 @@ _$AudioTranscriptionRequestImpl _$$AudioTranscriptionRequestImplFromJson(
 
 Map<String, dynamic> _$$AudioTranscriptionRequestImplToJson(
     _$AudioTranscriptionRequestImpl instance) {
-  final val = <String, dynamic>{
-    'file': instance.file,
-    'model': instance.model,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -30,6 +31,9 @@ Map<String, dynamic> _$$AudioTranscriptionRequestImplToJson(
     }
   }
 
+  writeNotNull('file', instance.file);
+  writeNotNull('buffered_bytes', instance.bufferedBytes?.toJson());
+  val['model'] = instance.model;
   writeNotNull('prompt', instance.prompt);
   writeNotNull('response_format', instance.responseFormat);
   writeNotNull('temperature', instance.temperature);
@@ -47,4 +51,16 @@ Map<String, dynamic> _$$TranscriptionResponseImplToJson(
         _$TranscriptionResponseImpl instance) =>
     <String, dynamic>{
       'text': instance.text,
+    };
+
+_$BufferedBytesImpl _$$BufferedBytesImplFromJson(Map<String, dynamic> json) =>
+    _$BufferedBytesImpl(
+      format: json['format'] as String,
+      data: (json['data'] as List<dynamic>).map((e) => e as int).toList(),
+    );
+
+Map<String, dynamic> _$$BufferedBytesImplToJson(_$BufferedBytesImpl instance) =>
+    <String, dynamic>{
+      'format': instance.format,
+      'data': instance.data,
     };

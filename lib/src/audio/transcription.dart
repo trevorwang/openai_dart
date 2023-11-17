@@ -18,14 +18,23 @@ extension Transcription on OpenaiClient {
   }) async {
     final file = request.file;
     final bufferData = request.bufferedBytes;
-    final fields = request.toJson().map((key, value) => MapEntry(key, value.toString()))..remove("file");
+    final fields = request
+        .toJson()
+        .map((key, value) => MapEntry(key, value.toString()))
+      ..remove("file");
 
-    final r = MultipartRequest('POST', Uri.parse("${config.baseUrl}/$kTranscriptionEndpoint"))..fields.addAll(fields);
+    final r = MultipartRequest(
+        'POST', Uri.parse("${config.baseUrl}/$kTranscriptionEndpoint"))
+      ..fields.addAll(fields);
 
     if (file != null) {
       r.files.add(await MultipartFile.fromPath("file", file));
     } else if (bufferData != null) {
-      r.files.add(MultipartFile.fromBytes('file', bufferData.data, filename: 'audiofile.${bufferData.format}'));
+      r.files.add(MultipartFile.fromBytes(
+        'file',
+        bufferData.data,
+        filename: 'audiofile.${bufferData.format}',
+      ));
     } else {
       throw Exception("file or bytesArray must be not null");
     }
@@ -70,7 +79,8 @@ class TranscriptionRequest with _$TranscriptionRequest {
     String? language,
   }) = _AudioTranscriptionRequest;
 
-  factory TranscriptionRequest.fromJson(Map<String, dynamic> json) => _$TranscriptionRequestFromJson(json);
+  factory TranscriptionRequest.fromJson(Map<String, dynamic> json) =>
+      _$TranscriptionRequestFromJson(json);
 }
 
 @freezed
@@ -80,7 +90,8 @@ class TranscriptionResponse with _$TranscriptionResponse {
     required String text,
   }) = _TranscriptionResponse;
 
-  factory TranscriptionResponse.fromJson(Map<String, dynamic> json) => _$TranscriptionResponseFromJson(json);
+  factory TranscriptionResponse.fromJson(Map<String, dynamic> json) =>
+      _$TranscriptionResponseFromJson(json);
 }
 
 @freezed
@@ -93,5 +104,6 @@ class BufferedBytes with _$BufferedBytes {
     required List<int> data,
   }) = _BufferedBytes;
 
-  factory BufferedBytes.fromJson(Map<String, dynamic> json) => _$BufferedBytesFromJson(json);
+  factory BufferedBytes.fromJson(Map<String, dynamic> json) =>
+      _$BufferedBytesFromJson(json);
 }
