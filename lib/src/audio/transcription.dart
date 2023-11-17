@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:cancellation_token_http/http.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,20 +17,15 @@ extension Transcription on OpenaiClient {
     CancellationToken? cancellationToken,
   }) async {
     final file = request.file;
-    final bytes = request.bytesArray;
-    final fields = request
-        .toJson()
-        .map((key, value) => MapEntry(key, value.toString()))
-      ..remove("file");
+    final bufferData = request.bufferedBytes;
+    final fields = request.toJson().map((key, value) => MapEntry(key, value.toString()))..remove("file");
 
-    final r = MultipartRequest(
-        'POST', Uri.parse("${config.baseUrl}/$kTranscriptionEndpoint"))
-      ..fields.addAll(fields);
+    final r = MultipartRequest('POST', Uri.parse("${config.baseUrl}/$kTranscriptionEndpoint"))..fields.addAll(fields);
 
     if (file != null) {
       r.files.add(await MultipartFile.fromPath("file", file));
-    } else if (bytes != null) {
-      r.files.add(MultipartFile.fromBytes('file', bytes, filename: 'audiofile.mp3'));
+    } else if (bufferData != null) {
+      r.files.add(MultipartFile.fromBytes('file', bufferData.data, filename: 'audiofile.${bufferData.format}'));
     } else {
       throw Exception("file or bytesArray must be not null");
     }
@@ -49,9 +42,9 @@ class TranscriptionRequest with _$TranscriptionRequest {
     /// mpga, m4a, wav, or webm.
     String? file,
 
-    /// Bytes array from data buffer, in one of these formats: mp3, mp4, mpeg,
+    /// Bytes array from data buffer with format, which is one of these: mp3, mp4, mpeg,
     /// mpga, m4a, wav, or webm.
-    List<int>? bytesArray,
+    BufferedBytes? bufferedBytes,
 
     /// ID of the model to use. Only [Models.whisper_1] is currently available.
     @Default(Models.whisper_1) String model,
@@ -88,4 +81,17 @@ class TranscriptionResponse with _$TranscriptionResponse {
   }) = _TranscriptionResponse;
 
   factory TranscriptionResponse.fromJson(Map<String, dynamic> json) => _$TranscriptionResponseFromJson(json);
+}
+
+@freezed
+class BufferedBytes with _$BufferedBytes {
+  const factory BufferedBytes({
+    /// Must be: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+    required String format,
+
+    /// Audio bytes array
+    required List<int> data,
+  }) = _BufferedBytes;
+
+  factory BufferedBytes.fromJson(Map<String, dynamic> json) => _$BufferedBytesFromJson(json);
 }
