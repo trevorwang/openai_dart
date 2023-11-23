@@ -11,11 +11,11 @@ _$ThreadRunImpl _$$ThreadRunImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       object: json['object'] as String? ?? 'thread.run',
       createdAt: json['created_at'] as int,
-      assistantId: json['assistant_id'] as String,
       threadId: json['thread_id'] as String,
+      assistantId: json['assistant_id'] as String,
       status: json['status'] as String,
-      startedAt: json['started_at'] as int?,
       expiresAt: json['expires_at'] as int?,
+      startedAt: json['started_at'] as int?,
       cancelledAt: json['cancelled_at'] as int?,
       failedAt: json['failed_at'] as int?,
       completedAt: json['completed_at'] as int?,
@@ -35,8 +35,8 @@ Map<String, dynamic> _$$ThreadRunImplToJson(_$ThreadRunImpl instance) {
     'id': instance.id,
     'object': instance.object,
     'created_at': instance.createdAt,
-    'assistant_id': instance.assistantId,
     'thread_id': instance.threadId,
+    'assistant_id': instance.assistantId,
     'status': instance.status,
   };
 
@@ -46,8 +46,8 @@ Map<String, dynamic> _$$ThreadRunImplToJson(_$ThreadRunImpl instance) {
     }
   }
 
-  writeNotNull('started_at', instance.startedAt);
   writeNotNull('expires_at', instance.expiresAt);
+  writeNotNull('started_at', instance.startedAt);
   writeNotNull('cancelled_at', instance.cancelledAt);
   writeNotNull('failed_at', instance.failedAt);
   writeNotNull('completed_at', instance.completedAt);

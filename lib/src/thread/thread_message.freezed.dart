@@ -256,15 +256,34 @@ ThreadMessage _$ThreadMessageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThreadMessage {
+  /// A unique identifier for the thread message.
   String get id => throw _privateConstructorUsedError;
+
+  /// The object type which is always 'thread.message'.
   String get object => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) of when the thread message was created.
   int get createdAt => throw _privateConstructorUsedError;
+
+  /// The ID of the thread this message belongs to.
   String get threadId => throw _privateConstructorUsedError;
+
+  /// The role of the message sender, e.g., 'user' or 'assistant'.
   String get role => throw _privateConstructorUsedError;
+
+  /// The content of the message, usually a list of message parts (like text blocks).
   List<Content> get content => throw _privateConstructorUsedError;
+
+  /// A list of file IDs associated with this message, if any.
   List<String> get fileIds => throw _privateConstructorUsedError;
+
+  /// The ID of the assistant, if this message is from an assistant.
   String? get assistantId => throw _privateConstructorUsedError;
+
+  /// The ID of the run, if this message is associated with a specific run.
   String? get runId => throw _privateConstructorUsedError;
+
+  /// An optional metadata object. Can be used to store additional information.
   Map<String, dynamic> get metadata => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -470,18 +489,31 @@ class _$ThreadMessageImpl implements _ThreadMessage {
   factory _$ThreadMessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThreadMessageImplFromJson(json);
 
+  /// A unique identifier for the thread message.
   @override
   final String id;
+
+  /// The object type which is always 'thread.message'.
   @override
   @JsonKey()
   final String object;
+
+  /// The Unix timestamp (in seconds) of when the thread message was created.
   @override
   final int createdAt;
+
+  /// The ID of the thread this message belongs to.
   @override
   final String threadId;
+
+  /// The role of the message sender, e.g., 'user' or 'assistant'.
   @override
   final String role;
+
+  /// The content of the message, usually a list of message parts (like text blocks).
   final List<Content> _content;
+
+  /// The content of the message, usually a list of message parts (like text blocks).
   @override
   List<Content> get content {
     if (_content is EqualUnmodifiableListView) return _content;
@@ -489,7 +521,10 @@ class _$ThreadMessageImpl implements _ThreadMessage {
     return EqualUnmodifiableListView(_content);
   }
 
+  /// A list of file IDs associated with this message, if any.
   final List<String> _fileIds;
+
+  /// A list of file IDs associated with this message, if any.
   @override
   @JsonKey()
   List<String> get fileIds {
@@ -498,11 +533,18 @@ class _$ThreadMessageImpl implements _ThreadMessage {
     return EqualUnmodifiableListView(_fileIds);
   }
 
+  /// The ID of the assistant, if this message is from an assistant.
   @override
   final String? assistantId;
+
+  /// The ID of the run, if this message is associated with a specific run.
   @override
   final String? runId;
+
+  /// An optional metadata object. Can be used to store additional information.
   final Map<String, dynamic> _metadata;
+
+  /// An optional metadata object. Can be used to store additional information.
   @override
   @JsonKey()
   Map<String, dynamic> get metadata {
@@ -582,24 +624,44 @@ abstract class _ThreadMessage implements ThreadMessage {
       _$ThreadMessageImpl.fromJson;
 
   @override
+
+  /// A unique identifier for the thread message.
   String get id;
   @override
+
+  /// The object type which is always 'thread.message'.
   String get object;
   @override
+
+  /// The Unix timestamp (in seconds) of when the thread message was created.
   int get createdAt;
   @override
+
+  /// The ID of the thread this message belongs to.
   String get threadId;
   @override
+
+  /// The role of the message sender, e.g., 'user' or 'assistant'.
   String get role;
   @override
+
+  /// The content of the message, usually a list of message parts (like text blocks).
   List<Content> get content;
   @override
+
+  /// A list of file IDs associated with this message, if any.
   List<String> get fileIds;
   @override
+
+  /// The ID of the assistant, if this message is from an assistant.
   String? get assistantId;
   @override
+
+  /// The ID of the run, if this message is associated with a specific run.
   String? get runId;
   @override
+
+  /// An optional metadata object. Can be used to store additional information.
   Map<String, dynamic> get metadata;
   @override
   @JsonKey(ignore: true)
@@ -613,7 +675,10 @@ Content _$ContentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Content {
+  /// The type of content, e.g., 'text'.
   String get type => throw _privateConstructorUsedError;
+
+  /// The actual text content, along with optional annotations.
   Text get text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -716,8 +781,11 @@ class _$ContentImpl implements _Content {
   factory _$ContentImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContentImplFromJson(json);
 
+  /// The type of content, e.g., 'text'.
   @override
   final String type;
+
+  /// The actual text content, along with optional annotations.
   @override
   final Text text;
 
@@ -760,8 +828,12 @@ abstract class _Content implements Content {
   factory _Content.fromJson(Map<String, dynamic> json) = _$ContentImpl.fromJson;
 
   @override
+
+  /// The type of content, e.g., 'text'.
   String get type;
   @override
+
+  /// The actual text content, along with optional annotations.
   Text get text;
   @override
   @JsonKey(ignore: true)
@@ -775,7 +847,10 @@ Text _$TextFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Text {
+  /// The value of the text content.
   String get value => throw _privateConstructorUsedError;
+
+  /// Optional annotations for the text content.
   List<dynamic> get annotations => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -866,9 +941,14 @@ class _$TextImpl implements _Text {
   factory _$TextImpl.fromJson(Map<String, dynamic> json) =>
       _$$TextImplFromJson(json);
 
+  /// The value of the text content.
   @override
   final String value;
+
+  /// Optional annotations for the text content.
   final List<dynamic> _annotations;
+
+  /// Optional annotations for the text content.
   @override
   @JsonKey()
   List<dynamic> get annotations {
@@ -919,11 +999,150 @@ abstract class _Text implements Text {
   factory _Text.fromJson(Map<String, dynamic> json) = _$TextImpl.fromJson;
 
   @override
+
+  /// The value of the text content.
   String get value;
   @override
+
+  /// Optional annotations for the text content.
   List<dynamic> get annotations;
   @override
   @JsonKey(ignore: true)
   _$$TextImplCopyWith<_$TextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ImageFile _$ImageFileFromJson(Map<String, dynamic> json) {
+  return _ImageFile.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ImageFile {
+  String get fileId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ImageFileCopyWith<ImageFile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ImageFileCopyWith<$Res> {
+  factory $ImageFileCopyWith(ImageFile value, $Res Function(ImageFile) then) =
+      _$ImageFileCopyWithImpl<$Res, ImageFile>;
+  @useResult
+  $Res call({String fileId});
+}
+
+/// @nodoc
+class _$ImageFileCopyWithImpl<$Res, $Val extends ImageFile>
+    implements $ImageFileCopyWith<$Res> {
+  _$ImageFileCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileId = null,
+  }) {
+    return _then(_value.copyWith(
+      fileId: null == fileId
+          ? _value.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ImageFileImplCopyWith<$Res>
+    implements $ImageFileCopyWith<$Res> {
+  factory _$$ImageFileImplCopyWith(
+          _$ImageFileImpl value, $Res Function(_$ImageFileImpl) then) =
+      __$$ImageFileImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String fileId});
+}
+
+/// @nodoc
+class __$$ImageFileImplCopyWithImpl<$Res>
+    extends _$ImageFileCopyWithImpl<$Res, _$ImageFileImpl>
+    implements _$$ImageFileImplCopyWith<$Res> {
+  __$$ImageFileImplCopyWithImpl(
+      _$ImageFileImpl _value, $Res Function(_$ImageFileImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileId = null,
+  }) {
+    return _then(_$ImageFileImpl(
+      fileId: null == fileId
+          ? _value.fileId
+          : fileId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ImageFileImpl implements _ImageFile {
+  const _$ImageFileImpl({required this.fileId});
+
+  factory _$ImageFileImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageFileImplFromJson(json);
+
+  @override
+  final String fileId;
+
+  @override
+  String toString() {
+    return 'ImageFile(fileId: $fileId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImageFileImpl &&
+            (identical(other.fileId, fileId) || other.fileId == fileId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, fileId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ImageFileImplCopyWith<_$ImageFileImpl> get copyWith =>
+      __$$ImageFileImplCopyWithImpl<_$ImageFileImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ImageFileImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ImageFile implements ImageFile {
+  const factory _ImageFile({required final String fileId}) = _$ImageFileImpl;
+
+  factory _ImageFile.fromJson(Map<String, dynamic> json) =
+      _$ImageFileImpl.fromJson;
+
+  @override
+  String get fileId;
+  @override
+  @JsonKey(ignore: true)
+  _$$ImageFileImplCopyWith<_$ImageFileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

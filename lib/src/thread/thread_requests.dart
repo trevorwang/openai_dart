@@ -2,7 +2,6 @@ import 'package:cancellation_token_http/http.dart' hide get;
 import 'package:openai_api/openai_api.dart';
 
 extension ThreadCreate on OpenaiClient {
-
   Future<Thread> createThread({CancellationToken? cancellationToken}) async {
     final data = await sendRequest('threads', null,
         cancellationToken: cancellationToken, isBeta: true);
