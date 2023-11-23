@@ -14,6 +14,242 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ThreadMessagesResponse _$ThreadMessagesResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ThreadMessagesResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ThreadMessagesResponse {
+  String get object => throw _privateConstructorUsedError;
+  List<ThreadMessage> get data => throw _privateConstructorUsedError;
+  String? get firstId => throw _privateConstructorUsedError;
+  String? get lastId => throw _privateConstructorUsedError;
+  bool get hasMore => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ThreadMessagesResponseCopyWith<ThreadMessagesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ThreadMessagesResponseCopyWith<$Res> {
+  factory $ThreadMessagesResponseCopyWith(ThreadMessagesResponse value,
+          $Res Function(ThreadMessagesResponse) then) =
+      _$ThreadMessagesResponseCopyWithImpl<$Res, ThreadMessagesResponse>;
+  @useResult
+  $Res call(
+      {String object,
+      List<ThreadMessage> data,
+      String? firstId,
+      String? lastId,
+      bool hasMore});
+}
+
+/// @nodoc
+class _$ThreadMessagesResponseCopyWithImpl<$Res,
+        $Val extends ThreadMessagesResponse>
+    implements $ThreadMessagesResponseCopyWith<$Res> {
+  _$ThreadMessagesResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? object = null,
+    Object? data = null,
+    Object? firstId = freezed,
+    Object? lastId = freezed,
+    Object? hasMore = null,
+  }) {
+    return _then(_value.copyWith(
+      object: null == object
+          ? _value.object
+          : object // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<ThreadMessage>,
+      firstId: freezed == firstId
+          ? _value.firstId
+          : firstId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastId: freezed == lastId
+          ? _value.lastId
+          : lastId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hasMore: null == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ThreadMessagesResponseImplCopyWith<$Res>
+    implements $ThreadMessagesResponseCopyWith<$Res> {
+  factory _$$ThreadMessagesResponseImplCopyWith(
+          _$ThreadMessagesResponseImpl value,
+          $Res Function(_$ThreadMessagesResponseImpl) then) =
+      __$$ThreadMessagesResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String object,
+      List<ThreadMessage> data,
+      String? firstId,
+      String? lastId,
+      bool hasMore});
+}
+
+/// @nodoc
+class __$$ThreadMessagesResponseImplCopyWithImpl<$Res>
+    extends _$ThreadMessagesResponseCopyWithImpl<$Res,
+        _$ThreadMessagesResponseImpl>
+    implements _$$ThreadMessagesResponseImplCopyWith<$Res> {
+  __$$ThreadMessagesResponseImplCopyWithImpl(
+      _$ThreadMessagesResponseImpl _value,
+      $Res Function(_$ThreadMessagesResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? object = null,
+    Object? data = null,
+    Object? firstId = freezed,
+    Object? lastId = freezed,
+    Object? hasMore = null,
+  }) {
+    return _then(_$ThreadMessagesResponseImpl(
+      object: null == object
+          ? _value.object
+          : object // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<ThreadMessage>,
+      firstId: freezed == firstId
+          ? _value.firstId
+          : firstId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastId: freezed == lastId
+          ? _value.lastId
+          : lastId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hasMore: null == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ThreadMessagesResponseImpl implements _ThreadMessagesResponse {
+  const _$ThreadMessagesResponseImpl(
+      {this.object = 'list',
+      required final List<ThreadMessage> data,
+      this.firstId,
+      this.lastId,
+      this.hasMore = false})
+      : _data = data;
+
+  factory _$ThreadMessagesResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ThreadMessagesResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String object;
+  final List<ThreadMessage> _data;
+  @override
+  List<ThreadMessage> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  final String? firstId;
+  @override
+  final String? lastId;
+  @override
+  @JsonKey()
+  final bool hasMore;
+
+  @override
+  String toString() {
+    return 'ThreadMessagesResponse(object: $object, data: $data, firstId: $firstId, lastId: $lastId, hasMore: $hasMore)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ThreadMessagesResponseImpl &&
+            (identical(other.object, object) || other.object == object) &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.firstId, firstId) || other.firstId == firstId) &&
+            (identical(other.lastId, lastId) || other.lastId == lastId) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, object,
+      const DeepCollectionEquality().hash(_data), firstId, lastId, hasMore);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThreadMessagesResponseImplCopyWith<_$ThreadMessagesResponseImpl>
+      get copyWith => __$$ThreadMessagesResponseImplCopyWithImpl<
+          _$ThreadMessagesResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ThreadMessagesResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ThreadMessagesResponse implements ThreadMessagesResponse {
+  const factory _ThreadMessagesResponse(
+      {final String object,
+      required final List<ThreadMessage> data,
+      final String? firstId,
+      final String? lastId,
+      final bool hasMore}) = _$ThreadMessagesResponseImpl;
+
+  factory _ThreadMessagesResponse.fromJson(Map<String, dynamic> json) =
+      _$ThreadMessagesResponseImpl.fromJson;
+
+  @override
+  String get object;
+  @override
+  List<ThreadMessage> get data;
+  @override
+  String? get firstId;
+  @override
+  String? get lastId;
+  @override
+  bool get hasMore;
+  @override
+  @JsonKey(ignore: true)
+  _$$ThreadMessagesResponseImplCopyWith<_$ThreadMessagesResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 ThreadMessage _$ThreadMessageFromJson(Map<String, dynamic> json) {
   return _ThreadMessage.fromJson(json);
 }

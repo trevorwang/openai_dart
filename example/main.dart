@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:openai_api/openai_api.dart';
-import 'package:openai_api/src/thread/thread_create.dart';
 
 import 'lib/env.dart';
 
@@ -13,8 +12,6 @@ void main() async {
       httpProxy: Env.httpProxy,
     ),
   );
-
-  createThread(client);
 
   // chatCompletion(client);
   // await transcripte(client);
