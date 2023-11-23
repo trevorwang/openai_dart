@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:openai_api/openai_api.dart';
+import 'package:openai_api/src/audio/speech.dart';
+import 'package:openai_api/src/chat/message.dart';
 
 import 'lib/env.dart';
 
