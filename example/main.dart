@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:openai_api/openai_api.dart';
+import 'package:openai_api/src/audio/speech.dart';
+import 'package:openai_api/src/chat/message.dart';
 
 import 'lib/env.dart';
 
@@ -12,6 +14,8 @@ void main() async {
       httpProxy: Env.httpProxy,
     ),
   );
+
+  chatCompletionStsream(client);
 
   // chatCompletion(client);
   // await transcripte(client);
@@ -88,12 +92,7 @@ Future<void> translate(OpenaiClient client) async {
   print(translateResult.text);
 }
 
-void createThread(OpenaiClient client) async {
-  final thread = await client.createThread();
-  print(thread);
-}
-
-void chatCompletionStream(OpenaiClient client) {
+void chatCompletionStsream(OpenaiClient client) {
   client.sendChatCompletionStream(
     ChatCompletionRequest(
       model: Models.gpt4_1106VisonPreview,
@@ -117,9 +116,8 @@ void chatCompletion(OpenaiClient client) async {
       model: Models.gpt3_5Turbo_0613,
       messages: [
         ChatMessage(
-          content: "What's the weather like in Boston in celsius?",
-          role: ChatMessageRole.user,
-        ),
+            content: "What's the weather like in Boston in celsius?",
+            role: ChatMessageRole.user),
         ChatMessage(
           content: jsonEncode({
             "temperature": "22",

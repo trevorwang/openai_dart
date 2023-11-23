@@ -9,7 +9,7 @@ part 'transcription.g.dart';
 /// Transcribes audio into the input language.
 extension Transcription on OpenaiClient {
   static const kTranscriptionEndpoint = "audio/transcriptions";
-  Future<TrascriptionResponse> createTranscription(
+  Future<TranscriptionResponse> createTranscription(
     TranscriptionRequest request, {
     CancellationToken? cancellationToken,
   }) async {
@@ -23,7 +23,7 @@ extension Transcription on OpenaiClient {
       ..fields.addAll(fields)
       ..files.add(await MultipartFile.fromPath("file", request.file));
     final data = await sendFormRequest(r);
-    return TrascriptionResponse.fromJson(data);
+    return TranscriptionResponse.fromJson(data);
   }
 }
 
@@ -63,12 +63,12 @@ class TranscriptionRequest with _$TranscriptionRequest {
 }
 
 @freezed
-class TrascriptionResponse with _$TrascriptionResponse {
-  const factory TrascriptionResponse({
+class TranscriptionResponse with _$TranscriptionResponse {
+  const factory TranscriptionResponse({
     /// The converted text.
     required String text,
   }) = _TranscriptionResponse;
 
-  factory TrascriptionResponse.fromJson(Map<String, dynamic> json) =>
-      _$TrascriptionResponseFromJson(json);
+  factory TranscriptionResponse.fromJson(Map<String, dynamic> json) =>
+      _$TranscriptionResponseFromJson(json);
 }

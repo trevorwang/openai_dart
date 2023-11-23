@@ -41,7 +41,7 @@ APIs have been supported by this library. Update to support latest models. Now y
 - Audio Transcription
 
 ```dart
-  final result = await client.createTrascription(
+  final result = await client.createTranscription(
     TranscriptionRequest(
       file: 'assets/ttsmaker-file-2023-3-22-14-57-0.mp3',
     ),

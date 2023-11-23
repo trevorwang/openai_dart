@@ -33,7 +33,7 @@ void main() {
       ));
       expect(
         result,
-        isA<TrascriptionResponse>().having(
+        isA<TranscriptionResponse>().having(
             (p0) => p0.text, "convert text is not correct", "hello world"),
       );
     });

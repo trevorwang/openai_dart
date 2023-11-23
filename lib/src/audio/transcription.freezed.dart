@@ -325,35 +325,36 @@ abstract class _AudioTranscriptionRequest implements TranscriptionRequest {
       get copyWith => throw _privateConstructorUsedError;
 }
 
-TrascriptionResponse _$TrascriptionResponseFromJson(Map<String, dynamic> json) {
+TranscriptionResponse _$TranscriptionResponseFromJson(
+    Map<String, dynamic> json) {
   return _TranscriptionResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TrascriptionResponse {
+mixin _$TranscriptionResponse {
   /// The converted text.
   String get text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TrascriptionResponseCopyWith<TrascriptionResponse> get copyWith =>
+  $TranscriptionResponseCopyWith<TranscriptionResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrascriptionResponseCopyWith<$Res> {
-  factory $TrascriptionResponseCopyWith(TrascriptionResponse value,
-          $Res Function(TrascriptionResponse) then) =
-      _$TrascriptionResponseCopyWithImpl<$Res, TrascriptionResponse>;
+abstract class $TranscriptionResponseCopyWith<$Res> {
+  factory $TranscriptionResponseCopyWith(TranscriptionResponse value,
+          $Res Function(TranscriptionResponse) then) =
+      _$TranscriptionResponseCopyWithImpl<$Res, TranscriptionResponse>;
   @useResult
   $Res call({String text});
 }
 
 /// @nodoc
-class _$TrascriptionResponseCopyWithImpl<$Res,
-        $Val extends TrascriptionResponse>
-    implements $TrascriptionResponseCopyWith<$Res> {
-  _$TrascriptionResponseCopyWithImpl(this._value, this._then);
+class _$TranscriptionResponseCopyWithImpl<$Res,
+        $Val extends TranscriptionResponse>
+    implements $TranscriptionResponseCopyWith<$Res> {
+  _$TranscriptionResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -376,7 +377,7 @@ class _$TrascriptionResponseCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$TranscriptionResponseImplCopyWith<$Res>
-    implements $TrascriptionResponseCopyWith<$Res> {
+    implements $TranscriptionResponseCopyWith<$Res> {
   factory _$$TranscriptionResponseImplCopyWith(
           _$TranscriptionResponseImpl value,
           $Res Function(_$TranscriptionResponseImpl) then) =
@@ -388,7 +389,7 @@ abstract class _$$TranscriptionResponseImplCopyWith<$Res>
 
 /// @nodoc
 class __$$TranscriptionResponseImplCopyWithImpl<$Res>
-    extends _$TrascriptionResponseCopyWithImpl<$Res,
+    extends _$TranscriptionResponseCopyWithImpl<$Res,
         _$TranscriptionResponseImpl>
     implements _$$TranscriptionResponseImplCopyWith<$Res> {
   __$$TranscriptionResponseImplCopyWithImpl(_$TranscriptionResponseImpl _value,
@@ -423,7 +424,7 @@ class _$TranscriptionResponseImpl implements _TranscriptionResponse {
 
   @override
   String toString() {
-    return 'TrascriptionResponse(text: $text)';
+    return 'TranscriptionResponse(text: $text)';
   }
 
   @override
@@ -453,7 +454,7 @@ class _$TranscriptionResponseImpl implements _TranscriptionResponse {
   }
 }
 
-abstract class _TranscriptionResponse implements TrascriptionResponse {
+abstract class _TranscriptionResponse implements TranscriptionResponse {
   const factory _TranscriptionResponse({required final String text}) =
       _$TranscriptionResponseImpl;
 
