@@ -28,7 +28,7 @@ void main() {
               );
             },
           ));
-      final result = await client.createTrascription(TranscriptionRequest(
+      final result = await client.createTranscription(TranscriptionRequest(
         file: "assets/ttsmaker-file-2023-3-22-14-2-35.mp3",
       ));
       expect(

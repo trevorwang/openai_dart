@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:openai_api/openai_api.dart';
-import 'package:openai_api/src/audio/speech.dart';
-import 'package:openai_api/src/chat/message.dart';
+import 'package:openai_api/src/thread/thread_create.dart';
 
 import 'lib/env.dart';
 
@@ -15,7 +14,7 @@ void main() async {
     ),
   );
 
-  chatCompletionStsream(client);
+  createThread(client);
 
   // chatCompletion(client);
   // await transcripte(client);
@@ -70,7 +69,7 @@ Future<void> testModel(OpenaiClient client) async {
 }
 
 Future<void> transcripte(OpenaiClient client) async {
-  final result = await client.createTrascription(
+  final result = await client.createTranscription(
     TranscriptionRequest(
       file: 'assets/ttsmaker-file-2023-3-22-14-57-0.mp3',
     ),
@@ -92,7 +91,12 @@ Future<void> translate(OpenaiClient client) async {
   print(translateResult.text);
 }
 
-void chatCompletionStsream(OpenaiClient client) {
+void createThread(OpenaiClient client) async {
+  final thread = await client.createThread();
+  print(thread);
+}
+
+void chatCompletionStream(OpenaiClient client) {
   client.sendChatCompletionStream(
     ChatCompletionRequest(
       model: Models.gpt4_1106VisonPreview,
@@ -116,8 +120,9 @@ void chatCompletion(OpenaiClient client) async {
       model: Models.gpt3_5Turbo_0613,
       messages: [
         ChatMessage(
-            content: "What's the weather like in Boston in celsius?",
-            role: ChatMessageRole.user),
+          content: "What's the weather like in Boston in celsius?",
+          role: ChatMessageRole.user,
+        ),
         ChatMessage(
           content: jsonEncode({
             "temperature": "22",

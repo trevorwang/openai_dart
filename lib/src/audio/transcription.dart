@@ -9,7 +9,7 @@ part 'transcription.g.dart';
 /// Transcribes audio into the input language.
 extension Transcription on OpenaiClient {
   static const kTranscriptionEndpoint = "audio/transcriptions";
-  Future<TrascriptionResponse> createTrascription(
+  Future<TrascriptionResponse> createTranscription(
     TranscriptionRequest request, {
     CancellationToken? cancellationToken,
   }) async {

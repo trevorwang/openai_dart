@@ -10,6 +10,7 @@ const dataPrefix = "data: ";
 class OpenaiClient {
   late OpenaiConfig _config;
   late http.Client _client;
+
   OpenaiClient({
     required OpenaiConfig config,
     http.Client? httpClient,
@@ -19,13 +20,15 @@ class OpenaiClient {
   }
 
   OpenaiConfig get config => _config;
+
   http.Client get client => _client;
 
   Future<dynamic> sendFormRequest(
     http.MultipartRequest request, {
+    bool isBeta = false,
     http.CancellationToken? cancellationToken,
   }) async {
-    request.headers.addAll(_authenticateHeaders());
+    request.headers.addAll(_authenticateHeaders(isBeta));
     final response = await http.Response.fromStream(await client.send(
       request,
       cancellationToken: cancellationToken,
@@ -37,19 +40,26 @@ class OpenaiClient {
   Future<dynamic> sendRequest(
     String endpoint,
     dynamic body, {
+    bool isBeta = false,
     http.CancellationToken? cancellationToken,
   }) async {
-    return jsonDecode(utf8.decode(await sendRequestRaw(endpoint, body)));
+    return jsonDecode(utf8.decode(await sendRequestRaw(
+      endpoint,
+      body,
+      isBeta: isBeta,
+      cancellationToken: cancellationToken,
+    )));
   }
 
   Future<dynamic> sendRequestRaw(
     String endpoint,
     dynamic body, {
+    bool isBeta = false,
     http.CancellationToken? cancellationToken,
   }) async {
     final response = await client.post(
       Uri.parse("${config.baseUrl}/$endpoint"),
-      headers: _authenticateHeaders()..addAll(kJsonTypeHeader),
+      headers: _authenticateHeaders(isBeta)..addAll(kJsonTypeHeader),
       body: jsonEncode(body),
       cancellationToken: cancellationToken,
     );
@@ -59,11 +69,12 @@ class OpenaiClient {
 
   Future<dynamic> get(
     String endpoint, {
+    bool isBeta = false,
     http.CancellationToken? cancellationToken,
   }) async {
     final response = await client.get(
       Uri.parse("${config.baseUrl}/$endpoint"),
-      headers: _authenticateHeaders(),
+      headers: _authenticateHeaders(isBeta),
       cancellationToken: cancellationToken,
     );
     handleException(response);
@@ -73,6 +84,7 @@ class OpenaiClient {
   Future sendStreamRequest(
     String endpoint,
     dynamic body, {
+    bool isBeta = false,
     Function(dynamic)? onSuccess,
     http.CancellationToken? cancellationToken,
   }) async {
@@ -80,7 +92,7 @@ class OpenaiClient {
       'POST',
       Uri.parse("${config.baseUrl}/$endpoint"),
     );
-    request.headers.addAll(_authenticateHeaders());
+    request.headers.addAll(_authenticateHeaders(isBeta));
     request.headers.addAll(kJsonTypeHeader);
 
     if (body != null) {
@@ -107,12 +119,10 @@ class OpenaiClient {
       return;
     }
 
-    final stream =
-        response.stream.transform(utf8.decoder).transform(const LineSplitter());
+    final stream = response.stream.transform(utf8.decoder).transform(const LineSplitter());
 
     await stream.forEach((data) {
-      final results =
-          data.split('\n').where((element) => element.isNotEmpty).toList();
+      final results = data.split('\n').where((element) => element.isNotEmpty).toList();
       for (var e in results) {
         if (e.startsWith(dataPrefix)) {
           final result = e.split(dataPrefix);
@@ -133,9 +143,10 @@ class OpenaiClient {
     });
   }
 
-  Map<String, String> _authenticateHeaders() {
+  Map<String, String> _authenticateHeaders(bool isBeta) {
     return {
       'Authorization': 'Bearer ${config.apiKey}',
+      if (isBeta) 'OpenAI-Beta': 'assistants=v1',
     };
   }
 
@@ -160,14 +171,11 @@ class OpenaiClient {
         /// receive a valid http status code but invalid error object
         throw OpenaiException(
             code: response.statusCode,
-            error:
-                OpenaiError(message: "unkown http error", type: "unkown_type"));
+            error: OpenaiError(message: "unkown http error", type: "unkown_type"),
+        );
       } on FormatException catch (e) {
         // server returns invalid json oject
-        throw OpenaiException(
-            code: -1,
-            error:
-                OpenaiError(message: e.message, type: "invalid_json_format"));
+        throw OpenaiException(code: -1, error: OpenaiError(message: e.message, type: "invalid_json_format"));
       }
     }
   }
