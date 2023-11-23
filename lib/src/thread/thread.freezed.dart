@@ -20,9 +20,18 @@ Thread _$ThreadFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Thread {
+  /// The identifier, which can be referenced in API endpoints.
   String get id => throw _privateConstructorUsedError;
+
+  /// The object type, which is always thread.
   String get object => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) for when the thread was created.
   int get createdAt => throw _privateConstructorUsedError;
+
+  /// Set of 16 key-value pairs that can be attached to an object. This can be useful
+  /// for storing additional information about the object in a structured format.
+  /// Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
   Map<String, dynamic> get metadata => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -139,14 +148,27 @@ class _$ThreadImpl implements _Thread {
   factory _$ThreadImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThreadImplFromJson(json);
 
+  /// The identifier, which can be referenced in API endpoints.
   @override
   final String id;
+
+  /// The object type, which is always thread.
   @override
   @JsonKey()
   final String object;
+
+  /// The Unix timestamp (in seconds) for when the thread was created.
   @override
   final int createdAt;
+
+  /// Set of 16 key-value pairs that can be attached to an object. This can be useful
+  /// for storing additional information about the object in a structured format.
+  /// Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
   final Map<String, dynamic> _metadata;
+
+  /// Set of 16 key-value pairs that can be attached to an object. This can be useful
+  /// for storing additional information about the object in a structured format.
+  /// Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
   @override
   @JsonKey()
   Map<String, dynamic> get metadata {
@@ -201,12 +223,22 @@ abstract class _Thread implements Thread {
   factory _Thread.fromJson(Map<String, dynamic> json) = _$ThreadImpl.fromJson;
 
   @override
+
+  /// The identifier, which can be referenced in API endpoints.
   String get id;
   @override
+
+  /// The object type, which is always thread.
   String get object;
   @override
+
+  /// The Unix timestamp (in seconds) for when the thread was created.
   int get createdAt;
   @override
+
+  /// Set of 16 key-value pairs that can be attached to an object. This can be useful
+  /// for storing additional information about the object in a structured format.
+  /// Keys can be a maximum of 64 characters long and values can be a maxium of 512 characters long.
   Map<String, dynamic> get metadata;
   @override
   @JsonKey(ignore: true)

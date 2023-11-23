@@ -42,18 +42,19 @@ _$ThreadRunStepImpl _$$ThreadRunStepImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       object: json['object'] as String? ?? 'thread.run.step',
       createdAt: json['created_at'] as int,
-      runId: json['run_id'] as String,
       assistantId: json['assistant_id'] as String,
       threadId: json['thread_id'] as String,
+      runId: json['run_id'] as String,
       type: json['type'] as String,
       status: json['status'] as String,
-      cancelledAt: json['cancelled_at'] as int?,
-      completedAt: json['completed_at'] as int?,
-      expiresAt: json['expires_at'] as int?,
-      failedAt: json['failed_at'] as int?,
-      lastError: json['last_error'] as String?,
       stepDetails:
           StepDetails.fromJson(json['step_details'] as Map<String, dynamic>),
+      lastError: json['last_error'] as String?,
+      expiredAt: json['expired_at'] as int?,
+      cancelledAt: json['cancelled_at'] as int?,
+      failedAt: json['failed_at'] as int?,
+      completedAt: json['completed_at'] as int?,
+      metadata: json['metadata'] as Map<String, dynamic>? ?? const {},
     );
 
 Map<String, dynamic> _$$ThreadRunStepImplToJson(_$ThreadRunStepImpl instance) {
@@ -61,11 +62,12 @@ Map<String, dynamic> _$$ThreadRunStepImplToJson(_$ThreadRunStepImpl instance) {
     'id': instance.id,
     'object': instance.object,
     'created_at': instance.createdAt,
-    'run_id': instance.runId,
     'assistant_id': instance.assistantId,
     'thread_id': instance.threadId,
+    'run_id': instance.runId,
     'type': instance.type,
     'status': instance.status,
+    'step_details': instance.stepDetails.toJson(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -74,12 +76,12 @@ Map<String, dynamic> _$$ThreadRunStepImplToJson(_$ThreadRunStepImpl instance) {
     }
   }
 
-  writeNotNull('cancelled_at', instance.cancelledAt);
-  writeNotNull('completed_at', instance.completedAt);
-  writeNotNull('expires_at', instance.expiresAt);
-  writeNotNull('failed_at', instance.failedAt);
   writeNotNull('last_error', instance.lastError);
-  val['step_details'] = instance.stepDetails.toJson();
+  writeNotNull('expired_at', instance.expiredAt);
+  writeNotNull('cancelled_at', instance.cancelledAt);
+  writeNotNull('failed_at', instance.failedAt);
+  writeNotNull('completed_at', instance.completedAt);
+  val['metadata'] = instance.metadata;
   return val;
 }
 

@@ -20,22 +20,58 @@ ThreadRun _$ThreadRunFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThreadRun {
+  /// The identifier which can be referenced in API endpoints.
   String get id => throw _privateConstructorUsedError;
+
+  /// The object type which is always thread.run.
   String get object => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) for when the run was created.
   int get createdAt => throw _privateConstructorUsedError;
-  String get assistantId => throw _privateConstructorUsedError;
+
+  /// The ID of the thread that was executed on as a part of this run.
   String get threadId => throw _privateConstructorUsedError;
+
+  /// The ID of the assistant used for execution of this run.
+  String get assistantId => throw _privateConstructorUsedError;
+
+  /// The status of the run which can be either queued, in_progress, requires_action,
+  /// cancelling, cancelled, failed, completed, or expired.
   String get status => throw _privateConstructorUsedError;
-  int? get startedAt => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) for when the run will expire.
   int? get expiresAt => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) for when the run was started.
+  int? get startedAt => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) for when the run was cancelled.
   int? get cancelledAt => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) for when the run failed.
   int? get failedAt => throw _privateConstructorUsedError;
+
+  /// The Unix timestamp (in seconds) for when the run was completed.
   int? get completedAt => throw _privateConstructorUsedError;
+
+  /// The last error associated with this run. Will be null if there are no errors.
   String? get lastError => throw _privateConstructorUsedError;
+
+  /// The model that the assistant used for this run.
   String get model => throw _privateConstructorUsedError;
+
+  /// The instructions that the assistant used for this run.
   String get instructions => throw _privateConstructorUsedError;
+
+  /// The list of tools that the assistant used for this run.
   List<dynamic> get tools => throw _privateConstructorUsedError;
+
+  /// The list of File IDs the assistant used for this run.
   List<String> get fileIds => throw _privateConstructorUsedError;
+
+  /// A set of 16 key-value pairs that can be attached to the object. Useful for storing additional
+  /// information about the object in a structured format. Keys can be a maximum of 64 characters long,
+  /// and values can be a maximum of 512 characters long.
   Map<String, dynamic> get metadata => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,11 +89,11 @@ abstract class $ThreadRunCopyWith<$Res> {
       {String id,
       String object,
       int createdAt,
-      String assistantId,
       String threadId,
+      String assistantId,
       String status,
-      int? startedAt,
       int? expiresAt,
+      int? startedAt,
       int? cancelledAt,
       int? failedAt,
       int? completedAt,
@@ -85,11 +121,11 @@ class _$ThreadRunCopyWithImpl<$Res, $Val extends ThreadRun>
     Object? id = null,
     Object? object = null,
     Object? createdAt = null,
-    Object? assistantId = null,
     Object? threadId = null,
+    Object? assistantId = null,
     Object? status = null,
-    Object? startedAt = freezed,
     Object? expiresAt = freezed,
+    Object? startedAt = freezed,
     Object? cancelledAt = freezed,
     Object? failedAt = freezed,
     Object? completedAt = freezed,
@@ -113,25 +149,25 @@ class _$ThreadRunCopyWithImpl<$Res, $Val extends ThreadRun>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as int,
-      assistantId: null == assistantId
-          ? _value.assistantId
-          : assistantId // ignore: cast_nullable_to_non_nullable
-              as String,
       threadId: null == threadId
           ? _value.threadId
           : threadId // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistantId: null == assistantId
+          ? _value.assistantId
+          : assistantId // ignore: cast_nullable_to_non_nullable
               as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      startedAt: freezed == startedAt
-          ? _value.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
-              as int?,
       expiresAt: freezed == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startedAt: freezed == startedAt
+          ? _value.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
               as int?,
       cancelledAt: freezed == cancelledAt
           ? _value.cancelledAt
@@ -185,11 +221,11 @@ abstract class _$$ThreadRunImplCopyWith<$Res>
       {String id,
       String object,
       int createdAt,
-      String assistantId,
       String threadId,
+      String assistantId,
       String status,
-      int? startedAt,
       int? expiresAt,
+      int? startedAt,
       int? cancelledAt,
       int? failedAt,
       int? completedAt,
@@ -215,11 +251,11 @@ class __$$ThreadRunImplCopyWithImpl<$Res>
     Object? id = null,
     Object? object = null,
     Object? createdAt = null,
-    Object? assistantId = null,
     Object? threadId = null,
+    Object? assistantId = null,
     Object? status = null,
-    Object? startedAt = freezed,
     Object? expiresAt = freezed,
+    Object? startedAt = freezed,
     Object? cancelledAt = freezed,
     Object? failedAt = freezed,
     Object? completedAt = freezed,
@@ -243,25 +279,25 @@ class __$$ThreadRunImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as int,
-      assistantId: null == assistantId
-          ? _value.assistantId
-          : assistantId // ignore: cast_nullable_to_non_nullable
-              as String,
       threadId: null == threadId
           ? _value.threadId
           : threadId // ignore: cast_nullable_to_non_nullable
+              as String,
+      assistantId: null == assistantId
+          ? _value.assistantId
+          : assistantId // ignore: cast_nullable_to_non_nullable
               as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      startedAt: freezed == startedAt
-          ? _value.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
-              as int?,
       expiresAt: freezed == expiresAt
           ? _value.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startedAt: freezed == startedAt
+          ? _value.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
               as int?,
       cancelledAt: freezed == cancelledAt
           ? _value.cancelledAt
@@ -310,11 +346,11 @@ class _$ThreadRunImpl implements _ThreadRun {
       {required this.id,
       this.object = 'thread.run',
       required this.createdAt,
-      required this.assistantId,
       required this.threadId,
+      required this.assistantId,
       required this.status,
-      this.startedAt,
       this.expiresAt,
+      this.startedAt,
       this.cancelledAt,
       this.failedAt,
       this.completedAt,
@@ -331,36 +367,68 @@ class _$ThreadRunImpl implements _ThreadRun {
   factory _$ThreadRunImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThreadRunImplFromJson(json);
 
+  /// The identifier which can be referenced in API endpoints.
   @override
   final String id;
+
+  /// The object type which is always thread.run.
   @override
   @JsonKey()
   final String object;
+
+  /// The Unix timestamp (in seconds) for when the run was created.
   @override
   final int createdAt;
-  @override
-  final String assistantId;
+
+  /// The ID of the thread that was executed on as a part of this run.
   @override
   final String threadId;
+
+  /// The ID of the assistant used for execution of this run.
+  @override
+  final String assistantId;
+
+  /// The status of the run which can be either queued, in_progress, requires_action,
+  /// cancelling, cancelled, failed, completed, or expired.
   @override
   final String status;
-  @override
-  final int? startedAt;
+
+  /// The Unix timestamp (in seconds) for when the run will expire.
   @override
   final int? expiresAt;
+
+  /// The Unix timestamp (in seconds) for when the run was started.
+  @override
+  final int? startedAt;
+
+  /// The Unix timestamp (in seconds) for when the run was cancelled.
   @override
   final int? cancelledAt;
+
+  /// The Unix timestamp (in seconds) for when the run failed.
   @override
   final int? failedAt;
+
+  /// The Unix timestamp (in seconds) for when the run was completed.
   @override
   final int? completedAt;
+
+  /// The last error associated with this run. Will be null if there are no errors.
   @override
   final String? lastError;
+
+  /// The model that the assistant used for this run.
   @override
   final String model;
+
+  /// The instructions that the assistant used for this run.
   @override
   final String instructions;
+
+  /// The list of tools that the assistant used for this run.
   final List<dynamic> _tools;
+
+  /// The list of tools that the assistant used for this run.
   @override
   @JsonKey()
   List<dynamic> get tools {
@@ -369,7 +437,10 @@ class _$ThreadRunImpl implements _ThreadRun {
     return EqualUnmodifiableListView(_tools);
   }
 
+  /// The list of File IDs the assistant used for this run.
   final List<String> _fileIds;
+
+  /// The list of File IDs the assistant used for this run.
   @override
   @JsonKey()
   List<String> get fileIds {
@@ -378,7 +449,14 @@ class _$ThreadRunImpl implements _ThreadRun {
     return EqualUnmodifiableListView(_fileIds);
   }
 
+  /// A set of 16 key-value pairs that can be attached to the object. Useful for storing additional
+  /// information about the object in a structured format. Keys can be a maximum of 64 characters long,
+  /// and values can be a maximum of 512 characters long.
   final Map<String, dynamic> _metadata;
+
+  /// A set of 16 key-value pairs that can be attached to the object. Useful for storing additional
+  /// information about the object in a structured format. Keys can be a maximum of 64 characters long,
+  /// and values can be a maximum of 512 characters long.
   @override
   @JsonKey()
   Map<String, dynamic> get metadata {
@@ -389,7 +467,7 @@ class _$ThreadRunImpl implements _ThreadRun {
 
   @override
   String toString() {
-    return 'ThreadRun(id: $id, object: $object, createdAt: $createdAt, assistantId: $assistantId, threadId: $threadId, status: $status, startedAt: $startedAt, expiresAt: $expiresAt, cancelledAt: $cancelledAt, failedAt: $failedAt, completedAt: $completedAt, lastError: $lastError, model: $model, instructions: $instructions, tools: $tools, fileIds: $fileIds, metadata: $metadata)';
+    return 'ThreadRun(id: $id, object: $object, createdAt: $createdAt, threadId: $threadId, assistantId: $assistantId, status: $status, expiresAt: $expiresAt, startedAt: $startedAt, cancelledAt: $cancelledAt, failedAt: $failedAt, completedAt: $completedAt, lastError: $lastError, model: $model, instructions: $instructions, tools: $tools, fileIds: $fileIds, metadata: $metadata)';
   }
 
   @override
@@ -401,15 +479,15 @@ class _$ThreadRunImpl implements _ThreadRun {
             (identical(other.object, object) || other.object == object) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.assistantId, assistantId) ||
-                other.assistantId == assistantId) &&
             (identical(other.threadId, threadId) ||
                 other.threadId == threadId) &&
+            (identical(other.assistantId, assistantId) ||
+                other.assistantId == assistantId) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.startedAt, startedAt) ||
-                other.startedAt == startedAt) &&
             (identical(other.expiresAt, expiresAt) ||
                 other.expiresAt == expiresAt) &&
+            (identical(other.startedAt, startedAt) ||
+                other.startedAt == startedAt) &&
             (identical(other.cancelledAt, cancelledAt) ||
                 other.cancelledAt == cancelledAt) &&
             (identical(other.failedAt, failedAt) ||
@@ -433,11 +511,11 @@ class _$ThreadRunImpl implements _ThreadRun {
       id,
       object,
       createdAt,
-      assistantId,
       threadId,
+      assistantId,
       status,
-      startedAt,
       expiresAt,
+      startedAt,
       cancelledAt,
       failedAt,
       completedAt,
@@ -467,11 +545,11 @@ abstract class _ThreadRun implements ThreadRun {
       {required final String id,
       final String object,
       required final int createdAt,
-      required final String assistantId,
       required final String threadId,
+      required final String assistantId,
       required final String status,
-      final int? startedAt,
       final int? expiresAt,
+      final int? startedAt,
       final int? cancelledAt,
       final int? failedAt,
       final int? completedAt,
@@ -486,38 +564,75 @@ abstract class _ThreadRun implements ThreadRun {
       _$ThreadRunImpl.fromJson;
 
   @override
+
+  /// The identifier which can be referenced in API endpoints.
   String get id;
   @override
+
+  /// The object type which is always thread.run.
   String get object;
   @override
+
+  /// The Unix timestamp (in seconds) for when the run was created.
   int get createdAt;
   @override
-  String get assistantId;
-  @override
+
+  /// The ID of the thread that was executed on as a part of this run.
   String get threadId;
   @override
+
+  /// The ID of the assistant used for execution of this run.
+  String get assistantId;
+  @override
+
+  /// The status of the run which can be either queued, in_progress, requires_action,
+  /// cancelling, cancelled, failed, completed, or expired.
   String get status;
   @override
-  int? get startedAt;
-  @override
+
+  /// The Unix timestamp (in seconds) for when the run will expire.
   int? get expiresAt;
   @override
+
+  /// The Unix timestamp (in seconds) for when the run was started.
+  int? get startedAt;
+  @override
+
+  /// The Unix timestamp (in seconds) for when the run was cancelled.
   int? get cancelledAt;
   @override
+
+  /// The Unix timestamp (in seconds) for when the run failed.
   int? get failedAt;
   @override
+
+  /// The Unix timestamp (in seconds) for when the run was completed.
   int? get completedAt;
   @override
+
+  /// The last error associated with this run. Will be null if there are no errors.
   String? get lastError;
   @override
+
+  /// The model that the assistant used for this run.
   String get model;
   @override
+
+  /// The instructions that the assistant used for this run.
   String get instructions;
   @override
+
+  /// The list of tools that the assistant used for this run.
   List<dynamic> get tools;
   @override
+
+  /// The list of File IDs the assistant used for this run.
   List<String> get fileIds;
   @override
+
+  /// A set of 16 key-value pairs that can be attached to the object. Useful for storing additional
+  /// information about the object in a structured format. Keys can be a maximum of 64 characters long,
+  /// and values can be a maximum of 512 characters long.
   Map<String, dynamic> get metadata;
   @override
   @JsonKey(ignore: true)

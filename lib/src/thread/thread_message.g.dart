@@ -101,3 +101,13 @@ Map<String, dynamic> _$$TextImplToJson(_$TextImpl instance) =>
       'value': instance.value,
       'annotations': instance.annotations,
     };
+
+_$ImageFileImpl _$$ImageFileImplFromJson(Map<String, dynamic> json) =>
+    _$ImageFileImpl(
+      fileId: json['file_id'] as String,
+    );
+
+Map<String, dynamic> _$$ImageFileImplToJson(_$ImageFileImpl instance) =>
+    <String, dynamic>{
+      'file_id': instance.fileId,
+    };
