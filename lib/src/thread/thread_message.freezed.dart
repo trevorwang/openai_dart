@@ -1,0 +1,693 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'thread_message.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+ThreadMessage _$ThreadMessageFromJson(Map<String, dynamic> json) {
+  return _ThreadMessage.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ThreadMessage {
+  String get id => throw _privateConstructorUsedError;
+  String get object => throw _privateConstructorUsedError;
+  int get createdAt => throw _privateConstructorUsedError;
+  String get threadId => throw _privateConstructorUsedError;
+  String get role => throw _privateConstructorUsedError;
+  List<Content> get content => throw _privateConstructorUsedError;
+  List<String> get fileIds => throw _privateConstructorUsedError;
+  String? get assistantId => throw _privateConstructorUsedError;
+  String? get runId => throw _privateConstructorUsedError;
+  Map<String, dynamic> get metadata => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ThreadMessageCopyWith<ThreadMessage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ThreadMessageCopyWith<$Res> {
+  factory $ThreadMessageCopyWith(
+          ThreadMessage value, $Res Function(ThreadMessage) then) =
+      _$ThreadMessageCopyWithImpl<$Res, ThreadMessage>;
+  @useResult
+  $Res call(
+      {String id,
+      String object,
+      int createdAt,
+      String threadId,
+      String role,
+      List<Content> content,
+      List<String> fileIds,
+      String? assistantId,
+      String? runId,
+      Map<String, dynamic> metadata});
+}
+
+/// @nodoc
+class _$ThreadMessageCopyWithImpl<$Res, $Val extends ThreadMessage>
+    implements $ThreadMessageCopyWith<$Res> {
+  _$ThreadMessageCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? object = null,
+    Object? createdAt = null,
+    Object? threadId = null,
+    Object? role = null,
+    Object? content = null,
+    Object? fileIds = null,
+    Object? assistantId = freezed,
+    Object? runId = freezed,
+    Object? metadata = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      object: null == object
+          ? _value.object
+          : object // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int,
+      threadId: null == threadId
+          ? _value.threadId
+          : threadId // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as List<Content>,
+      fileIds: null == fileIds
+          ? _value.fileIds
+          : fileIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      assistantId: freezed == assistantId
+          ? _value.assistantId
+          : assistantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      runId: freezed == runId
+          ? _value.runId
+          : runId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      metadata: null == metadata
+          ? _value.metadata
+          : metadata // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ThreadMessageImplCopyWith<$Res>
+    implements $ThreadMessageCopyWith<$Res> {
+  factory _$$ThreadMessageImplCopyWith(
+          _$ThreadMessageImpl value, $Res Function(_$ThreadMessageImpl) then) =
+      __$$ThreadMessageImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String object,
+      int createdAt,
+      String threadId,
+      String role,
+      List<Content> content,
+      List<String> fileIds,
+      String? assistantId,
+      String? runId,
+      Map<String, dynamic> metadata});
+}
+
+/// @nodoc
+class __$$ThreadMessageImplCopyWithImpl<$Res>
+    extends _$ThreadMessageCopyWithImpl<$Res, _$ThreadMessageImpl>
+    implements _$$ThreadMessageImplCopyWith<$Res> {
+  __$$ThreadMessageImplCopyWithImpl(
+      _$ThreadMessageImpl _value, $Res Function(_$ThreadMessageImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? object = null,
+    Object? createdAt = null,
+    Object? threadId = null,
+    Object? role = null,
+    Object? content = null,
+    Object? fileIds = null,
+    Object? assistantId = freezed,
+    Object? runId = freezed,
+    Object? metadata = null,
+  }) {
+    return _then(_$ThreadMessageImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      object: null == object
+          ? _value.object
+          : object // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as int,
+      threadId: null == threadId
+          ? _value.threadId
+          : threadId // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value._content
+          : content // ignore: cast_nullable_to_non_nullable
+              as List<Content>,
+      fileIds: null == fileIds
+          ? _value._fileIds
+          : fileIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      assistantId: freezed == assistantId
+          ? _value.assistantId
+          : assistantId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      runId: freezed == runId
+          ? _value.runId
+          : runId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      metadata: null == metadata
+          ? _value._metadata
+          : metadata // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ThreadMessageImpl implements _ThreadMessage {
+  const _$ThreadMessageImpl(
+      {required this.id,
+      this.object = 'thread.message',
+      required this.createdAt,
+      required this.threadId,
+      required this.role,
+      required final List<Content> content,
+      final List<String> fileIds = const [],
+      this.assistantId,
+      this.runId,
+      final Map<String, dynamic> metadata = const {}})
+      : _content = content,
+        _fileIds = fileIds,
+        _metadata = metadata;
+
+  factory _$ThreadMessageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ThreadMessageImplFromJson(json);
+
+  @override
+  final String id;
+  @override
+  @JsonKey()
+  final String object;
+  @override
+  final int createdAt;
+  @override
+  final String threadId;
+  @override
+  final String role;
+  final List<Content> _content;
+  @override
+  List<Content> get content {
+    if (_content is EqualUnmodifiableListView) return _content;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_content);
+  }
+
+  final List<String> _fileIds;
+  @override
+  @JsonKey()
+  List<String> get fileIds {
+    if (_fileIds is EqualUnmodifiableListView) return _fileIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fileIds);
+  }
+
+  @override
+  final String? assistantId;
+  @override
+  final String? runId;
+  final Map<String, dynamic> _metadata;
+  @override
+  @JsonKey()
+  Map<String, dynamic> get metadata {
+    if (_metadata is EqualUnmodifiableMapView) return _metadata;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_metadata);
+  }
+
+  @override
+  String toString() {
+    return 'ThreadMessage(id: $id, object: $object, createdAt: $createdAt, threadId: $threadId, role: $role, content: $content, fileIds: $fileIds, assistantId: $assistantId, runId: $runId, metadata: $metadata)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ThreadMessageImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.object, object) || other.object == object) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.threadId, threadId) ||
+                other.threadId == threadId) &&
+            (identical(other.role, role) || other.role == role) &&
+            const DeepCollectionEquality().equals(other._content, _content) &&
+            const DeepCollectionEquality().equals(other._fileIds, _fileIds) &&
+            (identical(other.assistantId, assistantId) ||
+                other.assistantId == assistantId) &&
+            (identical(other.runId, runId) || other.runId == runId) &&
+            const DeepCollectionEquality().equals(other._metadata, _metadata));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      object,
+      createdAt,
+      threadId,
+      role,
+      const DeepCollectionEquality().hash(_content),
+      const DeepCollectionEquality().hash(_fileIds),
+      assistantId,
+      runId,
+      const DeepCollectionEquality().hash(_metadata));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThreadMessageImplCopyWith<_$ThreadMessageImpl> get copyWith =>
+      __$$ThreadMessageImplCopyWithImpl<_$ThreadMessageImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ThreadMessageImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ThreadMessage implements ThreadMessage {
+  const factory _ThreadMessage(
+      {required final String id,
+      final String object,
+      required final int createdAt,
+      required final String threadId,
+      required final String role,
+      required final List<Content> content,
+      final List<String> fileIds,
+      final String? assistantId,
+      final String? runId,
+      final Map<String, dynamic> metadata}) = _$ThreadMessageImpl;
+
+  factory _ThreadMessage.fromJson(Map<String, dynamic> json) =
+      _$ThreadMessageImpl.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get object;
+  @override
+  int get createdAt;
+  @override
+  String get threadId;
+  @override
+  String get role;
+  @override
+  List<Content> get content;
+  @override
+  List<String> get fileIds;
+  @override
+  String? get assistantId;
+  @override
+  String? get runId;
+  @override
+  Map<String, dynamic> get metadata;
+  @override
+  @JsonKey(ignore: true)
+  _$$ThreadMessageImplCopyWith<_$ThreadMessageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Content _$ContentFromJson(Map<String, dynamic> json) {
+  return _Content.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Content {
+  String get type => throw _privateConstructorUsedError;
+  Text get text => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ContentCopyWith<Content> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ContentCopyWith<$Res> {
+  factory $ContentCopyWith(Content value, $Res Function(Content) then) =
+      _$ContentCopyWithImpl<$Res, Content>;
+  @useResult
+  $Res call({String type, Text text});
+
+  $TextCopyWith<$Res> get text;
+}
+
+/// @nodoc
+class _$ContentCopyWithImpl<$Res, $Val extends Content>
+    implements $ContentCopyWith<$Res> {
+  _$ContentCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? text = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as Text,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TextCopyWith<$Res> get text {
+    return $TextCopyWith<$Res>(_value.text, (value) {
+      return _then(_value.copyWith(text: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ContentImplCopyWith<$Res> implements $ContentCopyWith<$Res> {
+  factory _$$ContentImplCopyWith(
+          _$ContentImpl value, $Res Function(_$ContentImpl) then) =
+      __$$ContentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String type, Text text});
+
+  @override
+  $TextCopyWith<$Res> get text;
+}
+
+/// @nodoc
+class __$$ContentImplCopyWithImpl<$Res>
+    extends _$ContentCopyWithImpl<$Res, _$ContentImpl>
+    implements _$$ContentImplCopyWith<$Res> {
+  __$$ContentImplCopyWithImpl(
+      _$ContentImpl _value, $Res Function(_$ContentImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? text = null,
+  }) {
+    return _then(_$ContentImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as Text,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ContentImpl implements _Content {
+  const _$ContentImpl({required this.type, required this.text});
+
+  factory _$ContentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ContentImplFromJson(json);
+
+  @override
+  final String type;
+  @override
+  final Text text;
+
+  @override
+  String toString() {
+    return 'Content(type: $type, text: $text)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContentImpl &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, type, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContentImplCopyWith<_$ContentImpl> get copyWith =>
+      __$$ContentImplCopyWithImpl<_$ContentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ContentImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Content implements Content {
+  const factory _Content(
+      {required final String type, required final Text text}) = _$ContentImpl;
+
+  factory _Content.fromJson(Map<String, dynamic> json) = _$ContentImpl.fromJson;
+
+  @override
+  String get type;
+  @override
+  Text get text;
+  @override
+  @JsonKey(ignore: true)
+  _$$ContentImplCopyWith<_$ContentImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Text _$TextFromJson(Map<String, dynamic> json) {
+  return _Text.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Text {
+  String get value => throw _privateConstructorUsedError;
+  List<dynamic> get annotations => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TextCopyWith<Text> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TextCopyWith<$Res> {
+  factory $TextCopyWith(Text value, $Res Function(Text) then) =
+      _$TextCopyWithImpl<$Res, Text>;
+  @useResult
+  $Res call({String value, List<dynamic> annotations});
+}
+
+/// @nodoc
+class _$TextCopyWithImpl<$Res, $Val extends Text>
+    implements $TextCopyWith<$Res> {
+  _$TextCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+    Object? annotations = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      annotations: null == annotations
+          ? _value.annotations
+          : annotations // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TextImplCopyWith<$Res> implements $TextCopyWith<$Res> {
+  factory _$$TextImplCopyWith(
+          _$TextImpl value, $Res Function(_$TextImpl) then) =
+      __$$TextImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String value, List<dynamic> annotations});
+}
+
+/// @nodoc
+class __$$TextImplCopyWithImpl<$Res>
+    extends _$TextCopyWithImpl<$Res, _$TextImpl>
+    implements _$$TextImplCopyWith<$Res> {
+  __$$TextImplCopyWithImpl(_$TextImpl _value, $Res Function(_$TextImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+    Object? annotations = null,
+  }) {
+    return _then(_$TextImpl(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      annotations: null == annotations
+          ? _value._annotations
+          : annotations // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TextImpl implements _Text {
+  const _$TextImpl(
+      {required this.value, final List<dynamic> annotations = const []})
+      : _annotations = annotations;
+
+  factory _$TextImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TextImplFromJson(json);
+
+  @override
+  final String value;
+  final List<dynamic> _annotations;
+  @override
+  @JsonKey()
+  List<dynamic> get annotations {
+    if (_annotations is EqualUnmodifiableListView) return _annotations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_annotations);
+  }
+
+  @override
+  String toString() {
+    return 'Text(value: $value, annotations: $annotations)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TextImpl &&
+            (identical(other.value, value) || other.value == value) &&
+            const DeepCollectionEquality()
+                .equals(other._annotations, _annotations));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, value, const DeepCollectionEquality().hash(_annotations));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TextImplCopyWith<_$TextImpl> get copyWith =>
+      __$$TextImplCopyWithImpl<_$TextImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TextImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Text implements Text {
+  const factory _Text(
+      {required final String value,
+      final List<dynamic> annotations}) = _$TextImpl;
+
+  factory _Text.fromJson(Map<String, dynamic> json) = _$TextImpl.fromJson;
+
+  @override
+  String get value;
+  @override
+  List<dynamic> get annotations;
+  @override
+  @JsonKey(ignore: true)
+  _$$TextImplCopyWith<_$TextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

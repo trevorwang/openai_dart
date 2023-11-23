@@ -15,4 +15,4 @@ export 'src/model.dart';
 export 'package:cancellation_token_http/http.dart'
     show CancellationToken, CancelledException, TimeoutCancellationToken;
 export 'src/thread/thread.dart';
-export 'src/thread/thread_create.dart';
+export 'src/thread/thread_requests.dart';
