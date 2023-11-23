@@ -6,6 +6,37 @@ part of 'thread_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$ThreadMessagesResponseImpl _$$ThreadMessagesResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ThreadMessagesResponseImpl(
+      object: json['object'] as String? ?? 'list',
+      data: (json['data'] as List<dynamic>)
+          .map((e) => ThreadMessage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      firstId: json['first_id'] as String?,
+      lastId: json['last_id'] as String?,
+      hasMore: json['has_more'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$ThreadMessagesResponseImplToJson(
+    _$ThreadMessagesResponseImpl instance) {
+  final val = <String, dynamic>{
+    'object': instance.object,
+    'data': instance.data.map((e) => e.toJson()).toList(),
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('first_id', instance.firstId);
+  writeNotNull('last_id', instance.lastId);
+  val['has_more'] = instance.hasMore;
+  return val;
+}
+
 _$ThreadMessageImpl _$$ThreadMessageImplFromJson(Map<String, dynamic> json) =>
     _$ThreadMessageImpl(
       id: json['id'] as String,

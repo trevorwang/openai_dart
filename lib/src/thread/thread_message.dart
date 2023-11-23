@@ -1,7 +1,22 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'thread_message.freezed.dart';
+
 part 'thread_message.g.dart';
+
+@freezed
+class ThreadMessagesResponse with _$ThreadMessagesResponse {
+  const factory ThreadMessagesResponse({
+    @Default('list') String object,
+    required List<ThreadMessage> data,
+    String? firstId,
+    String? lastId,
+    @Default(false) bool hasMore,
+  }) = _ThreadMessagesResponse;
+
+  factory ThreadMessagesResponse.fromJson(Map<String, dynamic> json) =>
+      _$ThreadMessagesResponseFromJson(json);
+}
 
 @freezed
 class ThreadMessage with _$ThreadMessage {
