@@ -22,7 +22,11 @@ TranscriptionRequest _$TranscriptionRequestFromJson(Map<String, dynamic> json) {
 mixin _$TranscriptionRequest {
   /// The audio file to transcribe, in one of these formats: mp3, mp4, mpeg,
   /// mpga, m4a, wav, or webm.
-  String get file => throw _privateConstructorUsedError;
+  String? get file => throw _privateConstructorUsedError;
+
+  /// Bytes array from data buffer with format, which is one of these: mp3, mp4, mpeg,
+  /// mpga, m4a, wav, or webm.
+  BufferedBytes? get bufferedBytes => throw _privateConstructorUsedError;
 
   /// ID of the model to use. Only [Models.whisper_1] is currently available.
   String get model => throw _privateConstructorUsedError;
@@ -60,12 +64,15 @@ abstract class $TranscriptionRequestCopyWith<$Res> {
       _$TranscriptionRequestCopyWithImpl<$Res, TranscriptionRequest>;
   @useResult
   $Res call(
-      {String file,
+      {String? file,
+      BufferedBytes? bufferedBytes,
       String model,
       String? prompt,
       String? responseFormat,
       double? temperature,
       String? language});
+
+  $BufferedBytesCopyWith<$Res>? get bufferedBytes;
 }
 
 /// @nodoc
@@ -82,7 +89,8 @@ class _$TranscriptionRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? file = null,
+    Object? file = freezed,
+    Object? bufferedBytes = freezed,
     Object? model = null,
     Object? prompt = freezed,
     Object? responseFormat = freezed,
@@ -90,10 +98,14 @@ class _$TranscriptionRequestCopyWithImpl<$Res,
     Object? language = freezed,
   }) {
     return _then(_value.copyWith(
-      file: null == file
+      file: freezed == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      bufferedBytes: freezed == bufferedBytes
+          ? _value.bufferedBytes
+          : bufferedBytes // ignore: cast_nullable_to_non_nullable
+              as BufferedBytes?,
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
@@ -116,6 +128,18 @@ class _$TranscriptionRequestCopyWithImpl<$Res,
               as String?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BufferedBytesCopyWith<$Res>? get bufferedBytes {
+    if (_value.bufferedBytes == null) {
+      return null;
+    }
+
+    return $BufferedBytesCopyWith<$Res>(_value.bufferedBytes!, (value) {
+      return _then(_value.copyWith(bufferedBytes: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -128,12 +152,16 @@ abstract class _$$AudioTranscriptionRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String file,
+      {String? file,
+      BufferedBytes? bufferedBytes,
       String model,
       String? prompt,
       String? responseFormat,
       double? temperature,
       String? language});
+
+  @override
+  $BufferedBytesCopyWith<$Res>? get bufferedBytes;
 }
 
 /// @nodoc
@@ -149,7 +177,8 @@ class __$$AudioTranscriptionRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? file = null,
+    Object? file = freezed,
+    Object? bufferedBytes = freezed,
     Object? model = null,
     Object? prompt = freezed,
     Object? responseFormat = freezed,
@@ -157,10 +186,14 @@ class __$$AudioTranscriptionRequestImplCopyWithImpl<$Res>
     Object? language = freezed,
   }) {
     return _then(_$AudioTranscriptionRequestImpl(
-      file: null == file
+      file: freezed == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      bufferedBytes: freezed == bufferedBytes
+          ? _value.bufferedBytes
+          : bufferedBytes // ignore: cast_nullable_to_non_nullable
+              as BufferedBytes?,
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
@@ -189,7 +222,8 @@ class __$$AudioTranscriptionRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AudioTranscriptionRequestImpl implements _AudioTranscriptionRequest {
   const _$AudioTranscriptionRequestImpl(
-      {required this.file,
+      {this.file,
+      this.bufferedBytes,
       this.model = Models.whisper_1,
       this.prompt,
       this.responseFormat,
@@ -202,7 +236,12 @@ class _$AudioTranscriptionRequestImpl implements _AudioTranscriptionRequest {
   /// The audio file to transcribe, in one of these formats: mp3, mp4, mpeg,
   /// mpga, m4a, wav, or webm.
   @override
-  final String file;
+  final String? file;
+
+  /// Bytes array from data buffer with format, which is one of these: mp3, mp4, mpeg,
+  /// mpga, m4a, wav, or webm.
+  @override
+  final BufferedBytes? bufferedBytes;
 
   /// ID of the model to use. Only [Models.whisper_1] is currently available.
   @override
@@ -235,7 +274,7 @@ class _$AudioTranscriptionRequestImpl implements _AudioTranscriptionRequest {
 
   @override
   String toString() {
-    return 'TranscriptionRequest(file: $file, model: $model, prompt: $prompt, responseFormat: $responseFormat, temperature: $temperature, language: $language)';
+    return 'TranscriptionRequest(file: $file, bufferedBytes: $bufferedBytes, model: $model, prompt: $prompt, responseFormat: $responseFormat, temperature: $temperature, language: $language)';
   }
 
   @override
@@ -244,6 +283,8 @@ class _$AudioTranscriptionRequestImpl implements _AudioTranscriptionRequest {
         (other.runtimeType == runtimeType &&
             other is _$AudioTranscriptionRequestImpl &&
             (identical(other.file, file) || other.file == file) &&
+            (identical(other.bufferedBytes, bufferedBytes) ||
+                other.bufferedBytes == bufferedBytes) &&
             (identical(other.model, model) || other.model == model) &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
             (identical(other.responseFormat, responseFormat) ||
@@ -256,8 +297,8 @@ class _$AudioTranscriptionRequestImpl implements _AudioTranscriptionRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, file, model, prompt, responseFormat, temperature, language);
+  int get hashCode => Object.hash(runtimeType, file, bufferedBytes, model,
+      prompt, responseFormat, temperature, language);
 
   @JsonKey(ignore: true)
   @override
@@ -276,7 +317,8 @@ class _$AudioTranscriptionRequestImpl implements _AudioTranscriptionRequest {
 
 abstract class _AudioTranscriptionRequest implements TranscriptionRequest {
   const factory _AudioTranscriptionRequest(
-      {required final String file,
+      {final String? file,
+      final BufferedBytes? bufferedBytes,
       final String model,
       final String? prompt,
       final String? responseFormat,
@@ -290,7 +332,12 @@ abstract class _AudioTranscriptionRequest implements TranscriptionRequest {
 
   /// The audio file to transcribe, in one of these formats: mp3, mp4, mpeg,
   /// mpga, m4a, wav, or webm.
-  String get file;
+  String? get file;
+  @override
+
+  /// Bytes array from data buffer with format, which is one of these: mp3, mp4, mpeg,
+  /// mpga, m4a, wav, or webm.
+  BufferedBytes? get bufferedBytes;
   @override
 
   /// ID of the model to use. Only [Models.whisper_1] is currently available.
@@ -325,35 +372,36 @@ abstract class _AudioTranscriptionRequest implements TranscriptionRequest {
       get copyWith => throw _privateConstructorUsedError;
 }
 
-TrascriptionResponse _$TrascriptionResponseFromJson(Map<String, dynamic> json) {
+TranscriptionResponse _$TranscriptionResponseFromJson(
+    Map<String, dynamic> json) {
   return _TranscriptionResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TrascriptionResponse {
+mixin _$TranscriptionResponse {
   /// The converted text.
   String get text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TrascriptionResponseCopyWith<TrascriptionResponse> get copyWith =>
+  $TranscriptionResponseCopyWith<TranscriptionResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrascriptionResponseCopyWith<$Res> {
-  factory $TrascriptionResponseCopyWith(TrascriptionResponse value,
-          $Res Function(TrascriptionResponse) then) =
-      _$TrascriptionResponseCopyWithImpl<$Res, TrascriptionResponse>;
+abstract class $TranscriptionResponseCopyWith<$Res> {
+  factory $TranscriptionResponseCopyWith(TranscriptionResponse value,
+          $Res Function(TranscriptionResponse) then) =
+      _$TranscriptionResponseCopyWithImpl<$Res, TranscriptionResponse>;
   @useResult
   $Res call({String text});
 }
 
 /// @nodoc
-class _$TrascriptionResponseCopyWithImpl<$Res,
-        $Val extends TrascriptionResponse>
-    implements $TrascriptionResponseCopyWith<$Res> {
-  _$TrascriptionResponseCopyWithImpl(this._value, this._then);
+class _$TranscriptionResponseCopyWithImpl<$Res,
+        $Val extends TranscriptionResponse>
+    implements $TranscriptionResponseCopyWith<$Res> {
+  _$TranscriptionResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -376,7 +424,7 @@ class _$TrascriptionResponseCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$TranscriptionResponseImplCopyWith<$Res>
-    implements $TrascriptionResponseCopyWith<$Res> {
+    implements $TranscriptionResponseCopyWith<$Res> {
   factory _$$TranscriptionResponseImplCopyWith(
           _$TranscriptionResponseImpl value,
           $Res Function(_$TranscriptionResponseImpl) then) =
@@ -388,7 +436,7 @@ abstract class _$$TranscriptionResponseImplCopyWith<$Res>
 
 /// @nodoc
 class __$$TranscriptionResponseImplCopyWithImpl<$Res>
-    extends _$TrascriptionResponseCopyWithImpl<$Res,
+    extends _$TranscriptionResponseCopyWithImpl<$Res,
         _$TranscriptionResponseImpl>
     implements _$$TranscriptionResponseImplCopyWith<$Res> {
   __$$TranscriptionResponseImplCopyWithImpl(_$TranscriptionResponseImpl _value,
@@ -423,7 +471,7 @@ class _$TranscriptionResponseImpl implements _TranscriptionResponse {
 
   @override
   String toString() {
-    return 'TrascriptionResponse(text: $text)';
+    return 'TranscriptionResponse(text: $text)';
   }
 
   @override
@@ -453,7 +501,7 @@ class _$TranscriptionResponseImpl implements _TranscriptionResponse {
   }
 }
 
-abstract class _TranscriptionResponse implements TrascriptionResponse {
+abstract class _TranscriptionResponse implements TranscriptionResponse {
   const factory _TranscriptionResponse({required final String text}) =
       _$TranscriptionResponseImpl;
 
@@ -468,4 +516,178 @@ abstract class _TranscriptionResponse implements TrascriptionResponse {
   @JsonKey(ignore: true)
   _$$TranscriptionResponseImplCopyWith<_$TranscriptionResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+BufferedBytes _$BufferedBytesFromJson(Map<String, dynamic> json) {
+  return _BufferedBytes.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BufferedBytes {
+  /// Must be: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+  String get format => throw _privateConstructorUsedError;
+
+  /// Audio bytes array
+  List<int> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BufferedBytesCopyWith<BufferedBytes> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BufferedBytesCopyWith<$Res> {
+  factory $BufferedBytesCopyWith(
+          BufferedBytes value, $Res Function(BufferedBytes) then) =
+      _$BufferedBytesCopyWithImpl<$Res, BufferedBytes>;
+  @useResult
+  $Res call({String format, List<int> data});
+}
+
+/// @nodoc
+class _$BufferedBytesCopyWithImpl<$Res, $Val extends BufferedBytes>
+    implements $BufferedBytesCopyWith<$Res> {
+  _$BufferedBytesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? format = null,
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      format: null == format
+          ? _value.format
+          : format // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BufferedBytesImplCopyWith<$Res>
+    implements $BufferedBytesCopyWith<$Res> {
+  factory _$$BufferedBytesImplCopyWith(
+          _$BufferedBytesImpl value, $Res Function(_$BufferedBytesImpl) then) =
+      __$$BufferedBytesImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String format, List<int> data});
+}
+
+/// @nodoc
+class __$$BufferedBytesImplCopyWithImpl<$Res>
+    extends _$BufferedBytesCopyWithImpl<$Res, _$BufferedBytesImpl>
+    implements _$$BufferedBytesImplCopyWith<$Res> {
+  __$$BufferedBytesImplCopyWithImpl(
+      _$BufferedBytesImpl _value, $Res Function(_$BufferedBytesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? format = null,
+    Object? data = null,
+  }) {
+    return _then(_$BufferedBytesImpl(
+      format: null == format
+          ? _value.format
+          : format // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BufferedBytesImpl implements _BufferedBytes {
+  const _$BufferedBytesImpl(
+      {required this.format, required final List<int> data})
+      : _data = data;
+
+  factory _$BufferedBytesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BufferedBytesImplFromJson(json);
+
+  /// Must be: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+  @override
+  final String format;
+
+  /// Audio bytes array
+  final List<int> _data;
+
+  /// Audio bytes array
+  @override
+  List<int> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'BufferedBytes(format: $format, data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BufferedBytesImpl &&
+            (identical(other.format, format) || other.format == format) &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, format, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BufferedBytesImplCopyWith<_$BufferedBytesImpl> get copyWith =>
+      __$$BufferedBytesImplCopyWithImpl<_$BufferedBytesImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BufferedBytesImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BufferedBytes implements BufferedBytes {
+  const factory _BufferedBytes(
+      {required final String format,
+      required final List<int> data}) = _$BufferedBytesImpl;
+
+  factory _BufferedBytes.fromJson(Map<String, dynamic> json) =
+      _$BufferedBytesImpl.fromJson;
+
+  @override
+
+  /// Must be: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
+  String get format;
+  @override
+
+  /// Audio bytes array
+  List<int> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$BufferedBytesImplCopyWith<_$BufferedBytesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
