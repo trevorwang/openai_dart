@@ -236,13 +236,15 @@ Map<String, dynamic> _$$ChatCompletionUsageImplToJson(
 
 _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
     _$ChatMessageImpl(
-      content: json['content'] as String?,
+      content: json['content'],
       name: json['name'] as String?,
-      role: $enumDecode(_$ChatMessageRoleEnumMap, json['role']),
+      role: $enumDecodeNullable(_$ChatMessageRoleEnumMap, json['role']) ??
+          ChatMessageRole.system,
       toolCalls: (json['tool_calls'] as List<dynamic>?)
           ?.map((e) => MessageToolCall.fromJson(e as Map<String, dynamic>))
           .toList(),
       functionCall: json['function_call'],
+      toolCallId: json['tool_call_id'] as String?,
     );
 
 Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) {
@@ -260,6 +262,7 @@ Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) {
   writeNotNull(
       'tool_calls', instance.toolCalls?.map((e) => e.toJson()).toList());
   writeNotNull('function_call', instance.functionCall);
+  writeNotNull('tool_call_id', instance.toolCallId);
   return val;
 }
 
@@ -270,6 +273,49 @@ const _$ChatMessageRoleEnumMap = {
   ChatMessageRole.tool: 'tool',
   ChatMessageRole.user: 'user',
 };
+
+_$TextContentImpl _$$TextContentImplFromJson(Map<String, dynamic> json) =>
+    _$TextContentImpl(
+      text: json['text'] as String,
+      type: $enumDecodeNullable(_$MessageContentTypeEnumMap, json['type']) ??
+          MessageContentType.text,
+    );
+
+Map<String, dynamic> _$$TextContentImplToJson(_$TextContentImpl instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+      'type': _$MessageContentTypeEnumMap[instance.type]!,
+    };
+
+const _$MessageContentTypeEnumMap = {
+  MessageContentType.text: 'text',
+  MessageContentType.imageUrl: 'image_url',
+};
+
+_$ImageContentImpl _$$ImageContentImplFromJson(Map<String, dynamic> json) =>
+    _$ImageContentImpl(
+      imageUrl: ImageUrl.fromJson(json['image_url'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$MessageContentTypeEnumMap, json['type']) ??
+          MessageContentType.imageUrl,
+    );
+
+Map<String, dynamic> _$$ImageContentImplToJson(_$ImageContentImpl instance) =>
+    <String, dynamic>{
+      'image_url': instance.imageUrl.toJson(),
+      'type': _$MessageContentTypeEnumMap[instance.type]!,
+    };
+
+_$ImageUrlImpl _$$ImageUrlImplFromJson(Map<String, dynamic> json) =>
+    _$ImageUrlImpl(
+      url: json['url'] as String,
+      detail: json['detail'] as String? ?? "auto",
+    );
+
+Map<String, dynamic> _$$ImageUrlImplToJson(_$ImageUrlImpl instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'detail': instance.detail,
+    };
 
 _$MessageToolCallImpl _$$MessageToolCallImplFromJson(
         Map<String, dynamic> json) =>

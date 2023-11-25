@@ -161,17 +161,14 @@ void main() {
 
       final request =
           ChatCompletionRequest(model: Models.gpt4_1106VisonPreview, messages: [
-        SystemMessage(
-            content: "Hello, how are you?", role: ChatMessageRole.system),
-        UserMessage(content: [
+        ChatMessage.system(content: "Hello, how are you?"),
+        ChatMessage.user(content: [
           TextContent(text: "show me what you see in the following image"),
           ic,
         ]),
       ]);
-      await client.sendChatCompletionStream(request, onSuccess: (res) {
-        expect(true, false);
-        print(res.choices.first.delta?.content);
-      });
+      final result = await client.sendChatCompletion(request);
+      print(result);
     });
   });
 }
