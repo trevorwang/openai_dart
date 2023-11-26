@@ -308,14 +308,21 @@ Map<String, dynamic> _$$ImageContentImplToJson(_$ImageContentImpl instance) =>
 _$ImageUrlImpl _$$ImageUrlImplFromJson(Map<String, dynamic> json) =>
     _$ImageUrlImpl(
       url: json['url'] as String,
-      detail: json['detail'] as String? ?? "auto",
+      detail: $enumDecodeNullable(_$ImageDetailEnumMap, json['detail']) ??
+          ImageDetail.auto,
     );
 
 Map<String, dynamic> _$$ImageUrlImplToJson(_$ImageUrlImpl instance) =>
     <String, dynamic>{
       'url': instance.url,
-      'detail': instance.detail,
+      'detail': _$ImageDetailEnumMap[instance.detail]!,
     };
+
+const _$ImageDetailEnumMap = {
+  ImageDetail.auto: 'auto',
+  ImageDetail.low: 'low',
+  ImageDetail.high: 'high',
+};
 
 _$MessageToolCallImpl _$$MessageToolCallImplFromJson(
         Map<String, dynamic> json) =>

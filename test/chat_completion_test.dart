@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cancellation_token_http/http.dart';
 import 'package:cancellation_token_http/testing.dart';
@@ -151,14 +152,26 @@ void main() {
                 "https://pics0.baidu.com/feed/314e251f95cad1c84595a5ad29667204c83d51f7.jpeg@f_auto?token=8ad7fa4a5a222a9039b02f92114bfc07"),
       );
 
-      final request =
-          ChatCompletionRequest(model: Models.gpt4_1106VisonPreview, messages: [
-        ChatMessage.system(content: "Hello, how are you?"),
-        ChatMessage.user(content: [
-          TextContent(text: "show me what you see in the following image"),
-          ic,
-        ]),
-      ]);
+      final f = File("test/gpt4v-demo.webp");
+      final ic2 = ImageContent(
+          imageUrl: ImageUrl.base64(
+        image: f.readAsBytesSync(),
+      ));
+
+      final request = ChatCompletionRequest(
+          model: Models.gpt4_1106VisonPreview,
+          maxTokens: 500,
+          messages: [
+            ChatMessage.system(content: "Hello, how are you?"),
+            ChatMessage.user(content: [
+              TextContent(
+                text:
+                    "show me what you see in the following image? Are the two images the same?",
+              ),
+              ic,
+              ic2,
+            ]),
+          ]);
       final result = await proxyedClient.sendChatCompletion(request);
       print(result);
     });

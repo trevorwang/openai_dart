@@ -364,6 +364,28 @@ class ImageContent with _$ImageContent {
       _$ImageContentFromJson(json);
 }
 
+///By controlling the detail parameter, which has three options, low, high, or
+///auto, you have control over how the model processes the image and generates
+///its textual understanding. By default, the model will use the auto setting
+/// which will look at the image input size and decide if it should use the
+/// low or high setting.
+@JsonEnum(fieldRename: FieldRename.snake)
+enum ImageDetail {
+  auto,
+
+  /// low will disable the “high res” model. The model will receive a low-res
+  /// 512px x 512px version of the image, and represent the image with a budget
+  /// of 65 tokens. This allows the API to return faster responses and consume
+  /// fewer input tokens for use cases that do not require high detail.
+  low,
+
+  /// high will enable “high res” mode, which first allows the model to see the
+  /// low res image and then creates detailed crops of input images as 512px
+  /// squares based on the input image size. Each of the detailed crops uses
+  /// twice the token budget (65 tokens) for a total of 129 tokens.
+  high,
+}
+
 @freezed
 class ImageUrl with _$ImageUrl {
   const factory ImageUrl({
@@ -371,8 +393,16 @@ class ImageUrl with _$ImageUrl {
     required String url,
 
     /// Specifies the detail level of the image.
-    @Default("auto") String detail,
+    @Default(ImageDetail.auto) ImageDetail detail,
   }) = _ImageUrl;
+  factory ImageUrl.base64({
+    required List<int> image,
+    String mimeType = "image/jpeg",
+    ImageDetail detail = ImageDetail.auto,
+  }) {
+    final url = "data:$mimeType;base64,${base64Encode(image)}";
+    return ImageUrl(url: url, detail: detail);
+  }
 
   factory ImageUrl.fromJson(Map<String, dynamic> json) =>
       _$ImageUrlFromJson(json);

@@ -3096,7 +3096,7 @@ mixin _$ImageUrl {
   String get url => throw _privateConstructorUsedError;
 
   /// Specifies the detail level of the image.
-  String get detail => throw _privateConstructorUsedError;
+  ImageDetail get detail => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3109,7 +3109,7 @@ abstract class $ImageUrlCopyWith<$Res> {
   factory $ImageUrlCopyWith(ImageUrl value, $Res Function(ImageUrl) then) =
       _$ImageUrlCopyWithImpl<$Res, ImageUrl>;
   @useResult
-  $Res call({String url, String detail});
+  $Res call({String url, ImageDetail detail});
 }
 
 /// @nodoc
@@ -3136,7 +3136,7 @@ class _$ImageUrlCopyWithImpl<$Res, $Val extends ImageUrl>
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ImageDetail,
     ) as $Val);
   }
 }
@@ -3149,7 +3149,7 @@ abstract class _$$ImageUrlImplCopyWith<$Res>
       __$$ImageUrlImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String url, String detail});
+  $Res call({String url, ImageDetail detail});
 }
 
 /// @nodoc
@@ -3174,7 +3174,7 @@ class __$$ImageUrlImplCopyWithImpl<$Res>
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ImageDetail,
     ));
   }
 }
@@ -3182,7 +3182,7 @@ class __$$ImageUrlImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImageUrlImpl implements _ImageUrl {
-  const _$ImageUrlImpl({required this.url, this.detail = "auto"});
+  const _$ImageUrlImpl({required this.url, this.detail = ImageDetail.auto});
 
   factory _$ImageUrlImpl.fromJson(Map<String, dynamic> json) =>
       _$$ImageUrlImplFromJson(json);
@@ -3194,7 +3194,7 @@ class _$ImageUrlImpl implements _ImageUrl {
   /// Specifies the detail level of the image.
   @override
   @JsonKey()
-  final String detail;
+  final ImageDetail detail;
 
   @override
   String toString() {
@@ -3229,8 +3229,8 @@ class _$ImageUrlImpl implements _ImageUrl {
 }
 
 abstract class _ImageUrl implements ImageUrl {
-  const factory _ImageUrl({required final String url, final String detail}) =
-      _$ImageUrlImpl;
+  const factory _ImageUrl(
+      {required final String url, final ImageDetail detail}) = _$ImageUrlImpl;
 
   factory _ImageUrl.fromJson(Map<String, dynamic> json) =
       _$ImageUrlImpl.fromJson;
@@ -3242,7 +3242,7 @@ abstract class _ImageUrl implements ImageUrl {
   @override
 
   /// Specifies the detail level of the image.
-  String get detail;
+  ImageDetail get detail;
   @override
   @JsonKey(ignore: true)
   _$$ImageUrlImplCopyWith<_$ImageUrlImpl> get copyWith =>
