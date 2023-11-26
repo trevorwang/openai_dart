@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:openai_api/openai_api.dart';
+import 'env.dart';
+
 Stream<List<int>> stream() async* {
   yield utf8.encode(
       'data: {"id":"chatcmpl-6wOurEnHtKLEa5Wes76Ix81gZOWY9","object":"chat.completion.chunk","created":1679376821,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"role":"assistant"},"index":0,"finish_reason":null}]}');
@@ -40,3 +43,11 @@ Stream<List<int>> streamError() async* {
 
   yield utf8.encode(error);
 }
+
+final proxyedClient = OpenaiClient(
+  config: OpenaiConfig(
+    apiKey: Env.apiKey,
+    baseUrl: Env.baseUrl,
+    httpProxy: Env.httpProxy,
+  ),
+);

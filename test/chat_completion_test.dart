@@ -5,7 +5,6 @@ import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
 
-import 'env.dart';
 import 'utils.dart';
 
 void main() {
@@ -146,13 +145,6 @@ void main() {
     });
 
     test("gpt4-version", skip: "Manual test only", () async {
-      final client = OpenaiClient(
-        config: OpenaiConfig(
-          apiKey: Env.apiKey,
-          baseUrl: Env.baseUrl,
-          httpProxy: Env.httpProxy,
-        ),
-      );
       final ic = ImageContent(
         imageUrl: ImageUrl(
             url:
@@ -167,7 +159,7 @@ void main() {
           ic,
         ]),
       ]);
-      final result = await client.sendChatCompletion(request);
+      final result = await proxyedClient.sendChatCompletion(request);
       print(result);
     });
   });
