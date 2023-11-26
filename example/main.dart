@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:openai_api/openai_api.dart';
-import 'package:openai_api/src/audio/speech.dart';
-import 'package:openai_api/src/chat/message.dart';
 
 import 'lib/env.dart';
 
@@ -99,7 +97,7 @@ void chatCompletionStsream(OpenaiClient client) {
       maxTokens: 2000,
       stream: true,
       messages: [
-        UserMessage(
+        ChatMessage.user(
           content: "show me golang code sample here",
         ),
       ],

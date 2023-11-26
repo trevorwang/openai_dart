@@ -1,11 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cancellation_token_http/http.dart';
 import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
 
-import 'env.dart';
 import 'utils.dart';
 
 void main() {
@@ -146,32 +146,34 @@ void main() {
     });
 
     test("gpt4-version", skip: "Manual test only", () async {
-      final client = OpenaiClient(
-        config: OpenaiConfig(
-          apiKey: Env.apiKey,
-          baseUrl: Env.baseUrl,
-          httpProxy: Env.httpProxy,
-        ),
-      );
       final ic = ImageContent(
         imageUrl: ImageUrl(
             url:
                 "https://pics0.baidu.com/feed/314e251f95cad1c84595a5ad29667204c83d51f7.jpeg@f_auto?token=8ad7fa4a5a222a9039b02f92114bfc07"),
       );
 
-      final request =
-          ChatCompletionRequest(model: Models.gpt4_1106VisonPreview, messages: [
-        SystemMessage(
-            content: "Hello, how are you?", role: ChatMessageRole.system),
-        UserMessage(content: [
-          TextContent(text: "show me what you see in the following image"),
-          ic,
-        ]),
-      ]);
-      await client.sendChatCompletionStream(request, onSuccess: (res) {
-        expect(true, false);
-        print(res.choices.first.delta?.content);
-      });
+      final f = File("test/gpt4v-demo.webp");
+      final ic2 = ImageContent(
+          imageUrl: ImageUrl.base64(
+        image: f.readAsBytesSync(),
+      ));
+
+      final request = ChatCompletionRequest(
+          model: Models.gpt4_1106VisonPreview,
+          maxTokens: 500,
+          messages: [
+            ChatMessage.system(content: "Hello, how are you?"),
+            ChatMessage.user(content: [
+              TextContent(
+                text:
+                    "show me what you see in the following image? Are the two images the same?",
+              ),
+              ic,
+              ic2,
+            ]),
+          ]);
+      final result = await proxyedClient.sendChatCompletion(request);
+      print(result);
     });
   });
 }

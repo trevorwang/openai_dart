@@ -4,7 +4,6 @@ export 'src/audio/speech.dart';
 export 'src/audio/transcription.dart';
 export 'src/audio/translation.dart';
 export 'src/chat/completion.dart';
-export 'src/chat/message.dart';
 export 'src/client.dart';
 export 'src/config.dart';
 export 'src/constants.dart';
