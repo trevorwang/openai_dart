@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.6
+
+- Introduce Assistant API https://platform.openai.com/docs/assistants/overview
+
 ## 0.3.0
 
 - Support GPT4 version
