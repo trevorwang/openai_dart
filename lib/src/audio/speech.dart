@@ -1,6 +1,7 @@
 import 'package:cancellation_token_http/http.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openai_api/openai_api.dart';
+import '../client.dart';
+import '../constants.dart';
 
 part 'speech.freezed.dart';
 part 'speech.g.dart';

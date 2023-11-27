@@ -1,5 +1,8 @@
 import 'package:cancellation_token_http/http.dart' hide get;
-import 'package:openai_api/openai_api.dart';
+
+import '../chat/completion.dart';
+import '../client.dart';
+import 'exports.dart';
 
 extension ThreadCreate on OpenaiClient {
   Future<Thread> createThread({CancellationToken? cancellationToken}) async {

@@ -3,7 +3,9 @@ import 'dart:io';
 
 import 'package:cancellation_token_http/http.dart' as http;
 import 'package:cancellation_token_http/io_client.dart';
-import 'package:openai_api/openai_api.dart';
+
+import 'config.dart';
+import 'errors.dart';
 
 const dataPrefix = "data: ";
 
