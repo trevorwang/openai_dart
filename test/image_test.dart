@@ -2,19 +2,10 @@ import 'package:cancellation_token_http/http.dart';
 import 'package:cancellation_token_http/testing.dart';
 import 'package:openai_api/openai_api.dart';
 import 'package:test/test.dart';
-
-import 'env.dart';
+import 'utils.dart';
 
 void main() {
   group('image', () {
-    final client = OpenaiClient(
-      config: OpenaiConfig(
-        apiKey: Env.apiKey,
-        httpProxy: Env.httpProxy,
-        baseUrl: Env.baseUrl,
-      ),
-    );
-
     test('generation', () async {
       final client = OpenaiClient(
           config: OpenaiConfig(apiKey: "xxx"),
@@ -71,8 +62,8 @@ void main() {
     });
 
     test("generate image", skip: "Manual test only", () async {
-      final res = await client.createImage(ImageRequest(
-          prompt: "一直贵宾犬开着直升机在悬崖旁边就一个小朋友,卡通,3d,暴雨,", model: Models.dallE3));
+      final res = await proxyedClient.createImage(
+          ImageRequest(prompt: "ByteDance 大裁员，生成一张图片", model: Models.dallE3));
       print(res.toJson());
       expect(res.created, isNotNull);
     });
