@@ -194,7 +194,7 @@ class ToolChoice with _$ToolChoice {
 class ChatTool with _$ChatTool {
   const factory ChatTool({
     /// The type of the tool. Currently, only `function` is supported.
-    required String type,
+    @Default("function") String type,
     required ChatFunction function,
   }) = _ChatTool;
 
@@ -318,11 +318,13 @@ class ChatMessage with _$ChatMessage {
   factory ChatMessage.tool({
     required String content,
     required String toolCallId,
+    String? name,
   }) =>
       ChatMessage(
         role: ChatMessageRole.tool,
         content: content,
         toolCallId: toolCallId,
+        name: name,
       );
   factory ChatMessage.user({
     required dynamic content,
@@ -437,7 +439,7 @@ class ChatFunctionCall with _$ChatFunctionCall {
     /// JSON format. Note that the model does not always generate valid JSON,
     /// and may hallucinate parameters not defined by your function schema.
     /// Validate the arguments in your code before calling your function.
-    required Map<String, dynamic> arguments,
+    required String arguments,
   }) = _ChatFunctionCall;
   factory ChatFunctionCall.fromJson(Map<String, Object?> json) =>
       _$ChatFunctionCallFromJson(json);

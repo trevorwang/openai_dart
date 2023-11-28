@@ -173,7 +173,7 @@ Map<String, dynamic> _$$ToolChoiceImplToJson(_$ToolChoiceImpl instance) {
 
 _$ChatToolImpl _$$ChatToolImplFromJson(Map<String, dynamic> json) =>
     _$ChatToolImpl(
-      type: json['type'] as String,
+      type: json['type'] as String? ?? "function",
       function: ChatFunction.fromJson(json['function'] as Map<String, dynamic>),
     );
 
@@ -355,7 +355,7 @@ _$ChatFunctionCallImpl _$$ChatFunctionCallImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatFunctionCallImpl(
       name: json['name'] as String,
-      arguments: json['arguments'] as Map<String, dynamic>,
+      arguments: json['arguments'] as String,
     );
 
 Map<String, dynamic> _$$ChatFunctionCallImplToJson(
