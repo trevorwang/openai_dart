@@ -82,7 +82,7 @@ Map<String, dynamic> _$$ThreadMessageImplToJson(_$ThreadMessageImpl instance) {
 _$ContentImpl _$$ContentImplFromJson(Map<String, dynamic> json) =>
     _$ContentImpl(
       type: json['type'] as String,
-      text: TextContent.fromJson(json['text'] as Map<String, dynamic>),
+      text: ContentText.fromJson(json['text'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ContentImplToJson(_$ContentImpl instance) =>
@@ -91,13 +91,13 @@ Map<String, dynamic> _$$ContentImplToJson(_$ContentImpl instance) =>
       'text': instance.text.toJson(),
     };
 
-_$TextContentImpl _$$TextContentImplFromJson(Map<String, dynamic> json) =>
-    _$TextContentImpl(
+_$ContentTextImpl _$$ContentTextImplFromJson(Map<String, dynamic> json) =>
+    _$ContentTextImpl(
       value: json['value'] as String,
       annotations: json['annotations'] as List<dynamic>? ?? const [],
     );
 
-Map<String, dynamic> _$$TextContentImplToJson(_$TextContentImpl instance) =>
+Map<String, dynamic> _$$ContentTextImplToJson(_$ContentTextImpl instance) =>
     <String, dynamic>{
       'value': instance.value,
       'annotations': instance.annotations,

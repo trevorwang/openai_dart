@@ -679,7 +679,7 @@ mixin _$Content {
   String get type => throw _privateConstructorUsedError;
 
   /// The actual text content, along with optional annotations.
-  TextContent get text => throw _privateConstructorUsedError;
+  ContentText get text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -691,9 +691,9 @@ abstract class $ContentCopyWith<$Res> {
   factory $ContentCopyWith(Content value, $Res Function(Content) then) =
       _$ContentCopyWithImpl<$Res, Content>;
   @useResult
-  $Res call({String type, TextContent text});
+  $Res call({String type, ContentText text});
 
-  $TextContentCopyWith<$Res> get text;
+  $ContentTextCopyWith<$Res> get text;
 }
 
 /// @nodoc
@@ -720,14 +720,14 @@ class _$ContentCopyWithImpl<$Res, $Val extends Content>
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as TextContent,
+              as ContentText,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TextContentCopyWith<$Res> get text {
-    return $TextContentCopyWith<$Res>(_value.text, (value) {
+  $ContentTextCopyWith<$Res> get text {
+    return $ContentTextCopyWith<$Res>(_value.text, (value) {
       return _then(_value.copyWith(text: value) as $Val);
     });
   }
@@ -740,10 +740,10 @@ abstract class _$$ContentImplCopyWith<$Res> implements $ContentCopyWith<$Res> {
       __$$ContentImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String type, TextContent text});
+  $Res call({String type, ContentText text});
 
   @override
-  $TextContentCopyWith<$Res> get text;
+  $ContentTextCopyWith<$Res> get text;
 }
 
 /// @nodoc
@@ -768,7 +768,7 @@ class __$$ContentImplCopyWithImpl<$Res>
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as TextContent,
+              as ContentText,
     ));
   }
 }
@@ -787,7 +787,7 @@ class _$ContentImpl implements _Content {
 
   /// The actual text content, along with optional annotations.
   @override
-  final TextContent text;
+  final ContentText text;
 
   @override
   String toString() {
@@ -824,7 +824,7 @@ class _$ContentImpl implements _Content {
 abstract class _Content implements Content {
   const factory _Content(
       {required final String type,
-      required final TextContent text}) = _$ContentImpl;
+      required final ContentText text}) = _$ContentImpl;
 
   factory _Content.fromJson(Map<String, dynamic> json) = _$ContentImpl.fromJson;
 
@@ -835,19 +835,19 @@ abstract class _Content implements Content {
   @override
 
   /// The actual text content, along with optional annotations.
-  TextContent get text;
+  ContentText get text;
   @override
   @JsonKey(ignore: true)
   _$$ContentImplCopyWith<_$ContentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-TextContent _$TextContentFromJson(Map<String, dynamic> json) {
-  return _TextContent.fromJson(json);
+ContentText _$ContentTextFromJson(Map<String, dynamic> json) {
+  return _ContentText.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TextContent {
+mixin _$ContentText {
   /// The value of the text content.
   String get value => throw _privateConstructorUsedError;
 
@@ -856,23 +856,23 @@ mixin _$TextContent {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TextContentCopyWith<TextContent> get copyWith =>
+  $ContentTextCopyWith<ContentText> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TextContentCopyWith<$Res> {
-  factory $TextContentCopyWith(
-          TextContent value, $Res Function(TextContent) then) =
-      _$TextContentCopyWithImpl<$Res, TextContent>;
+abstract class $ContentTextCopyWith<$Res> {
+  factory $ContentTextCopyWith(
+          ContentText value, $Res Function(ContentText) then) =
+      _$ContentTextCopyWithImpl<$Res, ContentText>;
   @useResult
   $Res call({String value, List<dynamic> annotations});
 }
 
 /// @nodoc
-class _$TextContentCopyWithImpl<$Res, $Val extends TextContent>
-    implements $TextContentCopyWith<$Res> {
-  _$TextContentCopyWithImpl(this._value, this._then);
+class _$ContentTextCopyWithImpl<$Res, $Val extends ContentText>
+    implements $ContentTextCopyWith<$Res> {
+  _$ContentTextCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -899,22 +899,22 @@ class _$TextContentCopyWithImpl<$Res, $Val extends TextContent>
 }
 
 /// @nodoc
-abstract class _$$TextContentImplCopyWith<$Res>
-    implements $TextContentCopyWith<$Res> {
-  factory _$$TextContentImplCopyWith(
-          _$TextContentImpl value, $Res Function(_$TextContentImpl) then) =
-      __$$TextContentImplCopyWithImpl<$Res>;
+abstract class _$$ContentTextImplCopyWith<$Res>
+    implements $ContentTextCopyWith<$Res> {
+  factory _$$ContentTextImplCopyWith(
+          _$ContentTextImpl value, $Res Function(_$ContentTextImpl) then) =
+      __$$ContentTextImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value, List<dynamic> annotations});
 }
 
 /// @nodoc
-class __$$TextContentImplCopyWithImpl<$Res>
-    extends _$TextContentCopyWithImpl<$Res, _$TextContentImpl>
-    implements _$$TextContentImplCopyWith<$Res> {
-  __$$TextContentImplCopyWithImpl(
-      _$TextContentImpl _value, $Res Function(_$TextContentImpl) _then)
+class __$$ContentTextImplCopyWithImpl<$Res>
+    extends _$ContentTextCopyWithImpl<$Res, _$ContentTextImpl>
+    implements _$$ContentTextImplCopyWith<$Res> {
+  __$$ContentTextImplCopyWithImpl(
+      _$ContentTextImpl _value, $Res Function(_$ContentTextImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -923,7 +923,7 @@ class __$$TextContentImplCopyWithImpl<$Res>
     Object? value = null,
     Object? annotations = null,
   }) {
-    return _then(_$TextContentImpl(
+    return _then(_$ContentTextImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -938,13 +938,13 @@ class __$$TextContentImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TextContentImpl implements _TextContent {
-  const _$TextContentImpl(
+class _$ContentTextImpl implements _ContentText {
+  const _$ContentTextImpl(
       {required this.value, final List<dynamic> annotations = const []})
       : _annotations = annotations;
 
-  factory _$TextContentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TextContentImplFromJson(json);
+  factory _$ContentTextImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ContentTextImplFromJson(json);
 
   /// The value of the text content.
   @override
@@ -964,14 +964,14 @@ class _$TextContentImpl implements _TextContent {
 
   @override
   String toString() {
-    return 'TextContent(value: $value, annotations: $annotations)';
+    return 'ContentText(value: $value, annotations: $annotations)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TextContentImpl &&
+            other is _$ContentTextImpl &&
             (identical(other.value, value) || other.value == value) &&
             const DeepCollectionEquality()
                 .equals(other._annotations, _annotations));
@@ -985,24 +985,24 @@ class _$TextContentImpl implements _TextContent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TextContentImplCopyWith<_$TextContentImpl> get copyWith =>
-      __$$TextContentImplCopyWithImpl<_$TextContentImpl>(this, _$identity);
+  _$$ContentTextImplCopyWith<_$ContentTextImpl> get copyWith =>
+      __$$ContentTextImplCopyWithImpl<_$ContentTextImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TextContentImplToJson(
+    return _$$ContentTextImplToJson(
       this,
     );
   }
 }
 
-abstract class _TextContent implements TextContent {
-  const factory _TextContent(
+abstract class _ContentText implements ContentText {
+  const factory _ContentText(
       {required final String value,
-      final List<dynamic> annotations}) = _$TextContentImpl;
+      final List<dynamic> annotations}) = _$ContentTextImpl;
 
-  factory _TextContent.fromJson(Map<String, dynamic> json) =
-      _$TextContentImpl.fromJson;
+  factory _ContentText.fromJson(Map<String, dynamic> json) =
+      _$ContentTextImpl.fromJson;
 
   @override
 
@@ -1014,7 +1014,7 @@ abstract class _TextContent implements TextContent {
   List<dynamic> get annotations;
   @override
   @JsonKey(ignore: true)
-  _$$TextContentImplCopyWith<_$TextContentImpl> get copyWith =>
+  _$$ContentTextImplCopyWith<_$ContentTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

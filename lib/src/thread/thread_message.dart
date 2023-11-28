@@ -63,7 +63,7 @@ class Content with _$Content {
     required String type,
 
     /// The actual text content, along with optional annotations.
-    required TextContent text,
+    required ContentText text,
   }) = _Content;
 
   factory Content.fromJson(Map<String, dynamic> json) =>
@@ -71,17 +71,17 @@ class Content with _$Content {
 }
 
 @freezed
-class TextContent with _$TextContent {
-  const factory TextContent({
+class ContentText with _$ContentText {
+  const factory ContentText({
     /// The value of the text content.
     required String value,
 
     /// Optional annotations for the text content.
     @Default([]) List<dynamic> annotations,
-  }) = _TextContent;
+  }) = _ContentText;
 
-  factory TextContent.fromJson(Map<String, dynamic> json) =>
-      _$TextFromJson(json);
+  factory ContentText.fromJson(Map<String, dynamic> json) =>
+      _$ContentTextFromJson(json);
 }
 
 @freezed
