@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:openai_api/openai_api.dart';
 
 import 'lib/env.dart';
+import 'lib/tools.dart';
 
 void main() async {
   final client = OpenaiClient(
@@ -13,8 +14,8 @@ void main() async {
     ),
   );
 
-  chatCompletionStsream(client);
-
+  // chatCompletionStsream(client);
+  await runConversation(client);
   // chatCompletion(client);
   // await transcripte(client);
   // Future.delayed(Duration(seconds: 10));
@@ -150,4 +151,68 @@ void chatCompletion(OpenaiClient client) async {
     ),
   );
   print(result);
+}
+
+Future runConversation(OpenaiClient client) async {
+  final messages = [
+    ChatMessage.user(
+        content:
+            "What's the weather like in San Francisco, Tokyo, Shanghai and Paris?")
+  ];
+
+  final tools = [
+    ChatTool(
+        function: ChatFunction(
+      name: "get_current_weather",
+      description: "Get the current weather in a given location",
+      parameters: ChatFunctionParameters(
+        type: "object",
+        properties: {
+          "location": {
+            "type": "string",
+            "description": "The city and state, e.g. San Francisco, CA",
+          },
+          "unit": {
+            "type": "string",
+            "enum": ["celsius", "fahrenheit"]
+          }
+        },
+        required: ["location"],
+      ),
+    ))
+  ];
+  final result = await client.sendChatCompletion(ChatCompletionRequest(
+    model: Models.gpt4_1106Preview,
+    messages: messages,
+    tools: tools,
+    toolChoice: "auto",
+  ));
+  final msg = result.choices.first.message;
+  final toolCalls = msg?.toolCalls;
+  if (toolCalls != null) {
+    final availableFunctions = {
+      "get_current_weather": getCurrentWeatherOnline,
+    };
+    messages.add(msg!);
+    for (final toolCall in toolCalls) {
+      final functionName = toolCall.function.name;
+      final toCall = availableFunctions[functionName];
+      final args = json.decode(toolCall.function.arguments);
+      final res = await toCall!.call(
+        args["location"],
+      );
+      messages.add(
+        ChatMessage.tool(
+          content: res,
+          toolCallId: toolCall.id,
+          name: functionName,
+        ),
+      );
+    }
+    final response = await client.sendChatCompletion(ChatCompletionRequest(
+      messages: messages,
+      model: Models.gpt4_1106Preview,
+    ));
+    print(response.choices.first.message?.content);
+  }
 }

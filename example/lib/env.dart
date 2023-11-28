@@ -12,4 +12,7 @@ abstract class Env {
 
   @EnviedField(varName: 'BASE_URL', defaultValue: '')
   static const String baseUrl = _Env.baseUrl;
+
+  @EnviedField(varName: 'WEATHER_API_KEY', defaultValue: '')
+  static const String weatherApiKey = _Env.weatherApiKey;
 }
