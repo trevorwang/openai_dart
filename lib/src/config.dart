@@ -3,6 +3,7 @@ import 'constants.dart';
 class OpenaiConfig {
   OpenaiConfig({
     required this.apiKey,
+    this.organizationId,
     String? baseUrl,
     this.httpProxy,
   }) {
@@ -11,6 +12,10 @@ class OpenaiConfig {
 
   /// [apiKey] is the API key for your OpenAI account.
   final String apiKey;
+
+  /// [organizationId] is the ID of the organization you want to use.
+  /// Leave it null if no organization is used.
+  final String? organizationId;
 
   /// [baseUrl] is the base URL for the OpenAI API. It defaults to
   /// [Constants.kBaseUrl]. A '/v1' will be added at the end of url.
