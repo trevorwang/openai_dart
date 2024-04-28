@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'thread_run.freezed.dart';
-
 part 'thread_run.g.dart';
 
 /// Represents an execution run on a thread.
@@ -44,7 +43,7 @@ class ThreadRun with _$ThreadRun {
     int? completedAt,
 
     /// The last error associated with this run. Will be null if there are no errors.
-    String? lastError,
+    Map<String, dynamic>? lastError,
 
     /// The model that the assistant used for this run.
     required String model,
@@ -64,6 +63,5 @@ class ThreadRun with _$ThreadRun {
     @Default({}) Map<String, dynamic> metadata,
   }) = _ThreadRun;
 
-  factory ThreadRun.fromJson(Map<String, dynamic> json) =>
-      _$ThreadRunFromJson(json);
+  factory ThreadRun.fromJson(Map<String, dynamic> json) => _$ThreadRunFromJson(json);
 }

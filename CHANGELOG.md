@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.3.7
+
+- Fix ThreadRun#lastError field is a Map, not a String
+
+# CHANGELOG
+
 ## 0.3.6
 
 - Introduce Assistant API https://platform.openai.com/docs/assistants/overview

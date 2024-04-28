@@ -19,7 +19,7 @@ _$ThreadRunImpl _$$ThreadRunImplFromJson(Map<String, dynamic> json) =>
       cancelledAt: json['cancelled_at'] as int?,
       failedAt: json['failed_at'] as int?,
       completedAt: json['completed_at'] as int?,
-      lastError: json['last_error'] as String?,
+      lastError: json['last_error'] as Map<String, dynamic>?,
       model: json['model'] as String,
       instructions: json['instructions'] as String,
       tools: json['tools'] as List<dynamic>? ?? const [],
