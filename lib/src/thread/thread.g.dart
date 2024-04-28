@@ -9,7 +9,7 @@ part of 'thread.dart';
 _$ThreadImpl _$$ThreadImplFromJson(Map<String, dynamic> json) => _$ThreadImpl(
       id: json['id'] as String,
       object: json['object'] as String? ?? 'thread',
-      createdAt: json['created_at'] as int,
+      createdAt: (json['created_at'] as num).toInt(),
       metadata: json['metadata'] as Map<String, dynamic>? ??
           const <String, dynamic>{},
     );

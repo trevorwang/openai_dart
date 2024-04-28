@@ -1,18 +1,15 @@
-import 'package:cancellation_token_http/http.dart' hide get;
 import 'package:openai_api/openai_api.dart';
 
 extension ThreadCreate on OpenaiClient {
   Future<Thread> createThread({CancellationToken? cancellationToken}) async {
-    final data = await sendRequest('threads', null,
-        cancellationToken: cancellationToken, isBeta: true);
+    final data = await sendRequest('threads', null, cancellationToken: cancellationToken, isBeta: true);
     return Thread.fromJson(data);
   }
 
   Future<ThreadMessage> addThreadMessage(
     ChatMessage message,
     String threadId, {
-    CancellationToken?
-        cancellationToken, //todo why passing cancellationToken everywhere and not use it?
+    CancellationToken? cancellationToken, //todo why passing cancellationToken everywhere and not use it?
   }) async {
     final data = await sendRequest(
       "threads/$threadId/messages",

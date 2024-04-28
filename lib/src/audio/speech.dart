@@ -1,4 +1,3 @@
-import 'package:cancellation_token_http/http.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:openai_api/openai_api.dart';
 
@@ -7,6 +6,7 @@ part 'speech.g.dart';
 
 extension Speech on OpenaiClient {
   static const kSpeechEndpoint = "audio/speech";
+
   Future<List<int>> createSpeech(
     SpeechRequest request, {
     CancellationToken? cancellationToken,
@@ -35,6 +35,5 @@ class SpeechRequest with _$SpeechRequest {
     @Default(1.0) double seed,
   }) = _SpeechRequest;
 
-  factory SpeechRequest.fromJson(Map<String, dynamic> json) =>
-      _$SpeechRequestFromJson(json);
+  factory SpeechRequest.fromJson(Map<String, dynamic> json) => _$SpeechRequestFromJson(json);
 }

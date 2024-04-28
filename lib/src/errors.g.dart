@@ -9,7 +9,7 @@ part of 'errors.dart';
 _$OpenaiExceptionImpl _$$OpenaiExceptionImplFromJson(
         Map<String, dynamic> json) =>
     _$OpenaiExceptionImpl(
-      code: json['code'] as int,
+      code: (json['code'] as num).toInt(),
       error: OpenaiError.fromJson(json['error']),
     );
 

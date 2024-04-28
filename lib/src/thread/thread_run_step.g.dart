@@ -41,7 +41,7 @@ _$ThreadRunStepImpl _$$ThreadRunStepImplFromJson(Map<String, dynamic> json) =>
     _$ThreadRunStepImpl(
       id: json['id'] as String,
       object: json['object'] as String? ?? 'thread.run.step',
-      createdAt: json['created_at'] as int,
+      createdAt: (json['created_at'] as num).toInt(),
       assistantId: json['assistant_id'] as String,
       threadId: json['thread_id'] as String,
       runId: json['run_id'] as String,
@@ -50,10 +50,10 @@ _$ThreadRunStepImpl _$$ThreadRunStepImplFromJson(Map<String, dynamic> json) =>
       stepDetails:
           StepDetails.fromJson(json['step_details'] as Map<String, dynamic>),
       lastError: json['last_error'] as String?,
-      expiredAt: json['expired_at'] as int?,
-      cancelledAt: json['cancelled_at'] as int?,
-      failedAt: json['failed_at'] as int?,
-      completedAt: json['completed_at'] as int?,
+      expiredAt: (json['expired_at'] as num?)?.toInt(),
+      cancelledAt: (json['cancelled_at'] as num?)?.toInt(),
+      failedAt: (json['failed_at'] as num?)?.toInt(),
+      completedAt: (json['completed_at'] as num?)?.toInt(),
       metadata: json['metadata'] as Map<String, dynamic>? ?? const {},
     );
 

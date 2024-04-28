@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:openai_api/openai_api.dart';
-import 'package:openai_api/src/audio/speech.dart';
-import 'package:openai_api/src/chat/message.dart';
 
 import 'lib/env.dart';
 
@@ -115,9 +113,7 @@ void chatCompletion(OpenaiClient client) async {
     ChatCompletionRequest(
       model: Models.gpt3_5Turbo_0613,
       messages: [
-        ChatMessage(
-            content: "What's the weather like in Boston in celsius?",
-            role: ChatMessageRole.user),
+        ChatMessage(content: "What's the weather like in Boston in celsius?", role: ChatMessageRole.user),
         ChatMessage(
           content: jsonEncode({
             "temperature": "22",
