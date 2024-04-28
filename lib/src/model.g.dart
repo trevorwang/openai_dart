@@ -28,7 +28,7 @@ _$ModelResponseImpl _$$ModelResponseImplFromJson(Map<String, dynamic> json) =>
       object: json['object'] as String,
       ownedBy: json['owned_by'] as String,
       permission: json['permission'] as List<dynamic>,
-      created: json['created'] as int,
+      created: (json['created'] as num).toInt(),
       root: json['root'] as String?,
       parent: json['parent'] as String?,
     );

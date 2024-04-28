@@ -56,7 +56,9 @@ Map<String, dynamic> _$$TranscriptionResponseImplToJson(
 _$BufferedBytesImpl _$$BufferedBytesImplFromJson(Map<String, dynamic> json) =>
     _$BufferedBytesImpl(
       format: json['format'] as String,
-      data: (json['data'] as List<dynamic>).map((e) => e as int).toList(),
+      data: (json['data'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
     );
 
 Map<String, dynamic> _$$BufferedBytesImplToJson(_$BufferedBytesImpl instance) =>

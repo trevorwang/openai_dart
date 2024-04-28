@@ -41,7 +41,7 @@ _$ThreadMessageImpl _$$ThreadMessageImplFromJson(Map<String, dynamic> json) =>
     _$ThreadMessageImpl(
       id: json['id'] as String,
       object: json['object'] as String? ?? 'thread.message',
-      createdAt: json['created_at'] as int,
+      createdAt: (json['created_at'] as num).toInt(),
       threadId: json['thread_id'] as String,
       role: json['role'] as String,
       content: (json['content'] as List<dynamic>)

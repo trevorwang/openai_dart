@@ -12,7 +12,7 @@ part of 'completion.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ChatChoice _$ChatChoiceFromJson(Map<String, dynamic> json) {
   return _ChatChoice.fromJson(json);
@@ -245,7 +245,7 @@ class _$ChatChoiceImpl implements _ChatChoice {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatChoiceImpl &&
@@ -412,7 +412,7 @@ class _$FinishDetailsImpl implements _FinishDetails {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FinishDetailsImpl &&
@@ -584,7 +584,7 @@ class _$ChatChoiceDeltaImpl implements _ChatChoiceDelta {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatChoiceDeltaImpl &&
@@ -1233,7 +1233,7 @@ class _$ChatCompletionRequestImpl implements _ChatCompletionRequest {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatCompletionRequestImpl &&
@@ -1548,7 +1548,7 @@ class _$ResponseFormatImpl implements _ResponseFormat {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResponseFormatImpl &&
@@ -1719,7 +1719,7 @@ class _$ToolChoiceImpl implements _ToolChoice {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToolChoiceImpl &&
@@ -1888,7 +1888,7 @@ class _$ChatToolImpl implements _ChatTool {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatToolImpl &&
@@ -2169,7 +2169,7 @@ class _$ChatCompletionResponseImpl implements _ChatCompletionResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatCompletionResponseImpl &&
@@ -2387,7 +2387,7 @@ class _$ChatCompletionUsageImpl implements _ChatCompletionUsage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatCompletionUsageImpl &&
@@ -2667,7 +2667,7 @@ class _$ChatMessageImpl implements _ChatMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatMessageImpl &&
@@ -2867,7 +2867,7 @@ class _$TextContentImpl implements _TextContent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TextContentImpl &&
@@ -3040,7 +3040,7 @@ class _$ImageContentImpl implements _ImageContent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImageContentImpl &&
@@ -3203,7 +3203,7 @@ class _$ImageUrlImpl implements _ImageUrl {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImageUrlImpl &&
@@ -3415,7 +3415,7 @@ class _$MessageToolCallImpl implements _MessageToolCall {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageToolCallImpl &&
@@ -3597,7 +3597,7 @@ class _$ChatFunctionCallImpl implements _ChatFunctionCall {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatFunctionCallImpl &&
@@ -3863,7 +3863,7 @@ class _$ChatFunctionImpl implements _ChatFunction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatFunctionImpl &&
@@ -4098,7 +4098,7 @@ class _$ChatFunctionParametersImpl implements _ChatFunctionParameters {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatFunctionParametersImpl &&
