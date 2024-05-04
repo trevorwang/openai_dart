@@ -33,7 +33,7 @@ class SpeechRequest with _$SpeechRequest {
     @Default(AudioFormats.mp3) String responseFormat,
 
     /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default.
-    @Default(1.0) double seed,
+    @Default(1.0) double speed,
   }) = _SpeechRequest;
 
   factory SpeechRequest.fromJson(Map<String, dynamic> json) =>
