@@ -12,7 +12,7 @@ _$SpeechRequestImpl _$$SpeechRequestImplFromJson(Map<String, dynamic> json) =>
       input: json['input'] as String,
       voice: json['voice'] as String,
       responseFormat: json['response_format'] as String? ?? AudioFormats.mp3,
-      seed: (json['seed'] as num?)?.toDouble() ?? 1.0,
+      speed: (json['speed'] as num?)?.toDouble() ?? 1.0,
     );
 
 Map<String, dynamic> _$$SpeechRequestImplToJson(_$SpeechRequestImpl instance) =>
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$SpeechRequestImplToJson(_$SpeechRequestImpl instance) =>
       'input': instance.input,
       'voice': instance.voice,
       'response_format': instance.responseFormat,
-      'seed': instance.seed,
+      'speed': instance.speed,
     };

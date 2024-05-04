@@ -33,7 +33,7 @@ mixin _$SpeechRequest {
   String get responseFormat => throw _privateConstructorUsedError;
 
   /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default.
-  double get seed => throw _privateConstructorUsedError;
+  double get speed => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +52,7 @@ abstract class $SpeechRequestCopyWith<$Res> {
       String input,
       String voice,
       String responseFormat,
-      double seed});
+      double speed});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$SpeechRequestCopyWithImpl<$Res, $Val extends SpeechRequest>
     Object? input = null,
     Object? voice = null,
     Object? responseFormat = null,
-    Object? seed = null,
+    Object? speed = null,
   }) {
     return _then(_value.copyWith(
       model: null == model
@@ -91,9 +91,9 @@ class _$SpeechRequestCopyWithImpl<$Res, $Val extends SpeechRequest>
           ? _value.responseFormat
           : responseFormat // ignore: cast_nullable_to_non_nullable
               as String,
-      seed: null == seed
-          ? _value.seed
-          : seed // ignore: cast_nullable_to_non_nullable
+      speed: null == speed
+          ? _value.speed
+          : speed // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -112,7 +112,7 @@ abstract class _$$SpeechRequestImplCopyWith<$Res>
       String input,
       String voice,
       String responseFormat,
-      double seed});
+      double speed});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class __$$SpeechRequestImplCopyWithImpl<$Res>
     Object? input = null,
     Object? voice = null,
     Object? responseFormat = null,
-    Object? seed = null,
+    Object? speed = null,
   }) {
     return _then(_$SpeechRequestImpl(
       model: null == model
@@ -149,9 +149,9 @@ class __$$SpeechRequestImplCopyWithImpl<$Res>
           ? _value.responseFormat
           : responseFormat // ignore: cast_nullable_to_non_nullable
               as String,
-      seed: null == seed
-          ? _value.seed
-          : seed // ignore: cast_nullable_to_non_nullable
+      speed: null == speed
+          ? _value.speed
+          : speed // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -165,7 +165,7 @@ class _$SpeechRequestImpl implements _SpeechRequest {
       required this.input,
       required this.voice,
       this.responseFormat = AudioFormats.mp3,
-      this.seed = 1.0});
+      this.speed = 1.0});
 
   factory _$SpeechRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SpeechRequestImplFromJson(json);
@@ -191,11 +191,11 @@ class _$SpeechRequestImpl implements _SpeechRequest {
   /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default.
   @override
   @JsonKey()
-  final double seed;
+  final double speed;
 
   @override
   String toString() {
-    return 'SpeechRequest(model: $model, input: $input, voice: $voice, responseFormat: $responseFormat, seed: $seed)';
+    return 'SpeechRequest(model: $model, input: $input, voice: $voice, responseFormat: $responseFormat, speed: $speed)';
   }
 
   @override
@@ -208,13 +208,13 @@ class _$SpeechRequestImpl implements _SpeechRequest {
             (identical(other.voice, voice) || other.voice == voice) &&
             (identical(other.responseFormat, responseFormat) ||
                 other.responseFormat == responseFormat) &&
-            (identical(other.seed, seed) || other.seed == seed));
+            (identical(other.speed, speed) || other.speed == speed));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, model, input, voice, responseFormat, seed);
+      Object.hash(runtimeType, model, input, voice, responseFormat, speed);
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +236,7 @@ abstract class _SpeechRequest implements SpeechRequest {
       required final String input,
       required final String voice,
       final String responseFormat,
-      final double seed}) = _$SpeechRequestImpl;
+      final double speed}) = _$SpeechRequestImpl;
 
   factory _SpeechRequest.fromJson(Map<String, dynamic> json) =
       _$SpeechRequestImpl.fromJson;
@@ -260,7 +260,7 @@ abstract class _SpeechRequest implements SpeechRequest {
   @override
 
   /// The speed of the generated audio. Select a value from 0.25 to 4.0. 1.0 is the default.
-  double get seed;
+  double get speed;
   @override
   @JsonKey(ignore: true)
   _$$SpeechRequestImplCopyWith<_$SpeechRequestImpl> get copyWith =>
