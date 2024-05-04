@@ -30,7 +30,7 @@ _$ImageRequestImpl _$$ImageRequestImplFromJson(Map<String, dynamic> json) =>
     _$ImageRequestImpl(
       prompt: json['prompt'] as String,
       model: json['model'] as String? ?? Models.dallE2,
-      n: json['n'] as int?,
+      n: (json['n'] as num?)?.toInt(),
       quality: json['quality'] as String?,
       size: json['size'] as String?,
       responseFormat: json['response_format'] as String?,
@@ -61,7 +61,7 @@ Map<String, dynamic> _$$ImageRequestImplToJson(_$ImageRequestImpl instance) {
 
 _$ImageResponseImpl _$$ImageResponseImplFromJson(Map<String, dynamic> json) =>
     _$ImageResponseImpl(
-      created: json['created'] as int,
+      created: (json['created'] as num).toInt(),
       data: (json['data'] as List<dynamic>).map(ImageData.fromJson).toList(),
     );
 

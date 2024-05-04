@@ -12,7 +12,7 @@ _$ImageEditRequestImpl _$$ImageEditRequestImplFromJson(
       image: json['image'] as String,
       mask: json['mask'] as String?,
       prompt: json['prompt'] as String,
-      n: json['n'] as int?,
+      n: (json['n'] as num?)?.toInt(),
       size: json['size'] as String?,
       responseFormat: json['response_format'] as String?,
       user: json['user'] as String?,

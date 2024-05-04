@@ -12,7 +12,7 @@ part of 'thread_run.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ThreadRun _$ThreadRunFromJson(Map<String, dynamic> json) {
   return _ThreadRun.fromJson(json);
@@ -55,7 +55,7 @@ mixin _$ThreadRun {
   int? get completedAt => throw _privateConstructorUsedError;
 
   /// The last error associated with this run. Will be null if there are no errors.
-  String? get lastError => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get lastError => throw _privateConstructorUsedError;
 
   /// The model that the assistant used for this run.
   String get model => throw _privateConstructorUsedError;
@@ -97,7 +97,7 @@ abstract class $ThreadRunCopyWith<$Res> {
       int? cancelledAt,
       int? failedAt,
       int? completedAt,
-      String? lastError,
+      Map<String, dynamic>? lastError,
       String model,
       String instructions,
       List<dynamic> tools,
@@ -184,7 +184,7 @@ class _$ThreadRunCopyWithImpl<$Res, $Val extends ThreadRun>
       lastError: freezed == lastError
           ? _value.lastError
           : lastError // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Map<String, dynamic>?,
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
@@ -229,7 +229,7 @@ abstract class _$$ThreadRunImplCopyWith<$Res>
       int? cancelledAt,
       int? failedAt,
       int? completedAt,
-      String? lastError,
+      Map<String, dynamic>? lastError,
       String model,
       String instructions,
       List<dynamic> tools,
@@ -312,9 +312,9 @@ class __$$ThreadRunImplCopyWithImpl<$Res>
           : completedAt // ignore: cast_nullable_to_non_nullable
               as int?,
       lastError: freezed == lastError
-          ? _value.lastError
+          ? _value._lastError
           : lastError // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Map<String, dynamic>?,
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
@@ -354,13 +354,14 @@ class _$ThreadRunImpl implements _ThreadRun {
       this.cancelledAt,
       this.failedAt,
       this.completedAt,
-      this.lastError,
+      final Map<String, dynamic>? lastError,
       required this.model,
       required this.instructions,
       final List<dynamic> tools = const [],
       final List<String> fileIds = const [],
       final Map<String, dynamic> metadata = const {}})
-      : _tools = tools,
+      : _lastError = lastError,
+        _tools = tools,
         _fileIds = fileIds,
         _metadata = metadata;
 
@@ -414,8 +415,17 @@ class _$ThreadRunImpl implements _ThreadRun {
   final int? completedAt;
 
   /// The last error associated with this run. Will be null if there are no errors.
+  final Map<String, dynamic>? _lastError;
+
+  /// The last error associated with this run. Will be null if there are no errors.
   @override
-  final String? lastError;
+  Map<String, dynamic>? get lastError {
+    final value = _lastError;
+    if (value == null) return null;
+    if (_lastError is EqualUnmodifiableMapView) return _lastError;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   /// The model that the assistant used for this run.
   @override
@@ -471,7 +481,7 @@ class _$ThreadRunImpl implements _ThreadRun {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThreadRunImpl &&
@@ -494,8 +504,8 @@ class _$ThreadRunImpl implements _ThreadRun {
                 other.failedAt == failedAt) &&
             (identical(other.completedAt, completedAt) ||
                 other.completedAt == completedAt) &&
-            (identical(other.lastError, lastError) ||
-                other.lastError == lastError) &&
+            const DeepCollectionEquality()
+                .equals(other._lastError, _lastError) &&
             (identical(other.model, model) || other.model == model) &&
             (identical(other.instructions, instructions) ||
                 other.instructions == instructions) &&
@@ -519,7 +529,7 @@ class _$ThreadRunImpl implements _ThreadRun {
       cancelledAt,
       failedAt,
       completedAt,
-      lastError,
+      const DeepCollectionEquality().hash(_lastError),
       model,
       instructions,
       const DeepCollectionEquality().hash(_tools),
@@ -553,7 +563,7 @@ abstract class _ThreadRun implements ThreadRun {
       final int? cancelledAt,
       final int? failedAt,
       final int? completedAt,
-      final String? lastError,
+      final Map<String, dynamic>? lastError,
       required final String model,
       required final String instructions,
       final List<dynamic> tools,
@@ -611,7 +621,7 @@ abstract class _ThreadRun implements ThreadRun {
   @override
 
   /// The last error associated with this run. Will be null if there are no errors.
-  String? get lastError;
+  Map<String, dynamic>? get lastError;
   @override
 
   /// The model that the assistant used for this run.

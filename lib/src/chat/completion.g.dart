@@ -8,7 +8,7 @@ part of 'completion.dart';
 
 _$ChatChoiceImpl _$$ChatChoiceImplFromJson(Map<String, dynamic> json) =>
     _$ChatChoiceImpl(
-      index: json['index'] as int,
+      index: (json['index'] as num).toInt(),
       message: json['message'] == null
           ? null
           : ChatMessage.fromJson(json['message'] as Map<String, dynamic>),
@@ -88,10 +88,10 @@ _$ChatCompletionRequestImpl _$$ChatCompletionRequestImplFromJson(
       functionCall: json['function_call'],
       temperature: (json['temperature'] as num?)?.toDouble(),
       topP: (json['top_p'] as num?)?.toDouble(),
-      n: json['n'] as int?,
+      n: (json['n'] as num?)?.toInt(),
       stream: json['stream'] as bool?,
       stop: (json['stop'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      maxTokens: json['max_tokens'] as int?,
+      maxTokens: (json['max_tokens'] as num?)?.toInt(),
       presencePenalty: (json['presence_penalty'] as num?)?.toDouble(),
       frequencyPenalty: (json['frequency_penalty'] as num?)?.toDouble(),
       responseFormat: json['response_format'] == null
@@ -191,7 +191,7 @@ _$ChatCompletionResponseImpl _$$ChatCompletionResponseImplFromJson(
           .toList(),
       id: json['id'] as String,
       object: json['object'] as String,
-      created: json['created'] as int,
+      created: (json['created'] as num).toInt(),
       systemFingerprint: json['system_fingerprint'] as String?,
       usage: json['usage'] == null
           ? null
@@ -221,9 +221,9 @@ Map<String, dynamic> _$$ChatCompletionResponseImplToJson(
 _$ChatCompletionUsageImpl _$$ChatCompletionUsageImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatCompletionUsageImpl(
-      promptTokens: json['prompt_tokens'] as int,
-      completionTokens: json['completion_tokens'] as int,
-      totalTokens: json['total_tokens'] as int,
+      promptTokens: (json['prompt_tokens'] as num).toInt(),
+      completionTokens: (json['completion_tokens'] as num).toInt(),
+      totalTokens: (json['total_tokens'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$ChatCompletionUsageImplToJson(
@@ -327,7 +327,7 @@ const _$ImageDetailEnumMap = {
 _$MessageToolCallImpl _$$MessageToolCallImplFromJson(
         Map<String, dynamic> json) =>
     _$MessageToolCallImpl(
-      index: json['index'] as int?,
+      index: (json['index'] as num?)?.toInt(),
       id: json['id'] as String,
       type: json['type'] as String,
       function:
