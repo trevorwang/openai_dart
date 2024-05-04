@@ -63,5 +63,6 @@ class ThreadRun with _$ThreadRun {
     @Default({}) Map<String, dynamic> metadata,
   }) = _ThreadRun;
 
-  factory ThreadRun.fromJson(Map<String, dynamic> json) => _$ThreadRunFromJson(json);
+  factory ThreadRun.fromJson(Map<String, dynamic> json) =>
+      _$ThreadRunFromJson(json);
 }
