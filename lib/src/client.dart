@@ -151,6 +151,7 @@ class OpenaiClient {
     return {
       'Authorization': 'Bearer ${config.apiKey}',
       if (isBeta) 'OpenAI-Beta': 'assistants=v1',
+      if (config.organizationId != null) 'OpenAI-Organization': config.organizationId!,
     };
   }
 
